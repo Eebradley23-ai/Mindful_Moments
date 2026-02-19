@@ -515,7 +515,8 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 <script>
 const SB_URL='https://uaktywmfpdppwyxnzukr.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVha3R5d21mcGRwcHd5eG56dWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MTcyNzYsImV4cCI6MjA4Njk5MzI3Nn0.HetxfNPaLFiiUncCA6kN2Xhu4cFJvMI2zPupEBX-Bhc';
-const H={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+let H={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+function getH(){return{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':authToken?`Bearer ${authToken}`:`Bearer ${SB_KEY}`};}
 
 let currentLang='en',currentZone=null,selectedFeelings=[],breathTimer=null;
 let stars=parseInt(localStorage.getItem('z_stars')||'0');
@@ -893,8 +894,8 @@ async function createClass(){
 async function deleteClass(id,name){
   if(!confirm(`Delete "${name}"? This will also remove all students in this class. Check-in history will be kept.`))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/children?classroom_id=eq.${id}`,{method:'DELETE',headers:H});
-    await fetch(`${SB_URL}/rest/v1/classes?id=eq.${id}`,{method:'DELETE',headers:H});
+    await fetch(`${SB_URL}/rest/v1/children?classroom_id=eq.${id}`,{method:'DELETE',headers:getH()});
+    await fetch(`${SB_URL}/rest/v1/classes?id=eq.${id}`,{method:'DELETE',headers:getH()});
     if(selectedClassId===id){document.getElementById('add-student-section').style.display='none';selectedClassId=null;}
     teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
     document.getElementById('d-classes').textContent=teacherClasses.length;
@@ -961,7 +962,7 @@ async function addStudent(){
   try{
     const r=await fetch(`${SB_URL}/rest/v1/children`,{
       method:'POST',
-      headers:{...H,'Prefer':'return=representation'},
+      headers:{...getH(),'Prefer':'return=representation'},
       body:JSON.stringify({name,classroom_id:selectedClassId,family_code:familyCode,avatar,stickers:0,created_at:new Date().toISOString()})
     });
     if(r.ok){
@@ -980,7 +981,7 @@ async function addStudent(){
 async function removeStudent(id){
   if(!confirm('Remove this student? Their check-in history will be kept.'))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{method:'DELETE',headers:H});
+    await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{method:'DELETE',headers:getH()});
     await loadStudents(selectedClassId);
   }catch(e){console.error(e);}
 }
@@ -1002,7 +1003,7 @@ async function addResource(){
 async function deleteResource(id){
   if(!confirm('Remove this resource?'))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/resources?id=eq.${id}`,{method:'DELETE',headers:H});
+    await fetch(`${SB_URL}/rest/v1/resources?id=eq.${id}`,{method:'DELETE',headers:getH()});
     teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
     renderResources();
   }catch(e){console.error(e);}
@@ -1062,10 +1063,10 @@ async function loadParentDash(classroomId,classCode,childId){
 
 // ===== SUPABASE HELPERS =====
 async function sbInsert(table,data){
-  try{const r=await fetch(`${SB_URL}/rest/v1/${table}`,{method:'POST',headers:{...H,'Prefer':'return=minimal'},body:JSON.stringify(data)});return r.ok;}catch(e){return false;}
+  try{const r=await fetch(`${SB_URL}/rest/v1/${table}`,{method:'POST',headers:{...getH(),'Prefer':'return=minimal'},body:JSON.stringify(data)});return r.ok;}catch(e){return false;}
 }
 async function sbSelect(table,params=''){
-  try{const r=await fetch(`${SB_URL}/rest/v1/${table}?${params}`,{headers:H});if(r.ok)return await r.json();}catch(e){}return[];
+  try{const r=await fetch(`${SB_URL}/rest/v1/${table}?${params}`,{headers:getH()});if(r.ok)return await r.json();}catch(e){}return[];
 }
 
 // Init
