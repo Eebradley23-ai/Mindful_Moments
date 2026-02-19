@@ -962,7 +962,7 @@ async function addStudent(){
   try{
     const r=await fetch(`${SB_URL}/rest/v1/children`,{
       method:'POST',
-      headers:{...getH(),'Prefer':'return=representation'},
+      headers:{...getH(),'Prefer':'return=minimal'},
       body:JSON.stringify({name,classroom_id:selectedClassId,family_code:familyCode,avatar,stickers:0,created_at:new Date().toISOString()})
     });
     if(r.ok){
