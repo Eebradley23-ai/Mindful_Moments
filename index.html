@@ -196,8 +196,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       <button class="btn btn-outline" onclick="showScreen('auth-screen');setAuthMode('parent')">
         <span id="btn-parent-label">👪 Parent / Guardian</span>
       </button>
-      <button class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:2px dashed rgba(255,255,255,0.5);font-size:.9em" onclick="enterDemo('teacher')">🎬 Demo — Educator Portal</button>
-      <button class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:2px dashed rgba(255,255,255,0.5);font-size:.9em" onclick="enterDemo('parent')">🎬 Demo — Parent Portal</button>
+
     </div>
   </div>
 </div>
@@ -522,7 +521,7 @@ let currentLang='en',currentZone=null,selectedFeelings=[],breathTimer=null;
 let stars=parseInt(localStorage.getItem('z_stars')||'0');
 let sessionId=localStorage.getItem('z_sid')||('s'+Math.random().toString(36).slice(2,10));
 localStorage.setItem('z_sid',sessionId);
-let anonView=true,currentUser=null,userRole=null,authToken=null,isDemoMode=false;
+let anonView=true,currentUser=null,userRole=null,authToken=null;
 let teacherClasses=[],teacherResources=[],selectedClassId=null,selectedClassName='';
 
 // ===== TRANSLATIONS =====
@@ -556,19 +555,7 @@ const PRESET_RESOURCES=[
   {title:'Supporting Children\'s Mental Health at Home',type:'link',url:'https://www.camh.ca/en/health-info/mental-health-and-covid-19/supporting-children',audience:'parent',preset:true},
 ];
 
-const DEMO_CHECKINS=[
-  {zone_id:'green',feelings:['Happy','Calm'],note:'I had a good breakfast!',session_id:'demo001',checked_in_at:new Date(Date.now()-5*60000).toISOString()},
-  {zone_id:'yellow',feelings:['Worried','Nervous'],note:'I have a test today',session_id:'demo002',checked_in_at:new Date(Date.now()-12*60000).toISOString()},
-  {zone_id:'blue',feelings:['Sad','Tired'],note:null,session_id:'demo003',checked_in_at:new Date(Date.now()-20*60000).toISOString()},
-  {zone_id:'green',feelings:['Proud','Ready'],note:null,session_id:'demo004',checked_in_at:new Date(Date.now()-35*60000).toISOString()},
-  {zone_id:'red',feelings:['Mad','Overwhelmed'],note:'Someone was mean to me',session_id:'demo005',checked_in_at:new Date(Date.now()-50*60000).toISOString()},
-  {zone_id:'green',feelings:['Happy','Thankful'],note:null,session_id:'demo006',checked_in_at:new Date(Date.now()-65*60000).toISOString()},
-  {zone_id:'yellow',feelings:['Excited','Wiggly'],note:null,session_id:'demo007',checked_in_at:new Date(Date.now()-80*60000).toISOString()},
-];
-const DEMO_CLASSES=[
-  {name:'Room 4 — Grade 2',code:'ZNS4A2',created_at:new Date(Date.now()-7*24*3600000).toISOString()},
-  {name:'Room 7 — Senior Kindergarten',code:'ZNS7SK',created_at:new Date(Date.now()-14*24*3600000).toISOString()},
-];
+
 
 // ===== SPEECH =====
 function speak(elId){
@@ -831,61 +818,9 @@ async function doLogin(){
   }catch(e){err.textContent='Connection error: '+e.message;}
 }
 
-function doLogout(){authToken=null;currentUser=null;userRole=null;isDemoMode=false;showScreen('landing');}
+function doLogout(){authToken=null;currentUser=null;userRole=null;showScreen('landing');}
 
-// ===== DEMO MODE =====
-function enterDemo(role){
-  isDemoMode=true;
-  if(role==='teacher'){
-    document.getElementById('teacher-name-display').textContent='Welcome, Ms. Demo Teacher (Durham Elementary)';
-    showScreen('teacher-dash');
-    loadDemoDash();
-  }else{
-    document.getElementById('parent-class-display').textContent='Class: Room 4 — Grade 2 (ZNS4A2)';
-    showScreen('parent-dash');
-    loadDemoParentDash();
-  }
-}
-function loadDemoDash(){
-  const counts={blue:0,green:0,yellow:0,red:0};
-  DEMO_CHECKINS.forEach(c=>counts[c.zone_id]++);
-  const total=DEMO_CHECKINS.length;
-  document.getElementById('d-checkins').textContent=total;
-  document.getElementById('d-classes').textContent=DEMO_CLASSES.length;
-  document.getElementById('d-stars').textContent=total+3;
-  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
-  const ze={blue:'😢',green:'😄',yellow:'😰',red:'😡'};
-  document.getElementById('d-top-zone').textContent=ze[top[0]];
-  ['blue','green','yellow','red'].forEach(z=>{
-    const pct=Math.round(counts[z]/total*100);
-    document.getElementById(`pct-${z}`).textContent=pct+'%';
-    document.getElementById(`bar-${z}`).style.width=pct+'%';
-  });
-  teacherClasses=DEMO_CLASSES;
-  teacherResources=[];
-}
-function loadDemoCheckins(){
-  const list=document.getElementById('checkins-list');
-  list.innerHTML=DEMO_CHECKINS.map(c=>{
-    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_id}};
-    const time=new Date(c.checked_in_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-    const feelings=(c.feelings||[]).map(f=>`<span class="tag">${f}</span>`).join('');
-    const noteHtml=(!anonView&&c.note)?`<div style="font-size:.8em;color:#888;margin-top:3px;font-style:italic">"${c.note}"</div>`:'';
-    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en} ${feelings}</div><div class="ci-sub">${time} · Session ${anonView?c.session_id.slice(0,4)+'***':c.session_id}</div>${noteHtml}</div></div>`;
-  }).join('');
-}
-function loadDemoParentDash(){
-  const el=document.getElementById('parent-checkins');
-  el.innerHTML=DEMO_CHECKINS.slice(0,5).map(c=>{
-    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_id}};
-    const date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en}</div><div class="ci-sub">${date}</div></div></div>`;
-  }).join('');
-  const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  document.getElementById('parent-resources').innerHTML=PRESET_RESOURCES.filter(r=>r.audience!=='teacher').map(r=>`
-    <div class="resource-card"><div class="rc-icon">${icons[r.type]||'🔗'}</div><div class="rc-info"><h4>${r.title}</h4></div>
-    <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a></div>`).join('');
-}
+
 
 // ===== TEACHER DASHBOARD =====
 function showDashSection(id,btn){
@@ -893,7 +828,7 @@ function showDashSection(id,btn){
   document.querySelectorAll('.dash-nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('dash-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
-  if(id==='checkins')isDemoMode?loadDemoCheckins():loadCheckins();
+  if(id==='checkins')loadCheckins();
   if(id==='classes')renderClasses();
   if(id==='resources')renderResources();
 }
