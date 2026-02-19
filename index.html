@@ -468,6 +468,18 @@ input[type=number]{-moz-appearance:textfield}
       </div>
       <div style="font-weight:700;margin-bottom:10px;color:#444">Your Classes</div>
       <div id="classes-list"><div style="color:#aaa;font-size:.9em">No classes yet. Create one above!</div></div>
+      
+      <!-- ADD STUDENT SECTION -->
+      <div id="add-student-section" style="display:none;margin-top:20px">
+        <div style="font-weight:700;margin-bottom:10px;color:#444">👧 Add a Student to <span id="selected-class-name"></span></div>
+        <div class="form-row">
+          <input type="text" id="new-student-name" placeholder="Student first name (or nickname)"/>
+          <button class="small-btn btn-purple-sm" onclick="addStudent()">+ Add</button>
+        </div>
+        <div style="font-size:.82em;color:#888;margin-bottom:14px">💡 A unique family code will be generated for each student so their parent can access only their child's check-ins.</div>
+        <div style="font-weight:700;margin-bottom:10px;color:#444">Students</div>
+        <div id="students-list"><div style="color:#aaa;font-size:.9em">No students yet.</div></div>
+      </div>
     </div>
     <!-- CHECK-INS -->
     <div id="dash-checkins" class="dash-section">
@@ -1103,6 +1115,8 @@ function toggleAnon(){
   loadCheckins();
 }
 
+let selectedClassId=null, selectedClassName='';
+
 async function createClass(){
   const name=document.getElementById('new-class-name').value.trim();
   if(!name)return;
@@ -1115,6 +1129,7 @@ async function createClass(){
     renderClasses();
   }
 }
+
 function renderClasses(){
   const el=document.getElementById('classes-list');
   if(!teacherClasses||teacherClasses.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No classes yet. Create one above!</div>';return;}
@@ -1124,8 +1139,73 @@ function renderClasses(){
         <div><h4>🏫 ${c.name}</h4><p>Created ${new Date(c.created_at).toLocaleDateString()}</p></div>
         <span class="code-badge">${c.code}</span>
       </div>
-      <p style="font-size:.82em;color:#888;margin-top:10px">📨 Share this code with parents: <strong>${c.code}</strong></p>
+      <p style="font-size:.82em;color:#888;margin-top:10px">📨 Share class code with parents: <strong>${c.code}</strong></p>
+      <button onclick="selectClass('${c.id}','${c.name.replace(/'/g,"\\'")}','${c.code}')" 
+        style="margin-top:10px;width:100%;padding:10px;background:#ede9ff;color:#7C4DFF;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
+        👧 Manage Students
+      </button>
     </div>`).join('');
+}
+
+async function selectClass(id, name, code){
+  selectedClassId=id;
+  selectedClassName=name;
+  document.getElementById('selected-class-name').textContent=name;
+  document.getElementById('add-student-section').style.display='block';
+  document.getElementById('add-student-section').scrollIntoView({behavior:'smooth'});
+  await loadStudents(id);
+}
+
+async function loadStudents(classId){
+  const students=await sbSelect('children',`classroom_id=eq.${classId}&order=created_at.asc`)||[];
+  const el=document.getElementById('students-list');
+  if(students.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No students yet. Add one above!</div>';return;}
+  el.innerHTML=students.map(s=>`
+    <div class="class-card" style="display:flex;align-items:center;gap:14px;padding:14px 18px">
+      <div style="font-size:2em">${s.avatar||'😊'}</div>
+      <div style="flex:1">
+        <div style="font-weight:700">${s.name}</div>
+        <div style="font-size:.8em;color:#888;margin-top:3px">
+          Family code: <strong style="color:#7C4DFF;letter-spacing:2px">${s.family_code}</strong>
+          · Stickers: ⭐ ${s.stickers||0}
+        </div>
+      </div>
+      <button onclick="removeStudent('${s.id}')" 
+        style="background:#fdecea;color:#E74C3C;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.85em;font-weight:600">
+        Remove
+      </button>
+    </div>`).join('');
+}
+
+async function addStudent(){
+  const name=document.getElementById('new-student-name').value.trim();
+  if(!name||!selectedClassId)return;
+  // Generate unique family code
+  const familyCode=Math.random().toString(36).slice(2,8).toUpperCase();
+  const avatars=['😊','😄','🌟','🦋','🌈','🐶','🐱','🦊','🐸','🦄','🌸','⭐'];
+  const avatar=avatars[Math.floor(Math.random()*avatars.length)];
+  const ok=await sbInsert('children',{
+    name,
+    classroom_id:selectedClassId,
+    family_code:familyCode,
+    avatar,
+    stickers:0,
+    created_at:new Date().toISOString()
+  });
+  if(ok){
+    document.getElementById('new-student-name').value='';
+    await loadStudents(selectedClassId);
+  }
+}
+
+async function removeStudent(id){
+  if(!confirm('Remove this student? Their check-in history will be kept.'))return;
+  try{
+    await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{
+      method:'DELETE',headers:H
+    });
+    await loadStudents(selectedClassId);
+  }catch(e){console.error(e);}
 }
 
 async function addResource(){
