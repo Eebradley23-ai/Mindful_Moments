@@ -951,13 +951,31 @@ async function loadStudents(classId){
     </div>`).join('');
 }
 async function addStudent(){
-  const name=document.getElementById('new-student-name').value.trim();
-  if(!name||!selectedClassId)return;
+  const nameEl=document.getElementById('new-student-name');
+  const name=nameEl.value.trim();
+  if(!name){alert('Please enter a student name.');return;}
+  if(!selectedClassId){alert('Please select a class first.');return;}
   const familyCode=Math.random().toString(36).slice(2,8).toUpperCase();
   const avatars=['😊','😄','🌟','🦋','🌈','🐶','🐱','🦊','🐸','🦄','🌸','⭐'];
   const avatar=avatars[Math.floor(Math.random()*avatars.length)];
-  const ok=await sbInsert('children',{name,classroom_id:selectedClassId,family_code:familyCode,avatar,stickers:0,created_at:new Date().toISOString()});
-  if(ok){document.getElementById('new-student-name').value='';await loadStudents(selectedClassId);}
+  try{
+    const r=await fetch(`${SB_URL}/rest/v1/children`,{
+      method:'POST',
+      headers:{...H,'Prefer':'return=representation'},
+      body:JSON.stringify({name,classroom_id:selectedClassId,family_code:familyCode,avatar,stickers:0,created_at:new Date().toISOString()})
+    });
+    if(r.ok){
+      nameEl.value='';
+      await loadStudents(selectedClassId);
+    } else {
+      const err=await r.json();
+      console.error('Add student error:',err);
+      alert('Could not add student: '+(err.message||err.hint||JSON.stringify(err)));
+    }
+  }catch(e){
+    console.error(e);
+    alert('Connection error: '+e.message);
+  }
 }
 async function removeStudent(id){
   if(!confirm('Remove this student? Their check-in history will be kept.'))return;
