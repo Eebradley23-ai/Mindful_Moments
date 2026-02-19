@@ -11,19 +11,14 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .screen{display:none;min-height:100vh;flex-direction:column;animation:fadeIn .3s ease}
 .screen.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* LANGUAGE BAR */
 .lang-bar{display:flex;justify-content:center;gap:6px;padding:10px;background:rgba(255,255,255,0.15);flex-wrap:wrap}
 .lang-btn{padding:6px 12px;border:2px solid rgba(255,255,255,0.5);background:transparent;border-radius:20px;color:#fff;font-size:.8em;cursor:pointer;font-weight:600;transition:all .2s}
 .lang-btn.active,.lang-btn:hover{background:#fff;color:#7C4DFF}
 .lang-bar-dark .lang-btn{border-color:#ccc;color:#555}
 .lang-bar-dark .lang-btn.active,.lang-bar-dark .lang-btn:hover{background:#7C4DFF;color:#fff;border-color:#7C4DFF}
-
-/* SPEAKER */
 .speaker-btn{background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.5);border-radius:50%;width:48px;height:48px;font-size:1.4em;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .speaker-btn:hover{background:rgba(255,255,255,0.4);transform:scale(1.1)}
 .speaker-btn.dark{background:#ede9ff;border-color:#7C4DFF;color:#7C4DFF}
-
 /* LANDING */
 #landing{background:linear-gradient(145deg,#667eea,#764ba2,#f093fb);align-items:center;justify-content:flex-start}
 .landing-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:30px 20px;text-align:center}
@@ -35,8 +30,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
 .btn-white{background:#fff;color:#764ba2}
 .btn-outline{background:rgba(255,255,255,0.2);color:#fff;border:2px solid rgba(255,255,255,0.6)}
-
-/* FEELING QUESTION */
+/* FEELING Q */
 #feeling-q{background:linear-gradient(145deg,#a18cd1,#fbc2eb);align-items:center;justify-content:flex-start}
 .fq-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:20px;text-align:center;width:100%}
 .fq-inner h2{font-size:2em;color:#fff;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,0.15)}
@@ -50,7 +44,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .emotion-btn.green-z{border-left:6px solid var(--green)}
 .emotion-btn.yellow-z{border-left:6px solid var(--yellow)}
 .emotion-btn.red-z{border-left:6px solid var(--red)}
-
 /* ZONE PAGE */
 #zone-page{min-height:100vh;flex-direction:column}
 .zone-header{padding:24px 20px 20px;display:flex;flex-direction:column;gap:12px}
@@ -59,14 +52,11 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .zone-title{font-size:2em;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.2)}
 .zone-desc{color:rgba(255,255,255,0.92);font-size:1.05em;line-height:1.6;background:rgba(255,255,255,0.15);border-radius:14px;padding:14px}
 .zone-body{flex:1;padding:20px;background:var(--bg)}
-.section-label{font-size:1.1em;font-weight:700;color:#444;margin-bottom:12px}
 .tab-row{display:flex;gap:8px;margin-bottom:18px}
 .tab-btn{flex:1;padding:11px;border:2px solid #ddd;background:#fff;border-radius:12px;font-weight:600;cursor:pointer;font-size:.9em;transition:all .2s}
 .tab-btn.active{background:var(--purple);color:#fff;border-color:var(--purple)}
 .tab-content{display:none}
 .tab-content.active{display:block}
-
-/* ACTIVITIES */
 .act-list{display:flex;flex-direction:column;gap:12px}
 .act-item{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.07);cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s}
 .act-item:hover{transform:translateX(4px);box-shadow:0 4px 15px rgba(0,0,0,0.12)}
@@ -78,8 +68,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .act-detail h3{font-size:1.15em;margin-bottom:10px}
 .act-steps{color:#555;line-height:1.8;font-size:1em}
 .act-done-btn{margin-top:16px;width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:50px;font-size:1em;font-weight:700;cursor:pointer}
-
-/* BREATHING */
 .breathing-container{text-align:center;padding:10px}
 .breath-circle{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);margin:20px auto;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1em;font-weight:700;transition:all 4s ease;box-shadow:0 0 0 0 rgba(124,77,255,0.4)}
 .breath-circle.inhale{transform:scale(1.5);box-shadow:0 0 0 20px rgba(124,77,255,0.15)}
@@ -87,10 +75,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .breath-phase{font-size:1.4em;font-weight:700;color:#764ba2;margin:10px 0}
 .breath-count{font-size:3em;font-weight:800;color:#764ba2}
 .breath-start-btn{padding:14px 40px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:50px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:10px}
-
-/* BACK BTN */
 .back-btn-white{background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.6);color:#fff;padding:10px 20px;border-radius:50px;cursor:pointer;font-weight:600;font-size:.9em}
-
 /* STARS */
 #stars-screen{background:linear-gradient(135deg,#f093fb,#f5576c);align-items:center;justify-content:flex-start;text-align:center}
 .stars-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px}
@@ -104,15 +89,13 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .ms-item p{color:#fff;font-size:.92em;text-align:left}
 .ms-item.earned p{font-weight:700}
 .ms-item .ms-check{margin-left:auto;font-size:1.2em}
-
 /* CELEBRATION */
 #celebration{background:linear-gradient(135deg,#FFD700,#FF6B35);align-items:center;justify-content:center;text-align:center;padding:40px 20px}
 .confetti-row{font-size:3.5em;margin-bottom:20px;animation:bounce .7s infinite alternate}
 @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-18px)}}
 #celebration h2{color:#fff;font-size:2.5em;text-shadow:0 3px 10px rgba(0,0,0,0.2);margin-bottom:10px}
 #celebration p{color:rgba(255,255,255,0.92);font-size:1.15em;margin-bottom:30px}
-
-/* AUTH / PORTAL */
+/* AUTH */
 #auth-screen{background:var(--bg);align-items:center;justify-content:center;padding:20px}
 .auth-card{background:#fff;border-radius:var(--radius);padding:36px;width:100%;max-width:380px;box-shadow:0 8px 30px rgba(0,0,0,0.1)}
 .auth-card h2{text-align:center;color:var(--purple);margin-bottom:6px;font-size:1.5em}
@@ -127,7 +110,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .auth-tab.active{background:var(--purple);color:#fff;border-color:var(--purple)}
 .err{color:var(--red);font-size:.85em;text-align:center;margin-top:8px}
 .back-link{display:block;text-align:center;margin-top:14px;color:var(--purple);cursor:pointer;font-size:.9em}
-
 /* TEACHER DASHBOARD */
 #teacher-dash{background:#f5f5f5;flex-direction:column}
 .dash-header{background:linear-gradient(135deg,#667eea,#764ba2);padding:22px 20px;color:#fff}
@@ -157,7 +139,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .resource-card .rc-info{flex:1}
 .resource-card .rc-info h4{font-size:.95em;font-weight:700}
 .resource-card .rc-info p{font-size:.82em;color:#888}
-.resource-card a{color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none}
 .privacy-box{background:#fff3e0;border-left:4px solid #F5A623;border-radius:10px;padding:14px;font-size:.85em;color:#7a5000;line-height:1.6;margin-top:16px}
 .toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .toggle{width:44px;height:24px;background:#ccc;border-radius:12px;position:relative;cursor:pointer;transition:background .2s}
@@ -180,22 +161,19 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .add-resource-form{background:#fff;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.07)}
 .add-resource-form h4{margin-bottom:12px;font-size:.95em;color:#555}
 .logout-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);color:#fff;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:.85em}
-
-/* PARENT PORTAL */
+.section-label{font-weight:700;color:#444;margin:16px 0 8px;display:block}
+/* PARENT */
 #parent-dash{background:#f5f5f5;flex-direction:column}
 .parent-header{background:linear-gradient(135deg,#5CB85C,#1e7e34);padding:22px 20px;color:#fff}
 .parent-body{flex:1;padding:20px}
-
-/* UTIL */
 .hide{display:none!important}
-input[type=number]{-moz-appearance:textfield}
 </style>
 </head>
 <body>
 
-<!-- ========== LANDING ========== -->
+<!-- LANDING -->
 <div id="landing" class="screen active">
-  <div class="lang-bar" id="lang-bar-landing">
+  <div class="lang-bar">
     <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 English</button>
     <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 Français</button>
     <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 Español</button>
@@ -224,9 +202,9 @@ input[type=number]{-moz-appearance:textfield}
   </div>
 </div>
 
-<!-- ========== FEELING QUESTION ========== -->
+<!-- FEELING QUESTION -->
 <div id="feeling-q" class="screen">
-  <div class="lang-bar" id="lang-bar-fq">
+  <div class="lang-bar">
     <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
     <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
     <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
@@ -265,10 +243,10 @@ input[type=number]{-moz-appearance:textfield}
   </div>
 </div>
 
-<!-- ========== ZONE PAGE ========== -->
+<!-- ZONE PAGE -->
 <div id="zone-page" class="screen">
   <div id="zone-header-bg" class="zone-header">
-    <div class="lang-bar" id="lang-bar-zone" style="padding:0 0 10px">
+    <div class="lang-bar" style="padding:0 0 10px">
       <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
       <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
       <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
@@ -281,7 +259,7 @@ input[type=number]{-moz-appearance:textfield}
     </div>
     <div class="zone-emoji-big" id="zone-emoji">😊</div>
     <div class="zone-title" id="zone-title-text">Green Zone</div>
-    <div class="zone-desc" id="zone-desc-text">You're in the Green Zone! You feel calm, happy, and ready to learn.</div>
+    <div class="zone-desc" id="zone-desc-text">You're in the Green Zone!</div>
   </div>
   <div class="zone-body">
     <div class="tab-row">
@@ -289,7 +267,6 @@ input[type=number]{-moz-appearance:textfield}
       <button class="tab-btn" onclick="switchTab('breathing-tab',this)" id="tab-breath-label">🌬️ Breathing</button>
       <button class="tab-btn" onclick="switchTab('feelings-tab',this)" id="tab-feel-label">💬 My Feelings</button>
     </div>
-    <!-- ACTIVITIES TAB -->
     <div id="activities-tab" class="tab-content active">
       <div class="act-list" id="act-list"></div>
       <div class="act-detail" id="act-detail">
@@ -301,7 +278,6 @@ input[type=number]{-moz-appearance:textfield}
         <button class="act-done-btn" onclick="completeActivity()">✅ <span id="done-label">I Did It!</span> (+1 ⭐)</button>
       </div>
     </div>
-    <!-- BREATHING TAB -->
     <div id="breathing-tab" class="tab-content">
       <div class="breathing-container">
         <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px">
@@ -314,7 +290,6 @@ input[type=number]{-moz-appearance:textfield}
         <button class="breath-start-btn" onclick="startBreathing()" id="breath-start-btn">▶ Start</button>
       </div>
     </div>
-    <!-- FEELINGS TAB -->
     <div id="feelings-tab" class="tab-content">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
         <p id="feelings-prompt" style="color:#555">Tap the feelings you have right now:</p>
@@ -332,7 +307,7 @@ input[type=number]{-moz-appearance:textfield}
   </div>
 </div>
 
-<!-- ========== STARS SCREEN ========== -->
+<!-- STARS -->
 <div id="stars-screen" class="screen">
   <div class="lang-bar" style="background:rgba(0,0,0,0.1)">
     <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
@@ -347,27 +322,15 @@ input[type=number]{-moz-appearance:textfield}
     <div class="big-star-num" id="star-big-num">0</div>
     <p style="color:rgba(255,255,255,0.8);margin-bottom:16px" id="stars-earned-label">Stars earned</p>
     <div class="milestones">
-      <div class="ms-item" id="ms1">
-        <span class="ms-icon">🌱</span>
-        <p id="ms1-label">First Check-in — Feelings Explorer!</p>
-        <span class="ms-check" id="ms1-check"></span>
-      </div>
-      <div class="ms-item" id="ms2">
-        <span class="ms-icon">🌟</span>
-        <p id="ms2-label">5 Stars — Feelings Superstar!</p>
-        <span class="ms-check" id="ms2-check"></span>
-      </div>
-      <div class="ms-item" id="ms3">
-        <span class="ms-icon">🏆</span>
-        <p id="ms3-label">10 Stars — Zones Champion!</p>
-        <span class="ms-check" id="ms3-check"></span>
-      </div>
+      <div class="ms-item" id="ms1"><span class="ms-icon">🌱</span><p id="ms1-label">First Check-in — Feelings Explorer!</p><span class="ms-check" id="ms1-check"></span></div>
+      <div class="ms-item" id="ms2"><span class="ms-icon">🌟</span><p id="ms2-label">5 Stars — Feelings Superstar!</p><span class="ms-check" id="ms2-check"></span></div>
+      <div class="ms-item" id="ms3"><span class="ms-icon">🏆</span><p id="ms3-label">10 Stars — Zones Champion!</p><span class="ms-check" id="ms3-check"></span></div>
     </div>
     <button class="btn btn-outline" style="margin-top:10px;width:100%;max-width:300px" onclick="showScreen('feeling-q')">← <span id="stars-back-label">Back to Check-in</span></button>
   </div>
 </div>
 
-<!-- ========== CELEBRATION ========== -->
+<!-- CELEBRATION -->
 <div id="celebration" class="screen">
   <div class="confetti-row">🎉🌈⭐</div>
   <h2 id="celeb-title">Amazing!</h2>
@@ -378,14 +341,13 @@ input[type=number]{-moz-appearance:textfield}
   </div>
 </div>
 
-<!-- ========== AUTH SCREEN ========== -->
+<!-- AUTH -->
 <div id="auth-screen" class="screen">
   <div style="padding:20px;max-width:420px;width:100%;margin:auto">
     <div class="auth-tabs">
       <button class="auth-tab active" id="auth-tab-login" onclick="switchAuthTab('login')">Sign In</button>
       <button class="auth-tab" id="auth-tab-register" onclick="switchAuthTab('register')">Register</button>
     </div>
-    <!-- LOGIN -->
     <div id="auth-login-form" class="auth-card">
       <h2 id="auth-title-text">Welcome Back</h2>
       <p id="auth-sub-text">Sign in to your portal</p>
@@ -399,14 +361,13 @@ input[type=number]{-moz-appearance:textfield}
         </select>
       </div>
       <div class="field hide" id="auth-code-field">
-        <label>Class Code (from your teacher)</label>
+        <label>Class or Family Code (from your teacher)</label>
         <input type="text" id="auth-class-code" placeholder="e.g. ABC123" style="text-transform:uppercase"/>
       </div>
       <button class="btn btn-purple" onclick="doLogin()">Sign In</button>
       <div class="err" id="auth-err"></div>
       <span class="back-link" onclick="showScreen('landing')">← Back to Home</span>
     </div>
-    <!-- REGISTER -->
     <div id="auth-register-form" class="auth-card hide">
       <h2>Create Account</h2>
       <p>For educators & school admins only</p>
@@ -421,14 +382,11 @@ input[type=number]{-moz-appearance:textfield}
   </div>
 </div>
 
-<!-- ========== TEACHER DASHBOARD ========== -->
+<!-- TEACHER DASHBOARD -->
 <div id="teacher-dash" class="screen">
   <div class="dash-header">
     <div class="dash-header-row">
-      <div>
-        <h2>👩‍🏫 Educator Portal</h2>
-        <p id="teacher-name-display">Welcome!</p>
-      </div>
+      <div><h2>👩‍🏫 Educator Portal</h2><p id="teacher-name-display">Welcome!</p></div>
       <button class="logout-btn" onclick="doLogout()">Log out</button>
     </div>
     <div class="dash-nav">
@@ -448,36 +406,34 @@ input[type=number]{-moz-appearance:textfield}
         <div class="stat-card"><div class="stat-num" id="d-stars">—</div><div class="stat-label">Stars Earned</div></div>
         <div class="stat-card"><div class="stat-num" id="d-top-zone">—</div><div class="stat-label">Top Zone Today</div></div>
       </div>
-      <div style="font-weight:700;margin-bottom:12px;color:#444">Zone Distribution (Today)</div>
+      <span class="section-label">Zone Distribution (Today)</span>
       <div style="background:#fff;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.07)">
         <div class="zone-bar-wrap"><div class="zone-bar-label"><span>🟢 Green</span><span id="pct-green">0%</span></div><div class="zone-bar"><div class="zone-bar-fill" id="bar-green" style="width:0%;background:#5CB85C"></div></div></div>
         <div class="zone-bar-wrap"><div class="zone-bar-label"><span>🔵 Blue</span><span id="pct-blue">0%</span></div><div class="zone-bar"><div class="zone-bar-fill" id="bar-blue" style="width:0%;background:#4A90D9"></div></div></div>
         <div class="zone-bar-wrap"><div class="zone-bar-label"><span>🟡 Yellow</span><span id="pct-yellow">0%</span></div><div class="zone-bar"><div class="zone-bar-fill" id="bar-yellow" style="width:0%;background:#F5A623"></div></div></div>
         <div class="zone-bar-wrap"><div class="zone-bar-label"><span>🔴 Red</span><span id="pct-red">0%</span></div><div class="zone-bar"><div class="zone-bar-fill" id="bar-red" style="width:0%;background:#E74C3C"></div></div></div>
       </div>
-      <div class="privacy-box">🔒 <strong>Privacy:</strong> Children's names are never collected. Check-ins use anonymous class codes only. Notes are visible only to educators and are never shared externally. This app is free for all schools.</div>
+      <div class="privacy-box">🔒 <strong>Privacy:</strong> Children's names are never collected unless added by educators. Check-ins use anonymous session IDs. Notes are visible only to educators. This app is free for all schools.</div>
     </div>
     <!-- CLASSES -->
     <div id="dash-classes" class="dash-section">
       <div style="margin-bottom:16px">
-        <div style="font-weight:700;margin-bottom:10px;color:#444">Create a New Class</div>
+        <span class="section-label">Create a New Class</span>
         <div class="form-row">
           <input type="text" id="new-class-name" placeholder="Class name (e.g. Room 4 — Grade 2)"/>
           <button class="small-btn btn-purple-sm" onclick="createClass()">+ Add</button>
         </div>
       </div>
-      <div style="font-weight:700;margin-bottom:10px;color:#444">Your Classes</div>
+      <span class="section-label">Your Classes</span>
       <div id="classes-list"><div style="color:#aaa;font-size:.9em">No classes yet. Create one above!</div></div>
-      
-      <!-- ADD STUDENT SECTION -->
       <div id="add-student-section" style="display:none;margin-top:20px">
-        <div style="font-weight:700;margin-bottom:10px;color:#444">👧 Add a Student to <span id="selected-class-name"></span></div>
+        <span class="section-label">👧 Add a Student to <span id="selected-class-name"></span></span>
         <div class="form-row">
-          <input type="text" id="new-student-name" placeholder="Student first name (or nickname)"/>
+          <input type="text" id="new-student-name" placeholder="Student first name or nickname"/>
           <button class="small-btn btn-purple-sm" onclick="addStudent()">+ Add</button>
         </div>
-        <div style="font-size:.82em;color:#888;margin-bottom:14px">💡 A unique family code will be generated for each student so their parent can access only their child's check-ins.</div>
-        <div style="font-weight:700;margin-bottom:10px;color:#444">Students</div>
+        <p style="font-size:.82em;color:#888;margin-bottom:14px">💡 A unique family code is generated for each student so their parent sees only their child's check-ins.</p>
+        <span class="section-label">Students</span>
         <div id="students-list"><div style="color:#aaa;font-size:.9em">No students yet.</div></div>
       </div>
     </div>
@@ -487,13 +443,15 @@ input[type=number]{-moz-appearance:textfield}
         <div class="toggle on" id="anon-toggle" onclick="toggleAnon()"></div>
         <span id="anon-label" style="font-size:.9em;color:#555">Anonymous view (no identifying info)</span>
       </div>
-      <div style="font-weight:700;margin-bottom:10px;color:#444">Recent Check-ins</div>
-      <div id="checkins-list"><div style="color:#aaa;font-size:.9em;padding:20px 0;text-align:center">Loading...</div></div>
+      <span class="section-label">Recent Check-ins</span>
+      <div id="checkins-list" style="background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,0.07)">
+        <div style="color:#aaa;font-size:.9em;padding:20px 0;text-align:center">Loading...</div>
+      </div>
     </div>
     <!-- RESOURCES -->
     <div id="dash-resources" class="dash-section">
       <div class="add-resource-form">
-        <h4>+ Add a Resource</h4>
+        <h4>+ Add Your Own Resource</h4>
         <div class="form-row">
           <input type="text" id="res-title" placeholder="Resource title"/>
           <select id="res-type">
@@ -507,13 +465,12 @@ input[type=number]{-moz-appearance:textfield}
           <input type="text" id="res-url" placeholder="URL or link"/>
           <select id="res-audience">
             <option value="both">Both</option>
-            <option value="teacher">Teachers</option>
-            <option value="parent">Parents</option>
+            <option value="teacher">Teachers only</option>
+            <option value="parent">Parents only</option>
           </select>
         </div>
         <button class="small-btn btn-purple-sm" onclick="addResource()">Add Resource</button>
       </div>
-      <div style="font-weight:700;margin-bottom:10px;color:#444">Resource Library</div>
       <div id="resources-list"></div>
     </div>
     <!-- SETTINGS -->
@@ -528,16 +485,16 @@ input[type=number]{-moz-appearance:textfield}
       </div>
       <div class="class-card" style="margin-top:12px">
         <h4>🌍 Language Settings</h4>
-        <p style="font-size:.85em;color:#888;margin-top:6px">Children can select their language on the home screen. All 5 languages are always available.</p>
+        <p style="font-size:.85em;color:#888;margin-top:6px">Children can select their language on the home screen. All 5 languages are always available: English, French, Spanish, Mandarin, Russian.</p>
       </div>
       <div class="privacy-box" style="margin-top:12px">
-        🏫 <strong>City Studio Durham</strong>: This app is designed for use with vulnerable student populations. All data is school-isolated. No cross-school data sharing. Free for all participating schools.
+        🏫 <strong>City Studio Durham:</strong> This app is designed for use with vulnerable student populations. All data is school-isolated. No cross-school data sharing. Free for all participating schools.
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== PARENT DASHBOARD ========== -->
+<!-- PARENT DASHBOARD -->
 <div id="parent-dash" class="screen">
   <div class="parent-header">
     <div style="display:flex;justify-content:space-between;align-items:center">
@@ -546,11 +503,13 @@ input[type=number]{-moz-appearance:textfield}
     </div>
   </div>
   <div class="parent-body">
-    <div style="font-weight:700;margin-bottom:12px;color:#444">Your Child's Recent Check-ins</div>
-    <div id="parent-checkins"><div style="color:#aaa;font-size:.9em;text-align:center;padding:20px">Loading...</div></div>
-    <div style="font-weight:700;margin:20px 0 12px;color:#444">📚 Resources for You</div>
+    <span class="section-label">Your Child's Recent Check-ins</span>
+    <div id="parent-checkins" style="background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,0.07);margin-bottom:20px">
+      <div style="color:#aaa;font-size:.9em;text-align:center;padding:20px">Loading...</div>
+    </div>
+    <span class="section-label">📚 Resources for You</span>
     <div id="parent-resources"></div>
-    <div class="privacy-box">🔒 <strong>Your Privacy:</strong> Your child's check-ins are anonymous — no names are stored. You can see general wellbeing trends only. All data stays within your school.</div>
+    <div class="privacy-box">🔒 <strong>Your Privacy:</strong> Your child's check-ins are anonymous — no names are stored unless added by your teacher. All data stays within your school only.</div>
   </div>
 </div>
 
@@ -559,174 +518,57 @@ const SB_URL='https://uaktywmfpdppwyxnzukr.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVha3R5d21mcGRwcHd5eG56dWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MTcyNzYsImV4cCI6MjA4Njk5MzI3Nn0.HetxfNPaLFiiUncCA6kN2Xhu4cFJvMI2zPupEBX-Bhc';
 const H={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 
-let currentLang='en', currentZone=null, selectedFeelings=[], breathTimer=null;
+let currentLang='en',currentZone=null,selectedFeelings=[],breathTimer=null;
 let stars=parseInt(localStorage.getItem('z_stars')||'0');
 let sessionId=localStorage.getItem('z_sid')||('s'+Math.random().toString(36).slice(2,10));
 localStorage.setItem('z_sid',sessionId);
-let anonView=true, currentUser=null, userRole=null, authToken=null;
-let teacherClasses=[], teacherResources=[];
+let anonView=true,currentUser=null,userRole=null,authToken=null,isDemoMode=false;
+let teacherClasses=[],teacherResources=[],selectedClassId=null,selectedClassName='';
 
 // ===== TRANSLATIONS =====
 const T={
-  en:{
-    landingTagline:'How are you feeling today?',
-    btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',
-    fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',
-    zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',
-    zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',
-    zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',
-    zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',
-    back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabFeel:'💬 My Feelings',
-    breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',
-    notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',
-    celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',
-    starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',
-    ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!',
-  },
-  fr:{
-    landingTagline:'Comment tu te sens aujourd\'hui?',
-    btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',
-    fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',
-    zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',
-    zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',
-    zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',
-    zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',
-    back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabFeel:'💬 Mes Émotions',
-    breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',
-    notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',
-    celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',
-    starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',
-    ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!',
-  },
-  es:{
-    landingTagline:'¿Cómo te sientes hoy?',
-    btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',
-    fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',
-    zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',
-    zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',
-    zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',
-    zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',
-    back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabFeel:'💬 Mis Emociones',
-    breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',
-    notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',
-    celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',
-    starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',
-    ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!',
-  },
-  zh:{
-    landingTagline:'你今天感觉怎么样？',
-    btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',
-    fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',
-    zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',
-    zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',
-    zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',
-    zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',
-    back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabFeel:'💬 我的感受',
-    breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',
-    notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',
-    celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',
-    starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',
-    ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！',
-  },
-  ru:{
-    landingTagline:'Как ты себя чувствуешь сегодня?',
-    btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',
-    fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',
-    zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',
-    zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',
-    zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',
-    zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',
-    back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabFeel:'💬 Мои чувства',
-    breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',
-    notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',
-    celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',
-    starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',
-    ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!',
-  }
+  en:{landingTagline:'How are you feeling today?',btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabFeel:'💬 My Feelings',breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!'},
+  fr:{landingTagline:'Comment tu te sens aujourd\'hui?',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabFeel:'💬 Mes Émotions',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
+  es:{landingTagline:'¿Cómo te sientes hoy?',btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabFeel:'💬 Mis Emociones',breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!'},
+  zh:{landingTagline:'你今天感觉怎么样？',btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabFeel:'💬 我的感受',breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！'},
+  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabFeel:'💬 Мои чувства',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'}
 };
 
 const ZONES={
-  blue:{
-    emoji:'😴', bg:'linear-gradient(145deg,#4A90D9,#1a6bb5)',
-    titles:{en:'Blue Zone',fr:'Zone Bleue',es:'Zona Azul',zh:'蓝色区域',ru:'Синяя зона'},
-    descs:{
-      en:'It\'s okay to feel sad, tired, or sick. Your feelings matter and you are safe here. Let\'s find something to help you feel better.',
-      fr:'C\'est normal de se sentir triste, fatigué ou malade. Tes émotions comptent. Trouvons quelque chose pour t\'aider.',
-      es:'Está bien sentirse triste, cansado o enfermo. Tus sentimientos importan. Encontremos algo para ayudarte.',
-      zh:'感到悲伤、疲惫或生病是正常的。你的感受很重要，这里很安全。让我们找一些可以帮助你的活动。',
-      ru:'Грустить, уставать или болеть — это нормально. Твои чувства важны. Давай найдём что-нибудь, чтобы тебе стало лучше.'
-    },
-    feelings:{en:['Sad','Tired','Sick','Lonely','Bored','Sleepy','Upset'],fr:['Triste','Fatigué','Malade','Seul','Ennuyé','Endormi','Bouleversé'],es:['Triste','Cansado','Enfermo','Solo','Aburrido','Soñoliento','Molesto'],zh:['悲伤','疲惫','生病','孤独','无聊','困倦','沮丧'],ru:['Грустный','Уставший','Больной','Одинокий','Скучающий','Сонный','Расстроенный']},
-    activities:{
-      en:[
-        {em:'🎵',title:'Quiet Music',desc:'Put on some soft music or hum your favourite song quietly to yourself. Let the music help your body and mind relax.'},
-        {em:'🤗',title:'Cozy Corner',desc:'Find a soft, cozy spot — maybe with a blanket or stuffed animal. Just sit quietly for a few minutes. You don\'t have to do anything.'},
-        {em:'💧',title:'Drink Some Water',desc:'Get a glass of water and drink it slowly. Sometimes when we feel tired or sad, a little water helps our body feel better.'},
-        {em:'✏️',title:'Draw Your Feelings',desc:'Pick up a pencil or crayon and draw how you\'re feeling. It doesn\'t have to look like anything — just let your hand move.'}
-      ]
-    }
-  },
-  green:{
-    emoji:'😊', bg:'linear-gradient(145deg,#5CB85C,#2d7a30)',
-    titles:{en:'Green Zone',fr:'Zone Verte',es:'Zona Verde',zh:'绿色区域',ru:'Зелёная зона'},
-    descs:{
-      en:'You\'re in the Green Zone! You feel calm, happy, and ready to learn. This is a wonderful feeling. Let\'s celebrate and keep it going!',
-      fr:'Tu es dans la Zone Verte! Tu te sens calme, heureux et prêt à apprendre. C\'est merveilleux!',
-      es:'¡Estás en la Zona Verde! Te sientes tranquilo, feliz y listo para aprender. ¡Es maravilloso!',
-      zh:'你在绿色区域！你感到平静、快乐，准备好学习了。这是一种美妙的感觉，让我们继续保持！',
-      ru:'Ты в Зелёной зоне! Ты спокоен, счастлив и готов учиться. Это замечательно!'
-    },
-    feelings:{en:['Happy','Calm','Focused','Proud','Thankful','Excited','Ready'],fr:['Heureux','Calme','Concentré','Fier','Reconnaissant','Enthousiaste','Prêt'],es:['Feliz','Tranquilo','Enfocado','Orgulloso','Agradecido','Emocionado','Listo'],zh:['开心','平静','专注','自豪','感恩','兴奋','准备好了'],ru:['Счастливый','Спокойный','Сосредоточенный','Гордый','Благодарный','Взволнованный','Готовый']},
-    activities:{
-      en:[
-        {em:'⭐',title:'Kindness Challenge',desc:'Do one kind thing for someone today — hold a door, share a smile, or say something nice. Kindness makes your green zone even greener!'},
-        {em:'📖',title:'Read a Book',desc:'Pick up your favourite book or find a new one. Reading when you feel calm helps your brain grow even stronger!'},
-        {em:'🎨',title:'Create Something',desc:'Draw, colour, build with blocks, or make something you\'re proud of. When you\'re in the green zone, creativity flows!'},
-        {em:'🌿',title:'Mindful Moment',desc:'Sit quietly and notice 3 things around you — something you can see, something you can hear, and something you can feel.'}
-      ]
-    }
-  },
-  yellow:{
-    emoji:'😬', bg:'linear-gradient(145deg,#F5A623,#c47d00)',
-    titles:{en:'Yellow Zone',fr:'Zone Jaune',es:'Zona Amarilla',zh:'黄色区域',ru:'Жёлтая зона'},
-    descs:{
-      en:'You\'re in the Yellow Zone! Your feelings are big right now — maybe worried, excited, or silly. That\'s okay! Let\'s slow things down a little bit together.',
-      fr:'Tu es dans la Zone Jaune! Tes émotions sont intenses — peut-être inquiet ou excité. C\'est normal! Ralentissons ensemble.',
-      es:'¡Estás en la Zona Amarilla! Tus sentimientos son grandes ahora — quizás preocupado o emocionado. ¡Está bien! Vamos a calmarnos juntos.',
-      zh:'你在黄色区域！你现在的感受很强烈——也许是担心、兴奋或傻乎乎。没关系！让我们一起慢下来。',
-      ru:'Ты в Жёлтой зоне! Твои чувства сейчас очень сильные — может, ты волнуешься или взволнован. Это нормально! Давай успокоимся вместе.'
-    },
-    feelings:{en:['Worried','Silly','Excited','Nervous','Wiggly','Frustrated','Hyper'],fr:['Inquiet','Rigolo','Excité','Nerveux','Agité','Frustré','Hyperactif'],es:['Preocupado','Tonto','Emocionado','Nervioso','Inquieto','Frustrado','Hiperactivo'],zh:['担心','傻乎乎','兴奋','紧张','坐立不安','沮丧','精力充沛'],ru:['Волнующийся','Глупый','Взволнованный','Нервный','Непоседливый','Расстроенный','Гиперактивный']},
-    activities:{
-      en:[
-        {em:'🚶',title:'Take a Walk',desc:'Walk slowly around the room or outside. With each step, breathe in. With each step, breathe out. Feel your feet on the ground.'},
-        {em:'🧸',title:'Squeeze & Release',desc:'Find something soft to squeeze — a pillow, a stuffed animal, or make a fist with your hand. Squeeze tight, then let go slowly.'},
-        {em:'🔢',title:'5-4-3-2-1 Grounding',desc:'Name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, and 1 you taste. This helps bring your brain back to calm.'},
-        {em:'💃',title:'Shake It Out',desc:'Stand up and shake your hands, then your arms, then your whole body! Shake for 30 seconds, then stop and breathe slowly.'}
-      ]
-    }
-  },
-  red:{
-    emoji:'😡', bg:'linear-gradient(145deg,#E74C3C,#a93226)',
-    titles:{en:'Red Zone',fr:'Zone Rouge',es:'Zona Roja',zh:'红色区域',ru:'Красная зона'},
-    descs:{
-      en:'You\'re in the Red Zone. You might feel really mad, scared, or out of control. That takes a lot of courage to tell us! You are safe. Let\'s work through this together.',
-      fr:'Tu es dans la Zone Rouge. Tu pourrais te sentir vraiment en colère ou effrayé. C\'est courageux de nous le dire! Tu es en sécurité.',
-      es:'Estás en la Zona Roja. Puedes sentirte muy enojado o asustado. ¡Es muy valiente decírnoslo! Estás a salvo.',
-      zh:'你在红色区域。你可能感到非常愤怒、害怕或失控。能告诉我们需要很大的勇气！你是安全的。让我们一起度过这段时光。',
-      ru:'Ты в Красной зоне. Возможно, ты чувствуешь злость, страх или потерю контроля. Очень смело говорить нам об этом! Ты в безопасности.'
-    },
-    feelings:{en:['Mad','Scared','Out of control','Panicked','Mean','Overwhelmed','Angry'],fr:['En colère','Effrayé','Débordé','Paniqué','Méchant','Submergé','Furieux'],es:['Enojado','Asustado','Fuera de control','En pánico','Malo','Abrumado','Furioso'],zh:['生气','害怕','失控','恐慌','刻薄','不堪重负','愤怒'],ru:['Злой','Испуганный','Вне контроля','В панике','Грубый','Подавленный','Разъярённый']},
-    activities:{
-      en:[
-        {em:'🧊',title:'Cool Down',desc:'Find a quiet, safe spot and sit down. Close your eyes if that feels okay. Just stay still for 2 minutes. You don\'t have to do anything right now.'},
-        {em:'💪',title:'Muscle Squeeze',desc:'Squeeze all your muscles as tight as you can — your fists, your legs, your tummy. Hold for 5 seconds, then let go completely. Feel the difference!'},
-        {em:'🎈',title:'Balloon Breathing',desc:'Imagine your belly is a balloon. Breathe in slowly through your nose and fill the balloon. Now breathe out through your mouth and let the air out slowly.'},
-        {em:'🗣️',title:'Talk to Someone',desc:'Find a trusted adult — a teacher, parent, or helper — and tell them how you\'re feeling. You don\'t have to handle big feelings alone.'}
-      ]
-    }
-  }
+  blue:{emoji:'😢',bg:'linear-gradient(145deg,#4A90D9,#1a6bb5)',titles:{en:'Blue Zone',fr:'Zone Bleue',es:'Zona Azul',zh:'蓝色区域',ru:'Синяя зона'},descs:{en:'It\'s okay to feel sad, tired, or sick. Your feelings matter and you are safe here. Let\'s find something to help you feel better.',fr:'C\'est normal de se sentir triste, fatigué ou malade. Tes émotions comptent. Trouvons quelque chose pour t\'aider.',es:'Está bien sentirse triste, cansado o enfermo. Tus sentimientos importan. Encontremos algo para ayudarte.',zh:'感到悲伤、疲惫或生病是正常的。你的感受很重要，这里很安全。让我们找一些可以帮助你的活动。',ru:'Грустить, уставать или болеть — это нормально. Твои чувства важны. Давай найдём что-нибудь, чтобы тебе стало лучше.'},feelings:{en:['Sad','Tired','Sick','Lonely','Bored','Sleepy','Upset'],fr:['Triste','Fatigué','Malade','Seul','Ennuyé','Endormi','Bouleversé'],es:['Triste','Cansado','Enfermo','Solo','Aburrido','Soñoliento','Molesto'],zh:['悲伤','疲惫','生病','孤独','无聊','困倦','沮丧'],ru:['Грустный','Уставший','Больной','Одинокий','Скучающий','Сонный','Расстроенный']},activities:{en:[{em:'🎵',title:'Quiet Music',desc:'Put on some soft music or hum your favourite song quietly to yourself. Let the music help your body and mind relax.'},{em:'🤗',title:'Cozy Corner',desc:'Find a soft, cozy spot — maybe with a blanket or stuffed animal. Just sit quietly for a few minutes. You don\'t have to do anything.'},{em:'💧',title:'Drink Some Water',desc:'Get a glass of water and drink it slowly. Sometimes when we feel tired or sad, a little water helps our body feel better.'},{em:'✏️',title:'Draw Your Feelings',desc:'Pick up a pencil or crayon and draw how you\'re feeling. It doesn\'t have to look like anything — just let your hand move.'}]}},
+  green:{emoji:'😄',bg:'linear-gradient(145deg,#5CB85C,#2d7a30)',titles:{en:'Green Zone',fr:'Zone Verte',es:'Zona Verde',zh:'绿色区域',ru:'Зелёная зона'},descs:{en:'You\'re in the Green Zone! You feel calm, happy, and ready to learn. This is a wonderful feeling. Let\'s celebrate and keep it going!',fr:'Tu es dans la Zone Verte! Tu te sens calme, heureux et prêt à apprendre. C\'est merveilleux!',es:'¡Estás en la Zona Verde! Te sientes tranquilo, feliz y listo para aprender. ¡Es maravilloso!',zh:'你在绿色区域！你感到平静、快乐，准备好学习了。这是一种美妙的感觉，让我们继续保持！',ru:'Ты в Зелёной зоне! Ты спокоен, счастлив и готов учиться. Это замечательно!'},feelings:{en:['Happy','Calm','Focused','Proud','Thankful','Excited','Ready'],fr:['Heureux','Calme','Concentré','Fier','Reconnaissant','Enthousiaste','Prêt'],es:['Feliz','Tranquilo','Enfocado','Orgulloso','Agradecido','Emocionado','Listo'],zh:['开心','平静','专注','自豪','感恩','兴奋','准备好了'],ru:['Счастливый','Спокойный','Сосредоточенный','Гордый','Благодарный','Взволнованный','Готовый']},activities:{en:[{em:'⭐',title:'Kindness Challenge',desc:'Do one kind thing for someone today — hold a door, share a smile, or say something nice. Kindness makes your green zone even greener!'},{em:'📖',title:'Read a Book',desc:'Pick up your favourite book or find a new one. Reading when you feel calm helps your brain grow even stronger!'},{em:'🎨',title:'Create Something',desc:'Draw, colour, build with blocks, or make something you\'re proud of. When you\'re in the green zone, creativity flows!'},{em:'🌿',title:'Mindful Moment',desc:'Sit quietly and notice 3 things around you — something you can see, something you can hear, and something you can feel.'}]}},
+  yellow:{emoji:'😰',bg:'linear-gradient(145deg,#F5A623,#c47d00)',titles:{en:'Yellow Zone',fr:'Zone Jaune',es:'Zona Amarilla',zh:'黄色区域',ru:'Жёлтая зона'},descs:{en:'You\'re in the Yellow Zone! Your feelings are big right now — maybe worried, excited, or silly. That\'s okay! Let\'s slow things down a little bit together.',fr:'Tu es dans la Zone Jaune! Tes émotions sont intenses — peut-être inquiet ou excité. C\'est normal! Ralentissons ensemble.',es:'¡Estás en la Zona Amarilla! Tus sentimientos son grandes ahora — quizás preocupado o emocionado. ¡Está bien! Vamos a calmarnos juntos.',zh:'你在黄色区域！你现在的感受很强烈——也许是担心、兴奋或傻乎乎。没关系！让我们一起慢下来。',ru:'Ты в Жёлтой зоне! Твои чувства сейчас очень сильные — может, ты волнуешься или взволнован. Это нормально! Давай успокоимся вместе.'},feelings:{en:['Worried','Silly','Excited','Nervous','Wiggly','Frustrated','Hyper'],fr:['Inquiet','Rigolo','Excité','Nerveux','Agité','Frustré','Hyperactif'],es:['Preocupado','Tonto','Emocionado','Nervioso','Inquieto','Frustrado','Hiperactivo'],zh:['担心','傻乎乎','兴奋','紧张','坐立不安','沮丧','精力充沛'],ru:['Волнующийся','Глупый','Взволнованный','Нервный','Непоседливый','Расстроенный','Гиперактивный']},activities:{en:[{em:'🚶',title:'Take a Walk',desc:'Walk slowly around the room or outside. With each step, breathe in. With each step, breathe out. Feel your feet on the ground.'},{em:'🧸',title:'Squeeze & Release',desc:'Find something soft to squeeze — a pillow, a stuffed animal, or make a fist with your hand. Squeeze tight, then let go slowly.'},{em:'🔢',title:'5-4-3-2-1 Grounding',desc:'Name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, and 1 you taste. This helps bring your brain back to calm.'},{em:'💃',title:'Shake It Out',desc:'Stand up and shake your hands, then your arms, then your whole body! Shake for 30 seconds, then stop and breathe slowly.'}]}},
+  red:{emoji:'😡',bg:'linear-gradient(145deg,#E74C3C,#a93226)',titles:{en:'Red Zone',fr:'Zone Rouge',es:'Zona Roja',zh:'红色区域',ru:'Красная зона'},descs:{en:'You\'re in the Red Zone. You might feel really mad, scared, or out of control. That takes a lot of courage to tell us! You are safe. Let\'s work through this together.',fr:'Tu es dans la Zone Rouge. Tu pourrais te sentir vraiment en colère ou effrayé. C\'est courageux de nous le dire! Tu es en sécurité.',es:'Estás en la Zona Roja. Puedes sentirte muy enojado o asustado. ¡Es muy valiente decírnoslo! Estás a salvo.',zh:'你在红色区域。你可能感到非常愤怒、害怕或失控。能告诉我们需要很大的勇气！你是安全的。让我们一起度过这段时光。',ru:'Ты в Красной зоне. Возможно, ты чувствуешь злость, страх или потерю контроля. Очень смело говорить нам об этом! Ты в безопасности.'},feelings:{en:['Mad','Scared','Out of control','Panicked','Mean','Overwhelmed','Angry'],fr:['En colère','Effrayé','Débordé','Paniqué','Méchant','Submergé','Furieux'],es:['Enojado','Asustado','Fuera de control','En pánico','Malo','Abrumado','Furioso'],zh:['生气','害怕','失控','恐慌','刻薄','不堪重负','愤怒'],ru:['Злой','Испуганный','Вне контроля','В панике','Грубый','Подавленный','Разъярённый']},activities:{en:[{em:'🧊',title:'Cool Down',desc:'Find a quiet, safe spot and sit down. Close your eyes if that feels okay. Just stay still for 2 minutes. You don\'t have to do anything right now.'},{em:'💪',title:'Muscle Squeeze',desc:'Squeeze all your muscles as tight as you can — your fists, your legs, your tummy. Hold for 5 seconds, then let go completely. Feel the difference!'},{em:'🎈',title:'Balloon Breathing',desc:'Imagine your belly is a balloon. Breathe in slowly through your nose and fill the balloon. Now breathe out through your mouth and let the air out slowly.'},{em:'🗣️',title:'Talk to Someone',desc:'Find a trusted adult — a teacher, parent, or helper — and tell them how you\'re feeling. You don\'t have to handle big feelings alone.'}]}}
 };
+
+const PRESET_RESOURCES=[
+  {title:'Zones of Regulation — Official Website',type:'link',url:'https://zonesofregulation.com',audience:'both',preset:true},
+  {title:'How to Talk to Kids About Feelings (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'both',preset:true},
+  {title:'Feelings Faces Poster — Free Printable',type:'pdf',url:'https://www.teacherspayteachers.com/Browse/Search:zones+of+regulation+free',audience:'both',preset:true},
+  {title:'Zones of Regulation — Teacher Implementation Guide',type:'pdf',url:'https://zonesofregulation.com/learn-more-curriculum.html',audience:'teacher',preset:true},
+  {title:'City Studio Durham — Program Overview',type:'link',url:'https://citystudiodurham.ca',audience:'teacher',preset:true},
+  {title:'Trauma-Informed Teaching Strategies',type:'link',url:'https://www.traumainformedcare.chcs.org/what-is-trauma-informed-care/',audience:'teacher',preset:true},
+  {title:'UDL Guidelines for Inclusive Classrooms',type:'link',url:'https://udlguidelines.cast.org',audience:'teacher',preset:true},
+  {title:'Breathing Exercises for Kids (Printable)',type:'pdf',url:'https://www.therapistaid.com/therapy-worksheet/deep-breathing',audience:'teacher',preset:true},
+  {title:'Helping Your Child Manage Big Feelings — Parent Guide',type:'pdf',url:'https://www.cdc.gov/childrensmentalhealth/parenting.html',audience:'parent',preset:true},
+  {title:'Talking to Young Children About Emotions (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'parent',preset:true},
+  {title:'Zones of Regulation — Parent Introduction',type:'link',url:'https://zonesofregulation.com/parents.html',audience:'parent',preset:true},
+  {title:'Supporting Children\'s Mental Health at Home',type:'link',url:'https://www.camh.ca/en/health-info/mental-health-and-covid-19/supporting-children',audience:'parent',preset:true},
+];
+
+const DEMO_CHECKINS=[
+  {zone_id:'green',feelings:['Happy','Calm'],note:'I had a good breakfast!',session_id:'demo001',checked_in_at:new Date(Date.now()-5*60000).toISOString()},
+  {zone_id:'yellow',feelings:['Worried','Nervous'],note:'I have a test today',session_id:'demo002',checked_in_at:new Date(Date.now()-12*60000).toISOString()},
+  {zone_id:'blue',feelings:['Sad','Tired'],note:null,session_id:'demo003',checked_in_at:new Date(Date.now()-20*60000).toISOString()},
+  {zone_id:'green',feelings:['Proud','Ready'],note:null,session_id:'demo004',checked_in_at:new Date(Date.now()-35*60000).toISOString()},
+  {zone_id:'red',feelings:['Mad','Overwhelmed'],note:'Someone was mean to me',session_id:'demo005',checked_in_at:new Date(Date.now()-50*60000).toISOString()},
+  {zone_id:'green',feelings:['Happy','Thankful'],note:null,session_id:'demo006',checked_in_at:new Date(Date.now()-65*60000).toISOString()},
+  {zone_id:'yellow',feelings:['Excited','Wiggly'],note:null,session_id:'demo007',checked_in_at:new Date(Date.now()-80*60000).toISOString()},
+];
+const DEMO_CLASSES=[
+  {name:'Room 4 — Grade 2',code:'ZNS4A2',created_at:new Date(Date.now()-7*24*3600000).toISOString()},
+  {name:'Room 7 — Senior Kindergarten',code:'ZNS7SK',created_at:new Date(Date.now()-14*24*3600000).toISOString()},
+];
 
 // ===== SPEECH =====
 function speak(elId){
@@ -738,17 +580,16 @@ function speak(elId){
   const u=new SpeechSynthesisUtterance(txt);
   const langMap={en:'en-CA',fr:'fr-FR',es:'es-ES',zh:'zh-CN',ru:'ru-RU'};
   u.lang=langMap[currentLang]||'en-CA';
-  u.rate=0.85; u.pitch=1.1;
+  u.rate=0.85;u.pitch=1.1;
   window.speechSynthesis.speak(u);
 }
 function autoSpeak(elId){setTimeout(()=>speak(elId),400);}
 
 // ===== LANGUAGE =====
-function setLang(lang, btn){
+function setLang(lang,btn){
   currentLang=lang;
-  // Update all lang buttons
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll(`.lang-btn`).forEach(b=>{if(b.textContent.includes(langFlag(lang)))b.classList.add('active');});
+  document.querySelectorAll('.lang-btn').forEach(b=>{if(b.textContent.includes(langFlag(lang)))b.classList.add('active');});
   if(btn)btn.classList.add('active');
   applyTranslations();
 }
@@ -756,8 +597,7 @@ function langFlag(l){return{en:'🇨🇦',fr:'🇫🇷',es:'🇪🇸',zh:'🇨�
 function applyTranslations(){
   const t=T[currentLang]||T.en;
   const set=(id,val)=>{const el=document.getElementById(id);if(el&&val!==undefined)el.textContent=val;};
-  set('landing-tagline',t.landingTagline);
-  set('btn-child-label',t.btnChild);set('btn-teacher-label',t.btnTeacher);set('btn-parent-label',t.btnParent);
+  set('landing-tagline',t.landingTagline);set('btn-child-label',t.btnChild);set('btn-teacher-label',t.btnTeacher);set('btn-parent-label',t.btnParent);
   set('fq-question',t.fqQuestion);set('fq-sub',t.fqSub);
   set('zone-blue-label',t.zoneBlueLabel);set('zone-blue-sub',t.zoneBlueSub);
   set('zone-green-label',t.zoneGreenLabel);set('zone-green-sub',t.zoneGreenSub);
@@ -770,7 +610,7 @@ function applyTranslations(){
   set('celeb-title',t.celebTitle);set('celeb-msg',t.celebMsg);set('celeb-home',t.celebHome);set('celeb-stars',t.celebStars);
   set('stars-title',t.starsTitle);set('stars-sub',t.starsSub);set('stars-earned-label',t.starsEarned);set('stars-back-label',t.starsBack);
   set('ms1-label',t.ms1);set('ms2-label',t.ms2);set('ms3-label',t.ms3);
-  if(currentZone) updateZoneContent();
+  if(currentZone)updateZoneContent();
 }
 
 // ===== SCREENS =====
@@ -782,21 +622,19 @@ function showScreen(id){
 
 // ===== ZONE =====
 function goToZone(zone){
-  currentZone=zone; selectedFeelings=[];
+  currentZone=zone;selectedFeelings=[];
   updateZoneContent();
   showScreen('zone-page');
-  switchTab('activities-tab', document.querySelector('.tab-btn'));
+  switchTab('activities-tab');
   setTimeout(()=>speak('zone-desc-text'),500);
 }
 function updateZoneContent(){
   if(!currentZone)return;
   const z=ZONES[currentZone];
-  const t=T[currentLang]||T.en;
   document.getElementById('zone-emoji').textContent=z.emoji;
   document.getElementById('zone-header-bg').style.background=z.bg;
   document.getElementById('zone-title-text').textContent=z.titles[currentLang]||z.titles.en;
   document.getElementById('zone-desc-text').textContent=z.descs[currentLang]||z.descs.en;
-  // Activities
   const acts=z.activities.en;
   document.getElementById('act-list').innerHTML=acts.map((a,i)=>`
     <div class="act-item" onclick="openActivity(${i})">
@@ -805,7 +643,6 @@ function updateZoneContent(){
       <span>›</span>
     </div>`).join('');
   document.getElementById('act-detail').classList.remove('show');
-  // Feelings chips
   const feelings=z.feelings[currentLang]||z.feelings.en;
   document.getElementById('feelings-chips').innerHTML=feelings.map(f=>`
     <button onclick="toggleFeeling('${f}',this)" style="padding:12px 20px;border-radius:50px;border:2px solid #ddd;background:#fff;cursor:pointer;font-size:1em;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px">
@@ -813,8 +650,7 @@ function updateZoneContent(){
     </button>`).join('');
 }
 function openActivity(idx){
-  const z=ZONES[currentZone];
-  const a=z.activities.en[idx];
+  const a=ZONES[currentZone].activities.en[idx];
   document.getElementById('act-detail-title').textContent=`${a.em} ${a.title}`;
   document.getElementById('act-detail-steps').textContent=a.desc;
   const det=document.getElementById('act-detail');
@@ -823,73 +659,55 @@ function openActivity(idx){
   setTimeout(()=>speak('act-detail-steps'),400);
 }
 function toggleFeeling(f,btn){
-  // Read it aloud every time it's tapped
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(f);
   const langMap={en:'en-CA',fr:'fr-FR',es:'es-ES',zh:'zh-CN',ru:'ru-RU'};
   u.lang=langMap[currentLang]||'en-CA';
-  u.rate=0.8; u.pitch=1.2;
+  u.rate=0.8;u.pitch=1.2;
   window.speechSynthesis.speak(u);
-
   if(selectedFeelings.includes(f)){
     selectedFeelings=selectedFeelings.filter(x=>x!==f);
     btn.style.background='#fff';btn.style.color='#333';btn.style.borderColor='#ddd';
-  } else {
+  }else{
     selectedFeelings.push(f);
     btn.style.background='#7C4DFF';btn.style.color='#fff';btn.style.borderColor='#7C4DFF';
   }
 }
-function switchTab(tabId, btn){
+function switchTab(tabId){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
-  // Find the button with the matching onclick
   document.querySelectorAll('.tab-btn').forEach(b=>{if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(tabId))b.classList.add('active');});
 }
 
 // ===== BREATHING =====
-let breathPhase='idle', breathStep=0, breathCycle=0;
+let breathCycle=0;
 function startBreathing(){
-  if(breathTimer){clearInterval(breathTimer);breathTimer=null;document.getElementById('breath-start-btn').textContent='▶ Start';breathPhase='idle';document.getElementById('breath-circle').textContent='Ready';document.getElementById('breath-phase').textContent='Press Start!';document.getElementById('breath-count').textContent='';return;}
+  if(breathTimer){clearInterval(breathTimer);breathTimer=null;document.getElementById('breath-start-btn').textContent='▶ Start';document.getElementById('breath-circle').textContent='Ready';document.getElementById('breath-phase').textContent='Press Start!';document.getElementById('breath-count').textContent='';return;}
   breathCycle=0;
   document.getElementById('breath-start-btn').textContent='⏹ Stop';
   runBreathCycle();
 }
 function runBreathCycle(){
-  if(breathCycle>=5){clearInterval(breathTimer);breathTimer=null;document.getElementById('breath-start-btn').textContent='▶ Start Again';document.getElementById('breath-phase').textContent='Great job! 🌟';document.getElementById('breath-circle').textContent='Done!';document.getElementById('breath-count').textContent='';return;}
-  // Inhale 4s
+  if(breathCycle>=5){document.getElementById('breath-start-btn').textContent='▶ Start Again';document.getElementById('breath-phase').textContent='Great job! 🌟';document.getElementById('breath-circle').textContent='Done!';document.getElementById('breath-count').textContent='';return;}
   const circle=document.getElementById('breath-circle');
   const phase=document.getElementById('breath-phase');
   const count=document.getElementById('breath-count');
-  circle.className='breath-circle inhale';
-  phase.textContent='Breathe IN 🌬️';
-  let n=4;count.textContent=n;
-  circle.textContent='Breathe in...';
+  circle.className='breath-circle inhale';phase.textContent='Breathe IN 🌬️';
+  let n=4;count.textContent=n;circle.textContent='Breathe in...';
   const inhaleTimer=setInterval(()=>{n--;count.textContent=n>0?n:'';if(n<=0){clearInterval(inhaleTimer);
-    // Hold 2s
     circle.className='breath-circle';phase.textContent='Hold... ✋';let h=2;count.textContent=h;circle.textContent='Hold...';
     const holdTimer=setInterval(()=>{h--;count.textContent=h>0?h:'';if(h<=0){clearInterval(holdTimer);
-      // Exhale 4s
       circle.className='breath-circle exhale';phase.textContent='Breathe OUT 💨';let e=4;count.textContent=e;circle.textContent='Breathe out...';
       const exhaleTimer=setInterval(()=>{e--;count.textContent=e>0?e:'';if(e<=0){clearInterval(exhaleTimer);breathCycle++;setTimeout(runBreathCycle,500);}},1000);
     }},1000);
   }},1000);
 }
 
-// ===== CHECK-IN SUBMIT =====
+// ===== CHECK-IN =====
 async function submitCheckin(){
   const note=document.getElementById('feelings-note').value;
-  await sbInsert('check_ins',{
-    zone_id:currentZone,
-    zone_name:ZONES[currentZone].titles.en,
-    feelings:selectedFeelings,
-    note:note||null,
-    session_id:sessionId,
-    lang:currentLang,
-    class_code:localStorage.getItem('z_parent_class')||null,
-    classroom_id:localStorage.getItem('z_parent_class_id')||null,
-    checked_in_at:new Date().toISOString()
-  });
+  await sbInsert('check_ins',{zone_id:currentZone,zone_name:ZONES[currentZone].titles.en,feelings:selectedFeelings,note:note||null,session_id:sessionId,lang:currentLang,class_code:localStorage.getItem('z_parent_class')||null,classroom_id:localStorage.getItem('z_parent_class_id')||null,checked_in_at:new Date().toISOString()});
   stars++;localStorage.setItem('z_stars',stars);
   const t=T[currentLang]||T.en;
   document.getElementById('celeb-title').textContent=t.celebTitle;
@@ -908,7 +726,6 @@ async function completeActivity(){
 
 // ===== STARS =====
 function updateStarsUI(){
-  const t=T[currentLang]||T.en;
   document.getElementById('star-big-num').textContent=stars;
   [['ms1',1],['ms2',5],['ms3',10]].forEach(([id,thresh])=>{
     const el=document.getElementById(id);
@@ -923,18 +740,11 @@ let authMode='teacher';
 function setAuthMode(mode){
   authMode=mode;
   const sub=document.getElementById('auth-sub-text');
-  if(sub)sub.textContent=mode==='parent'?'Enter your class code to get started':'Sign in to your educator portal';
+  if(sub)sub.textContent=mode==='parent'?'Enter your class or family code to get started':'Sign in to your educator portal';
   const codeField=document.getElementById('auth-code-field');
   const roleField=document.getElementById('auth-role-field');
-  if(mode==='parent'){
-    if(codeField)codeField.classList.remove('hide');
-    if(roleField)roleField.classList.add('hide');
-    const roleEl=document.getElementById('auth-role');
-    if(roleEl)roleEl.value='parent';
-  } else {
-    if(codeField)codeField.classList.add('hide');
-    if(roleField)roleField.classList.remove('hide');
-  }
+  if(mode==='parent'){codeField.classList.remove('hide');roleField.classList.add('hide');document.getElementById('auth-role').value='parent';}
+  else{codeField.classList.add('hide');roleField.classList.remove('hide');}
 }
 function switchAuthTab(tab){
   document.getElementById('auth-tab-login').classList.toggle('active',tab==='login');
@@ -955,11 +765,10 @@ async function doRegister(){
     const r=await fetch(`${SB_URL}/auth/v1/signup`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email,password:pw,data:{name,school,role:'teacher'}})});
     const d=await r.json();
     if(d.user||d.id){
-      // Insert profile
       await sbInsert('educator_profiles',{user_id:d.user?.id||d.id,name,school,role:'teacher',created_at:new Date().toISOString()});
       err.style.color='green';err.textContent='Account created! Please sign in.';
       setTimeout(()=>switchAuthTab('login'),1500);
-    } else {err.textContent=d.error_description||d.msg||'Registration failed.';}
+    }else{err.textContent=d.error_description||d.msg||'Registration failed.';}
   }catch(e){err.textContent='Connection error. Please try again.';}
 }
 
@@ -971,82 +780,112 @@ async function doLogin(){
   const err=document.getElementById('auth-err');
   err.textContent='';
 
-  // PARENT LOGIN — class code or family code, no account needed
   if(role==='parent'){
-    if(!classCode){err.textContent='Please enter your class code.';return;}
+    if(!classCode){err.textContent='Please enter your class or family code.';return;}
     err.textContent='Checking code...';
-    // Try class code first
     const classes=await sbSelect('classes',`code=eq.${classCode}`);
     if(classes&&classes.length>0){
       userRole='parent';
-      const cls=classes[0];
-      document.getElementById('parent-class-display').textContent=`Class: ${cls.name}`;
+      document.getElementById('parent-class-display').textContent=`Class: ${classes[0].name}`;
       localStorage.setItem('z_parent_class',classCode);
-      localStorage.setItem('z_parent_class_id',cls.id);
+      localStorage.setItem('z_parent_class_id',classes[0].id);
       showScreen('parent-dash');
-      loadParentDash(cls.id, classCode, null);
+      loadParentDash(classes[0].id,classCode,null);
       return;
     }
-    // Try family code (individual child)
     const children=await sbSelect('children',`family_code=eq.${classCode}`);
     if(children&&children.length>0){
       userRole='parent';
       const child=children[0];
-      // Get class info
       const cls=await sbSelect('classes',`id=eq.${child.classroom_id}`);
       const clsName=cls&&cls[0]?cls[0].name:'Your child\'s class';
       document.getElementById('parent-class-display').textContent=`${child.name} — ${clsName}`;
       localStorage.setItem('z_family_code',classCode);
       localStorage.setItem('z_child_id',child.id);
       showScreen('parent-dash');
-      loadParentDash(child.classroom_id, null, child.id);
+      loadParentDash(child.classroom_id,null,child.id);
       return;
     }
     err.textContent='Code not found. Please check with your teacher.';
     return;
   }
 
-  // EDUCATOR LOGIN
   if(!email||!pw){err.textContent='Please fill in all fields.';return;}
   err.textContent='Signing in...';
   try{
-    const url=`${SB_URL}/auth/v1/token?grant_type=password`;
-    console.log('Attempting login to:', url);
-    const r=await fetch(url,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':SB_KEY},
-      body:JSON.stringify({email,password:pw})
-    });
-    console.log('Response status:', r.status);
+    const r=await fetch(`${SB_URL}/auth/v1/token?grant_type=password`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email,password:pw})});
     const text=await r.text();
-    console.log('Raw response:', text);
     let d;
-    try{d=JSON.parse(text);}catch(e){err.textContent='Invalid response from server: '+text.slice(0,100);return;}
+    try{d=JSON.parse(text);}catch(e){err.textContent='Invalid server response.';return;}
     if(d.access_token){
-      authToken=d.access_token;
-      currentUser=d.user;
-      userRole=role;
-      isDemoMode=false;
+      authToken=d.access_token;currentUser=d.user;userRole=role;isDemoMode=false;
       H['Authorization']=`Bearer ${authToken}`;
       const profiles=await sbSelect('educator_profiles',`user_id=eq.${currentUser.id}`);
       const profile=profiles&&profiles[0];
       const displayName=profile?.name||currentUser?.user_metadata?.name||email;
       const school=profile?.school||'';
-      document.getElementById('teacher-name-display').textContent=
-        `Welcome, ${displayName}${school?' — '+school:''}`;
+      document.getElementById('teacher-name-display').textContent=`Welcome, ${displayName}${school?' — '+school:''}`;
       showScreen('teacher-dash');
       loadTeacherDash();
-    } else {
-      err.textContent=(d.error_description||d.msg||d.error||JSON.stringify(d));
-      console.log('Login error object:', d);
-    }
-  }catch(e){
-    console.error('Fetch error:', e);
-    err.textContent='Connection error: '+e.message;
-  }
+    }else{err.textContent=d.error_description||d.msg||d.error||'Login failed. Please check your credentials.';}
+  }catch(e){err.textContent='Connection error: '+e.message;}
 }
 
-function doLogout(){authToken=null;currentUser=null;userRole=null;showScreen('landing');}
+function doLogout(){authToken=null;currentUser=null;userRole=null;isDemoMode=false;showScreen('landing');}
+
+// ===== DEMO MODE =====
+function enterDemo(role){
+  isDemoMode=true;
+  if(role==='teacher'){
+    document.getElementById('teacher-name-display').textContent='Welcome, Ms. Demo Teacher (Durham Elementary)';
+    showScreen('teacher-dash');
+    loadDemoDash();
+  }else{
+    document.getElementById('parent-class-display').textContent='Class: Room 4 — Grade 2 (ZNS4A2)';
+    showScreen('parent-dash');
+    loadDemoParentDash();
+  }
+}
+function loadDemoDash(){
+  const counts={blue:0,green:0,yellow:0,red:0};
+  DEMO_CHECKINS.forEach(c=>counts[c.zone_id]++);
+  const total=DEMO_CHECKINS.length;
+  document.getElementById('d-checkins').textContent=total;
+  document.getElementById('d-classes').textContent=DEMO_CLASSES.length;
+  document.getElementById('d-stars').textContent=total+3;
+  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+  const ze={blue:'😢',green:'😄',yellow:'😰',red:'😡'};
+  document.getElementById('d-top-zone').textContent=ze[top[0]];
+  ['blue','green','yellow','red'].forEach(z=>{
+    const pct=Math.round(counts[z]/total*100);
+    document.getElementById(`pct-${z}`).textContent=pct+'%';
+    document.getElementById(`bar-${z}`).style.width=pct+'%';
+  });
+  teacherClasses=DEMO_CLASSES;
+  teacherResources=[];
+}
+function loadDemoCheckins(){
+  const list=document.getElementById('checkins-list');
+  list.innerHTML=DEMO_CHECKINS.map(c=>{
+    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_id}};
+    const time=new Date(c.checked_in_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    const feelings=(c.feelings||[]).map(f=>`<span class="tag">${f}</span>`).join('');
+    const noteHtml=(!anonView&&c.note)?`<div style="font-size:.8em;color:#888;margin-top:3px;font-style:italic">"${c.note}"</div>`:'';
+    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en} ${feelings}</div><div class="ci-sub">${time} · Session ${anonView?c.session_id.slice(0,4)+'***':c.session_id}</div>${noteHtml}</div></div>`;
+  }).join('');
+}
+function loadDemoParentDash(){
+  const el=document.getElementById('parent-checkins');
+  el.innerHTML=DEMO_CHECKINS.slice(0,5).map(c=>{
+    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_id}};
+    const date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en}</div><div class="ci-sub">${date}</div></div></div>`;
+  }).join('');
+  const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
+  document.getElementById('parent-resources').innerHTML=PRESET_RESOURCES.filter(r=>r.audience!=='teacher').map(r=>`
+    <div class="resource-card"><div class="rc-icon">${icons[r.type]||'🔗'}</div><div class="rc-info"><h4>${r.title}</h4></div>
+    <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a></div>`).join('');
+}
 
 // ===== TEACHER DASHBOARD =====
 function showDashSection(id,btn){
@@ -1060,30 +899,26 @@ function showDashSection(id,btn){
 }
 async function loadTeacherDash(){
   const today=new Date().toISOString().split('T')[0];
-  const checkins=await sbSelect('checkins',`created_at=gte.${today}T00:00:00&order=created_at.desc`);
+  const checkins=await sbSelect('check_ins',`checked_in_at=gte.${today}T00:00:00&order=checked_in_at.desc`);
   const acts=await sbSelect('activities_done',`created_at=gte.${today}T00:00:00`);
-  const total=checkins.length;
+  const total=checkins?checkins.length:0;
   document.getElementById('d-checkins').textContent=total;
-  document.getElementById('d-stars').textContent=total+acts.length;
+  document.getElementById('d-stars').textContent=total+(acts?acts.length:0);
   const counts={blue:0,green:0,yellow:0,red:0};
-  checkins.forEach(c=>{if(counts[c.zone]!==undefined)counts[c.zone]++;});
+  (checkins||[]).forEach(c=>{if(counts[c.zone_id]!==undefined)counts[c.zone_id]++;});
   const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
-  const ze={blue:'😴',green:'😊',yellow:'😬',red:'😡'};
+  const ze={blue:'😢',green:'😄',yellow:'😰',red:'😡'};
   document.getElementById('d-top-zone').textContent=top&&top[1]>0?ze[top[0]]:'—';
   ['blue','green','yellow','red'].forEach(z=>{
     const pct=total?Math.round(counts[z]/total*100):0;
     document.getElementById(`pct-${z}`).textContent=pct+'%';
     document.getElementById(`bar-${z}`).style.width=pct+'%';
   });
-  // Load classes
-  const profile=await sbSelect('educator_profiles',`user_id=eq.${currentUser.id}`);
-  if(profile&&profile[0]){
-    teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
-    document.getElementById('d-classes').textContent=teacherClasses.length;
-  }
+  teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+  document.getElementById('d-classes').textContent=teacherClasses.length;
   teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
+  renderResources();
 }
-
 async function loadCheckins(){
   const today=new Date().toISOString().split('T')[0];
   const checkins=await sbSelect('check_ins',`checked_in_at=gte.${today}T00:00:00&order=checked_in_at.desc&limit=30`);
@@ -1096,27 +931,17 @@ async function loadCheckins(){
     const nameHtml=!anonView&&c.child_name?`<strong>${c.child_name}</strong> · `:'';
     const noteHtml=!anonView&&c.note?`<div style="font-size:.8em;color:#888;margin-top:3px;font-style:italic">"${c.note.slice(0,80)}"</div>`:'';
     const sessionHtml=anonView?`Session ${(c.session_id||'').slice(0,4)}***`:(c.session_id||'Anonymous');
-    return`<div class="checkin-row">
-      <div class="ci-emoji">${z.emoji}</div>
-      <div class="ci-info">
-        <div class="ci-top">${nameHtml}${z.titles.en} ${feelings}</div>
-        <div class="ci-sub">${time} · ${sessionHtml}</div>
-        ${noteHtml}
-      </div>
-    </div>`;
+    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${nameHtml}${z.titles.en} ${feelings}</div><div class="ci-sub">${time} · ${sessionHtml}</div>${noteHtml}</div></div>`;
   }).join('');
 }
-
 function toggleAnon(){
   anonView=!anonView;
-  const tog=document.getElementById('anon-toggle');
-  tog.classList.toggle('on',anonView);
-  document.getElementById('anon-label').textContent=anonView?'Anonymous view (no identifying info)':'Showing session IDs';
-  loadCheckins();
+  document.getElementById('anon-toggle').classList.toggle('on',anonView);
+  document.getElementById('anon-label').textContent=anonView?'Anonymous view (no identifying info)':'Showing session IDs and notes';
+  isDemoMode?loadDemoCheckins():loadCheckins();
 }
 
-let selectedClassId=null, selectedClassName='';
-
+// ===== CLASSES & STUDENTS =====
 async function createClass(){
   const name=document.getElementById('new-class-name').value.trim();
   if(!name)return;
@@ -1126,10 +951,21 @@ async function createClass(){
   if(ok){
     document.getElementById('new-class-name').value='';
     teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+    document.getElementById('d-classes').textContent=teacherClasses.length;
     renderClasses();
   }
 }
-
+async function deleteClass(id,name){
+  if(!confirm(`Delete "${name}"? This will also remove all students in this class. Check-in history will be kept.`))return;
+  try{
+    await fetch(`${SB_URL}/rest/v1/children?classroom_id=eq.${id}`,{method:'DELETE',headers:H});
+    await fetch(`${SB_URL}/rest/v1/classes?id=eq.${id}`,{method:'DELETE',headers:H});
+    if(selectedClassId===id){document.getElementById('add-student-section').style.display='none';selectedClassId=null;}
+    teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+    document.getElementById('d-classes').textContent=teacherClasses.length;
+    renderClasses();
+  }catch(e){console.error(e);alert('Something went wrong. Please try again.');}
+}
 function renderClasses(){
   const el=document.getElementById('classes-list');
   if(!teacherClasses||teacherClasses.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No classes yet. Create one above!</div>';return;}
@@ -1141,7 +977,7 @@ function renderClasses(){
       </div>
       <p style="font-size:.82em;color:#888;margin-top:10px">📨 Share class code with parents: <strong>${c.code}</strong></p>
       <div style="display:flex;gap:8px;margin-top:10px">
-        <button onclick="selectClass('${c.id}','${c.name.replace(/'/g,"\\'")}','${c.code}')" 
+        <button onclick="selectClass('${c.id}','${c.name.replace(/'/g,"\\'")}','${c.code}')"
           style="flex:1;padding:10px;background:#ede9ff;color:#7C4DFF;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
           👧 Manage Students
         </button>
@@ -1152,16 +988,13 @@ function renderClasses(){
       </div>
     </div>`).join('');
 }
-
-async function selectClass(id, name, code){
-  selectedClassId=id;
-  selectedClassName=name;
+async function selectClass(id,name,code){
+  selectedClassId=id;selectedClassName=name;
   document.getElementById('selected-class-name').textContent=name;
   document.getElementById('add-student-section').style.display='block';
   document.getElementById('add-student-section').scrollIntoView({behavior:'smooth'});
   await loadStudents(id);
 }
-
 async function loadStudents(classId){
   const students=await sbSelect('children',`classroom_id=eq.${classId}&order=created_at.asc`)||[];
   const el=document.getElementById('students-list');
@@ -1176,60 +1009,30 @@ async function loadStudents(classId){
           · Stickers: ⭐ ${s.stickers||0}
         </div>
       </div>
-      <button onclick="removeStudent('${s.id}')" 
+      <button onclick="removeStudent('${s.id}')"
         style="background:#fdecea;color:#E74C3C;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.85em;font-weight:600">
         Remove
       </button>
     </div>`).join('');
 }
-
 async function addStudent(){
   const name=document.getElementById('new-student-name').value.trim();
   if(!name||!selectedClassId)return;
-  // Generate unique family code
   const familyCode=Math.random().toString(36).slice(2,8).toUpperCase();
   const avatars=['😊','😄','🌟','🦋','🌈','🐶','🐱','🦊','🐸','🦄','🌸','⭐'];
   const avatar=avatars[Math.floor(Math.random()*avatars.length)];
-  const ok=await sbInsert('children',{
-    name,
-    classroom_id:selectedClassId,
-    family_code:familyCode,
-    avatar,
-    stickers:0,
-    created_at:new Date().toISOString()
-  });
-  if(ok){
-    document.getElementById('new-student-name').value='';
-    await loadStudents(selectedClassId);
-  }
+  const ok=await sbInsert('children',{name,classroom_id:selectedClassId,family_code:familyCode,avatar,stickers:0,created_at:new Date().toISOString()});
+  if(ok){document.getElementById('new-student-name').value='';await loadStudents(selectedClassId);}
 }
-
-async function deleteClass(id, name){
-  if(!confirm(`Delete "${name}"? This will also remove all students in this class. Check-in history will be kept.`))return;
-  try{
-    // Remove students first
-    await fetch(`${SB_URL}/rest/v1/children?classroom_id=eq.${id}`,{method:'DELETE',headers:H});
-    // Remove class
-    await fetch(`${SB_URL}/rest/v1/classes?id=eq.${id}`,{method:'DELETE',headers:H});
-    // Hide student section if it was open for this class
-    if(selectedClassId===id){
-      document.getElementById('add-student-section').style.display='none';
-      selectedClassId=null;
-    }
-    teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
-    document.getElementById('d-classes').textContent=teacherClasses.length;
-    renderClasses();
-  }catch(e){console.error(e);alert('Something went wrong. Please try again.');}
-}
+async function removeStudent(id){
   if(!confirm('Remove this student? Their check-in history will be kept.'))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{
-      method:'DELETE',headers:H
-    });
+    await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{method:'DELETE',headers:H});
     await loadStudents(selectedClassId);
   }catch(e){console.error(e);}
 }
 
+// ===== RESOURCES =====
 async function addResource(){
   const title=document.getElementById('res-title').value.trim();
   const url=document.getElementById('res-url').value.trim();
@@ -1243,26 +1046,21 @@ async function addResource(){
     renderResources();
   }
 }
+async function deleteResource(id){
+  if(!confirm('Remove this resource?'))return;
+  try{
+    await fetch(`${SB_URL}/rest/v1/resources?id=eq.${id}`,{method:'DELETE',headers:H});
+    teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
+    renderResources();
+  }catch(e){console.error(e);}
+}
 function renderResources(){
   const el=document.getElementById('resources-list');
   const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
   const audienceLabel={both:'Teachers & Parents',teacher:'Teachers only',parent:'Parents only'};
-
-  // Combine preset + teacher-added resources
-  const allResources=[
-    ...PRESET_RESOURCES,
-    ...(teacherResources||[]).filter(r=>!r.preset)
-  ];
-
+  const allResources=[...PRESET_RESOURCES,...(teacherResources||[]).filter(r=>!r.preset)];
   if(allResources.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No resources yet.</div>';return;}
-
-  // Group by audience
-  const sections=[
-    {label:'📚 For Everyone',filter:'both'},
-    {label:'👩‍🏫 For Educators',filter:'teacher'},
-    {label:'👪 For Parents',filter:'parent'},
-  ];
-
+  const sections=[{label:'📚 For Everyone',filter:'both'},{label:'👩‍🏫 For Educators',filter:'teacher'},{label:'👪 For Parents',filter:'parent'}];
   el.innerHTML=sections.map(s=>{
     const items=allResources.filter(r=>r.audience===s.filter);
     if(items.length===0)return'';
@@ -1271,7 +1069,7 @@ function renderResources(){
       <div class="resource-card" style="${r.preset?'border-left:3px solid #7C4DFF':'border-left:3px solid #5CB85C'}">
         <div class="rc-icon">${icons[r.type]||'🔗'}</div>
         <div class="rc-info">
-          <h4>${r.title}${r.preset?' <span style="font-size:.7em;background:#ede9ff;color:#7C4DFF;padding:2px 8px;border-radius:20px;font-weight:600">Built-in</span>':' <span style="font-size:.7em;background:#edfbee;color:#2d7a30;padding:2px 8px;border-radius:20px;font-weight:600">Custom</span>'}</h4>
+          <h4>${r.title} <span style="font-size:.7em;background:${r.preset?'#ede9ff':'#edfbee'};color:${r.preset?'#7C4DFF':'#2d7a30'};padding:2px 8px;border-radius:20px;font-weight:600">${r.preset?'Built-in':'Custom'}</span></h4>
           <p>${audienceLabel[r.audience]||r.audience}</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
@@ -1282,152 +1080,34 @@ function renderResources(){
   }).join('');
 }
 
-// ===== PARENT DASH =====
-async function loadParentDash(classroomId, classCode, childId){
-  // Load check-ins filtered by classroom or child
+// ===== PARENT DASHBOARD =====
+async function loadParentDash(classroomId,classCode,childId){
   let params=`order=checked_in_at.desc&limit=10`;
-  if(childId) params+=`&child_id=eq.${childId}`;
-  else if(classroomId) params+=`&classroom_id=eq.${classroomId}`;
-
+  if(childId)params+=`&child_id=eq.${childId}`;
+  else if(classroomId)params+=`&classroom_id=eq.${classroomId}`;
   const checkins=await sbSelect('check_ins',params);
   const el=document.getElementById('parent-checkins');
-  if(!checkins||checkins.length===0){
-    el.innerHTML='<div style="color:#aaa;text-align:center;padding:20px">No check-ins yet.</div>';
-  } else {
+  if(!checkins||checkins.length===0){el.innerHTML='<div style="color:#aaa;text-align:center;padding:20px">No check-ins yet.</div>';}
+  else{
     el.innerHTML=checkins.map(c=>{
       const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_name||c.zone_id}};
       const date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
       const feelings=(c.feelings||[]).map(f=>`<span class="tag">${f}</span>`).join('');
-      return`<div class="checkin-row">
-        <div class="ci-emoji">${z.emoji}</div>
-        <div class="ci-info">
-          <div class="ci-top">${z.titles.en} ${feelings}</div>
-          <div class="ci-sub">${date}</div>
-        </div>
-      </div>`;
+      return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en} ${feelings}</div><div class="ci-sub">${date}</div></div></div>`;
     }).join('');
   }
-
-  // Load parent-facing resources
   const resources=await sbSelect('resources',`audience=in.(both,parent)&order=created_at.desc`)||[];
   const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  const rel=document.getElementById('parent-resources');
-  rel.innerHTML=resources.length===0
+  const allParentResources=[...PRESET_RESOURCES.filter(r=>r.audience!=='teacher'),...resources.filter(r=>!r.preset)];
+  document.getElementById('parent-resources').innerHTML=allParentResources.length===0
     ?'<div style="color:#aaa;font-size:.9em">No resources shared yet.</div>'
-    :resources.map(r=>`
-      <div class="resource-card">
-        <div class="rc-icon">${icons[r.type]||'🔗'}</div>
-        <div class="rc-info"><h4>${r.title}</h4></div>
-        <a href="${r.url}" target="_blank" rel="noopener">Open ↗</a>
-      </div>`).join('');
-}
-
-async function deleteResource(id){
-  if(!confirm('Remove this resource?'))return;
-  try{
-    await fetch(`${SB_URL}/rest/v1/resources?id=eq.${id}`,{method:'DELETE',headers:H});
-    teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
-    renderResources();
-  }catch(e){console.error(e);}
-}
-const PRESET_RESOURCES=[
-  // FOR EVERYONE
-  {title:'Zones of Regulation — Official Website',type:'link',url:'https://zonesofregulation.com',audience:'both',preset:true},
-  {title:'How to Talk to Kids About Feelings (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'both',preset:true},
-  {title:'Feelings Faces Poster — Free Printable',type:'pdf',url:'https://www.teacherspayteachers.com/Browse/Search:zones+of+regulation+free',audience:'both',preset:true},
-  // FOR EDUCATORS
-  {title:'Zones of Regulation — Teacher Implementation Guide',type:'pdf',url:'https://zonesofregulation.com/learn-more-curriculum.html',audience:'teacher',preset:true},
-  {title:'City Studio Durham — Program Overview',type:'link',url:'https://citystudiodurham.ca',audience:'teacher',preset:true},
-  {title:'Trauma-Informed Teaching Strategies',type:'link',url:'https://www.traumainformedcare.chcs.org/what-is-trauma-informed-care/',audience:'teacher',preset:true},
-  {title:'UDL Guidelines for Inclusive Classrooms',type:'link',url:'https://udlguidelines.cast.org',audience:'teacher',preset:true},
-  {title:'Breathing Exercises for Kids (Printable)',type:'pdf',url:'https://www.therapistaid.com/therapy-worksheet/deep-breathing',audience:'teacher',preset:true},
-  // FOR PARENTS
-  {title:'Helping Your Child Manage Big Feelings — Parent Guide',type:'pdf',url:'https://www.cdc.gov/childrensmentalhealth/parenting.html',audience:'parent',preset:true},
-  {title:'Talking to Young Children About Emotions (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'parent',preset:true},
-  {title:'Zones of Regulation — Parent Introduction',type:'link',url:'https://zonesofregulation.com/parents.html',audience:'parent',preset:true},
-  {title:'Supporting Children\'s Mental Health at Home',type:'link',url:'https://www.camh.ca/en/health-info/mental-health-and-covid-19/supporting-children',audience:'parent',preset:true},
-];
-  {zone:'green',feelings:['Happy','Calm'],note:'I had a good breakfast!',session_id:'demo001',created_at:new Date(Date.now()-5*60000).toISOString()},
-  {zone:'yellow',feelings:['Worried','Nervous'],note:'I have a test today',session_id:'demo002',created_at:new Date(Date.now()-12*60000).toISOString()},
-  {zone:'blue',feelings:['Sad','Tired'],note:null,session_id:'demo003',created_at:new Date(Date.now()-20*60000).toISOString()},
-  {zone:'green',feelings:['Proud','Ready'],note:null,session_id:'demo004',created_at:new Date(Date.now()-35*60000).toISOString()},
-  {zone:'red',feelings:['Mad','Overwhelmed'],note:'Someone was mean to me',session_id:'demo005',created_at:new Date(Date.now()-50*60000).toISOString()},
-  {zone:'green',feelings:['Happy','Thankful'],note:null,session_id:'demo006',created_at:new Date(Date.now()-65*60000).toISOString()},
-  {zone:'yellow',feelings:['Excited','Wiggly'],note:null,session_id:'demo007',created_at:new Date(Date.now()-80*60000).toISOString()},
-];
-const DEMO_CLASSES=[
-  {name:'Room 4 — Grade 2',code:'ZNS4A2',created_at:new Date(Date.now()-7*24*3600000).toISOString()},
-  {name:'Room 7 — Senior Kindergarten',code:'ZNS7SK',created_at:new Date(Date.now()-14*24*3600000).toISOString()},
-];
-const DEMO_RESOURCES=[
-  {title:'Zones of Regulation — Parent Guide',type:'pdf',url:'#',audience:'parent'},
-  {title:'Belly Breathing Video for Kids',type:'video',url:'#',audience:'both'},
-  {title:'Emotion Faces Printable',type:'image',url:'#',audience:'both'},
-  {title:'City Studio Durham — Zones Program',type:'link',url:'#',audience:'teacher'},
-];
-let isDemoMode=false;
-
-function enterDemo(role){
-  isDemoMode=true;
-  if(role==='teacher'){
-    document.getElementById('teacher-name-display').textContent='Welcome, Ms. Demo Teacher (Durham Elementary)';
-    showScreen('teacher-dash');
-    loadDemoDash();
-  } else {
-    document.getElementById('parent-class-display').textContent='Class: Room 4 — Grade 2 (ZNS4A2)';
-    showScreen('parent-dash');
-    loadDemoParentDash();
-  }
-}
-
-function loadDemoDash(){
-  const counts={blue:0,green:0,yellow:0,red:0};
-  DEMO_CHECKINS.forEach(c=>counts[c.zone]++);
-  const total=DEMO_CHECKINS.length;
-  document.getElementById('d-checkins').textContent=total;
-  document.getElementById('d-classes').textContent=DEMO_CLASSES.length;
-  document.getElementById('d-stars').textContent=total+3;
-  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
-  const ze={blue:'😢',green:'😄',yellow:'😰',red:'😡'};
-  document.getElementById('d-top-zone').textContent=ze[top[0]];
-  ['blue','green','yellow','red'].forEach(z=>{
-    const pct=Math.round(counts[z]/total*100);
-    document.getElementById(`pct-${z}`).textContent=pct+'%';
-    document.getElementById(`bar-${z}`).style.width=pct+'%';
-  });
-  teacherClasses=DEMO_CLASSES;
-  teacherResources=DEMO_RESOURCES;
-}
-
-function loadDemoCheckins(){
-  const list=document.getElementById('checkins-list');
-  list.innerHTML=DEMO_CHECKINS.map(c=>{
-    const z=ZONES[c.zone]||{emoji:'❓',titles:{en:c.zone}};
-    const time=new Date(c.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-    const feelings=(c.feelings||[]).map(f=>`<span class="tag">${f}</span>`).join('');
-    const noteHtml=(!anonView&&c.note)?`<div style="font-size:.8em;color:#888;margin-top:3px;font-style:italic">"${c.note}"</div>`:'';
-    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en} ${feelings}</div><div class="ci-sub">${time} · Session ${anonView?c.session_id.slice(0,4)+'***':c.session_id}</div>${noteHtml}</div></div>`;
-  }).join('');
-}
-
-function loadDemoParentDash(){
-  const el=document.getElementById('parent-checkins');
-  el.innerHTML=DEMO_CHECKINS.slice(0,5).map(c=>{
-    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_id}};
-    const date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en}</div><div class="ci-sub">${date}</div></div></div>`;
-  }).join('');
-  // Show preset resources in parent demo view
-  const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  document.getElementById('parent-resources').innerHTML=PRESET_RESOURCES.filter(r=>r.audience!=='teacher').map(r=>`
-    <div class="resource-card">
-      <div class="rc-icon">${icons[r.type]||'🔗'}</div>
+    :allParentResources.map(r=>`
+      <div class="resource-card"><div class="rc-icon">${icons[r.type]||'🔗'}</div>
       <div class="rc-info"><h4>${r.title}</h4></div>
-      <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>
-    </div>`).join('');
+      <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a></div>`).join('');
 }
 
-
+// ===== SUPABASE HELPERS =====
 async function sbInsert(table,data){
   try{const r=await fetch(`${SB_URL}/rest/v1/${table}`,{method:'POST',headers:{...H,'Prefer':'return=minimal'},body:JSON.stringify(data)});return r.ok;}catch(e){return false;}
 }
