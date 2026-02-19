@@ -1140,10 +1140,16 @@ function renderClasses(){
         <span class="code-badge">${c.code}</span>
       </div>
       <p style="font-size:.82em;color:#888;margin-top:10px">📨 Share class code with parents: <strong>${c.code}</strong></p>
-      <button onclick="selectClass('${c.id}','${c.name.replace(/'/g,"\\'")}','${c.code}')" 
-        style="margin-top:10px;width:100%;padding:10px;background:#ede9ff;color:#7C4DFF;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
-        👧 Manage Students
-      </button>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button onclick="selectClass('${c.id}','${c.name.replace(/'/g,"\\'")}','${c.code}')" 
+          style="flex:1;padding:10px;background:#ede9ff;color:#7C4DFF;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
+          👧 Manage Students
+        </button>
+        <button onclick="deleteClass('${c.id}','${c.name.replace(/'/g,"\\'")}' )"
+          style="padding:10px 16px;background:#fdecea;color:#E74C3C;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
+          🗑️ Delete
+        </button>
+      </div>
     </div>`).join('');
 }
 
@@ -1198,7 +1204,23 @@ async function addStudent(){
   }
 }
 
-async function removeStudent(id){
+async function deleteClass(id, name){
+  if(!confirm(`Delete "${name}"? This will also remove all students in this class. Check-in history will be kept.`))return;
+  try{
+    // Remove students first
+    await fetch(`${SB_URL}/rest/v1/children?classroom_id=eq.${id}`,{method:'DELETE',headers:H});
+    // Remove class
+    await fetch(`${SB_URL}/rest/v1/classes?id=eq.${id}`,{method:'DELETE',headers:H});
+    // Hide student section if it was open for this class
+    if(selectedClassId===id){
+      document.getElementById('add-student-section').style.display='none';
+      selectedClassId=null;
+    }
+    teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+    document.getElementById('d-classes').textContent=teacherClasses.length;
+    renderClasses();
+  }catch(e){console.error(e);alert('Something went wrong. Please try again.');}
+}
   if(!confirm('Remove this student? Their check-in history will be kept.'))return;
   try{
     await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{
