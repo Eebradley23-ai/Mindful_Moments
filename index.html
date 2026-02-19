@@ -1245,14 +1245,41 @@ async function addResource(){
 }
 function renderResources(){
   const el=document.getElementById('resources-list');
-  if(!teacherResources||teacherResources.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No resources yet. Add one above!</div>';return;}
   const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  el.innerHTML=teacherResources.map(r=>`
-    <div class="resource-card">
-      <div class="rc-icon">${icons[r.type]||'🔗'}</div>
-      <div class="rc-info"><h4>${r.title}</h4><p>${r.audience==='both'?'Teachers & Parents':r.audience==='teacher'?'Teachers only':'Parents only'}</p></div>
-      <a href="${r.url}" target="_blank" rel="noopener">Open ↗</a>
-    </div>`).join('');
+  const audienceLabel={both:'Teachers & Parents',teacher:'Teachers only',parent:'Parents only'};
+
+  // Combine preset + teacher-added resources
+  const allResources=[
+    ...PRESET_RESOURCES,
+    ...(teacherResources||[]).filter(r=>!r.preset)
+  ];
+
+  if(allResources.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No resources yet.</div>';return;}
+
+  // Group by audience
+  const sections=[
+    {label:'📚 For Everyone',filter:'both'},
+    {label:'👩‍🏫 For Educators',filter:'teacher'},
+    {label:'👪 For Parents',filter:'parent'},
+  ];
+
+  el.innerHTML=sections.map(s=>{
+    const items=allResources.filter(r=>r.audience===s.filter);
+    if(items.length===0)return'';
+    return`<div style="font-weight:700;color:#555;margin:16px 0 8px">${s.label}</div>`+
+    items.map(r=>`
+      <div class="resource-card" style="${r.preset?'border-left:3px solid #7C4DFF':'border-left:3px solid #5CB85C'}">
+        <div class="rc-icon">${icons[r.type]||'🔗'}</div>
+        <div class="rc-info">
+          <h4>${r.title}${r.preset?' <span style="font-size:.7em;background:#ede9ff;color:#7C4DFF;padding:2px 8px;border-radius:20px;font-weight:600">Built-in</span>':' <span style="font-size:.7em;background:#edfbee;color:#2d7a30;padding:2px 8px;border-radius:20px;font-weight:600">Custom</span>'}</h4>
+          <p>${audienceLabel[r.audience]||r.audience}</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+          <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>
+          ${!r.preset?`<button onclick="deleteResource('${r.id}')" style="background:none;border:none;color:#E74C3C;cursor:pointer;font-size:.8em">🗑️ Remove</button>`:''}
+        </div>
+      </div>`).join('');
+  }).join('');
 }
 
 // ===== PARENT DASH =====
@@ -1295,8 +1322,31 @@ async function loadParentDash(classroomId, classCode, childId){
       </div>`).join('');
 }
 
-// ===== DEMO MODE =====
-const DEMO_CHECKINS=[
+async function deleteResource(id){
+  if(!confirm('Remove this resource?'))return;
+  try{
+    await fetch(`${SB_URL}/rest/v1/resources?id=eq.${id}`,{method:'DELETE',headers:H});
+    teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
+    renderResources();
+  }catch(e){console.error(e);}
+}
+const PRESET_RESOURCES=[
+  // FOR EVERYONE
+  {title:'Zones of Regulation — Official Website',type:'link',url:'https://zonesofregulation.com',audience:'both',preset:true},
+  {title:'How to Talk to Kids About Feelings (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'both',preset:true},
+  {title:'Feelings Faces Poster — Free Printable',type:'pdf',url:'https://www.teacherspayteachers.com/Browse/Search:zones+of+regulation+free',audience:'both',preset:true},
+  // FOR EDUCATORS
+  {title:'Zones of Regulation — Teacher Implementation Guide',type:'pdf',url:'https://zonesofregulation.com/learn-more-curriculum.html',audience:'teacher',preset:true},
+  {title:'City Studio Durham — Program Overview',type:'link',url:'https://citystudiodurham.ca',audience:'teacher',preset:true},
+  {title:'Trauma-Informed Teaching Strategies',type:'link',url:'https://www.traumainformedcare.chcs.org/what-is-trauma-informed-care/',audience:'teacher',preset:true},
+  {title:'UDL Guidelines for Inclusive Classrooms',type:'link',url:'https://udlguidelines.cast.org',audience:'teacher',preset:true},
+  {title:'Breathing Exercises for Kids (Printable)',type:'pdf',url:'https://www.therapistaid.com/therapy-worksheet/deep-breathing',audience:'teacher',preset:true},
+  // FOR PARENTS
+  {title:'Helping Your Child Manage Big Feelings — Parent Guide',type:'pdf',url:'https://www.cdc.gov/childrensmentalhealth/parenting.html',audience:'parent',preset:true},
+  {title:'Talking to Young Children About Emotions (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'parent',preset:true},
+  {title:'Zones of Regulation — Parent Introduction',type:'link',url:'https://zonesofregulation.com/parents.html',audience:'parent',preset:true},
+  {title:'Supporting Children\'s Mental Health at Home',type:'link',url:'https://www.camh.ca/en/health-info/mental-health-and-covid-19/supporting-children',audience:'parent',preset:true},
+];
   {zone:'green',feelings:['Happy','Calm'],note:'I had a good breakfast!',session_id:'demo001',created_at:new Date(Date.now()-5*60000).toISOString()},
   {zone:'yellow',feelings:['Worried','Nervous'],note:'I have a test today',session_id:'demo002',created_at:new Date(Date.now()-12*60000).toISOString()},
   {zone:'blue',feelings:['Sad','Tired'],note:null,session_id:'demo003',created_at:new Date(Date.now()-20*60000).toISOString()},
@@ -1363,13 +1413,18 @@ function loadDemoCheckins(){
 function loadDemoParentDash(){
   const el=document.getElementById('parent-checkins');
   el.innerHTML=DEMO_CHECKINS.slice(0,5).map(c=>{
-    const z=ZONES[c.zone]||{emoji:'❓',titles:{en:c.zone}};
-    const date=new Date(c.created_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_id}};
+    const date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
     return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en}</div><div class="ci-sub">${date}</div></div></div>`;
   }).join('');
+  // Show preset resources in parent demo view
   const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  document.getElementById('parent-resources').innerHTML=DEMO_RESOURCES.filter(r=>r.audience!=='teacher').map(r=>`
-    <div class="resource-card"><div class="rc-icon">${icons[r.type]||'🔗'}</div><div class="rc-info"><h4>${r.title}</h4></div><a href="#" onclick="return false" style="color:var(--purple);font-size:.85em;font-weight:600">Open ↗</a></div>`).join('');
+  document.getElementById('parent-resources').innerHTML=PRESET_RESOURCES.filter(r=>r.audience!=='teacher').map(r=>`
+    <div class="resource-card">
+      <div class="rc-icon">${icons[r.type]||'🔗'}</div>
+      <div class="rc-info"><h4>${r.title}</h4></div>
+      <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>
+    </div>`).join('');
 }
 
 
