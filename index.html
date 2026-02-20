@@ -522,7 +522,7 @@ let currentLang='en',currentZone=null,selectedFeelings=[],breathTimer=null;
 let stars=parseInt(localStorage.getItem('z_stars')||'0');
 let sessionId=localStorage.getItem('z_sid')||('s'+Math.random().toString(36).slice(2,10));
 localStorage.setItem('z_sid',sessionId);
-let anonView=true,currentUser=null,userRole=null,authToken=null;
+let anonView=true,currentUser=null,userRole=null,authToken=null,isDemoMode=false;
 let teacherClasses=[],teacherResources=[],selectedClassId=null,selectedClassName='';
 
 // ===== TRANSLATIONS =====
