@@ -546,20 +546,29 @@ const PRESET_RESOURCES=[
 {title:'Problem Solving Activity',type:'link',url:'https://everydayspeech.com/blog-posts/general/free-preschool-problem-solving-activity/',audience:'teacher',preset:true},
 ];
 
-function speak(elId){
+ffunction speak(elId){
   const el=document.getElementById(elId);
   if(!el)return;
   const txt=el.textContent||el.innerText;
   if(!txt.trim())return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(txt);
-  const langMap={en:'en-CA',fr:'fr-FR',es:'es-ES',zh:'zh-CN',ru:'ru-RU'};
-  u.lang=langMap[currentLang]||'en-CA';
-  u.rate=0.85;u.pitch=1.1;
+  const langMap={en:'en',fr:'fr',es:'es',zh:'zh',ru:'ru'};
+  const targetLang=langMap[currentLang]||'en';
+  const voices=window.speechSynthesis.getVoices();
+  const preferred=voices.filter(v=>v.lang.startsWith(targetLang)&&(v.name.includes('Natural')||v.name.includes('Premium')||v.name.includes('Enhanced')||v.name.includes('Samantha')||v.name.includes('Google')));
+  const fallback=voices.filter(v=>v.lang.startsWith(targetLang));
+  const chosen=preferred[0]||fallback[0]||null;
+  if(chosen)u.voice=chosen;
+  u.lang=chosen?chosen.lang:targetLang;
+  u.rate=0.82;
+  u.pitch=1.1;
+  u.volume=1;
   window.speechSynthesis.speak(u);
 }
-function autoSpeak(elId){setTimeout(function(){speak(elId);},400);}
 
+function autoSpeak(elId){setTimeout(()=>speak(elId),400);}
+  
 function setLang(lang,btn){
   currentLang=lang;
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
@@ -628,13 +637,21 @@ function openActivity(idx){
 }
 function toggleFeeling(f,btn){
   window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(f);
-  var langMap={en:'en-CA',fr:'fr-FR',es:'es-ES',zh:'zh-CN',ru:'ru-RU'};
-  u.lang=langMap[currentLang]||'en-CA';
-  u.rate=0.8;u.pitch=1.2;
+  const u=new SpeechSynthesisUtterance(f);
+  const langMap={en:'en',fr:'fr',es:'es',zh:'zh',ru:'ru'};
+  const targetLang=langMap[currentLang]||'en';
+  const voices=window.speechSynthesis.getVoices();
+  const preferred=voices.filter(v=>v.lang.startsWith(targetLang)&&(v.name.includes('Natural')||v.name.includes('Premium')||v.name.includes('Enhanced')||v.name.includes('Samantha')||v.name.includes('Google')));
+  const fallback=voices.filter(v=>v.lang.startsWith(targetLang));
+  const chosen=preferred[0]||fallback[0]||null;
+  if(chosen)u.voice=chosen;
+  u.lang=chosen?chosen.lang:targetLang;
+  u.rate=0.8;
+  u.pitch=1.2;
+  u.volume=1;
   window.speechSynthesis.speak(u);
   if(selectedFeelings.includes(f)){
-    selectedFeelings=selectedFeelings.filter(function(x){return x!==f;});
+    selectedFeelings=selectedFeelings.filter(x=>x!==f);
     btn.style.background='#fff';btn.style.color='#333';btn.style.borderColor='#ddd';
   }else{
     selectedFeelings.push(f);
