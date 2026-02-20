@@ -531,22 +531,21 @@ const PRESET_RESOURCES=[
   {title:'How to Feel Feelings (Video)',type:'video',url:'https://www.youtube.com/watch?v=rjJdzhRZxGw',audience:'both',preset:true},
   {title:'What Are the Zones of Regulation? — Official Video',type:'video',url:'https://www.youtube.com/watch?v=zZ9X-d3oZvQ',audience:'both',preset:true},
   {title:'Feelings Faces Poster — Free Printable',type:'pdf',url:'https://www.teacherspayteachers.com/Browse/Search:zones+of+regulation+free',audience:'both',preset:true},
+  {title:'Understanding Others',type:'link',url:'https://www.education.com/learn/996497',audience:'both',preset:true},
+  {title:'8 Impulse Control Activities for Kids',type:'link',url:'https://www.kindergartencafe.org/8-impulse-control-activities-for-kids/',audience:'both',preset:true},
+  {title:'Impulse Control Activities for Kids',type:'link',url:'https://veryspecialtales.com/impulse-control-activities-kids/',audience:'both',preset:true},
+  {title:'Turn Taking Activities for Kids',type:'link',url:'https://veryspecialtales.com/turn-taking-activities-for-kids/',audience:'both',preset:true},
   {title:'Building Bridges Between Home, School, and Clinical Care',type:'link',url:'https://zonesofregulation.com/blog/building-bridges-between-home-school-and-clinical-care-with-the-zones-of-regulation/',audience:'teacher',preset:true},
-  
   {title:'Trauma-Informed Teaching Strategies',type:'link',url:'https://www.traumainformedcare.chcs.org/what-is-trauma-informed-care/',audience:'teacher',preset:true},
   {title:'UDL Guidelines for Inclusive Classrooms',type:'link',url:'https://udlguidelines.cast.org',audience:'teacher',preset:true},
   {title:'Belly Breathing Instructions',type:'pdf',url:'https://www.therapistaid.com/therapy-worksheet/belly-breathing-instructions',audience:'teacher',preset:true},
+  {title:'Problem Solving Activity',type:'link',url:'https://everydayspeech.com/blog-posts/general/free-preschool-problem-solving-activity/',audience:'teacher',preset:true},
   {title:'A Parent\'s Guide: Supporting Your Child\'s Self-Regulation',type:'pdf',url:'https://www.uwo.ca/fhs/lwm/teaching/dld2_2020_21/Krilis_dld2.pdf',audience:'parent',preset:true},
   {title:'Zoning In For Home',type:'link',url:'https://zonesofregulation.com/blog/category/for-home/',audience:'parent',preset:true},
-  {title:'PCMH (Parents & Caregivers for Mental Health)',type:'link',url:'https://www.family.cmho.org/',audience:'parent',preset:true},
-  {title:'Understanding Others',type:'link',url:'https://www.education.com/learn/996497',audience:'both',preset:true},
-  {title:'8 Impulse Control Activities for Kids',type:'link',url:'https://www.kindergartencafe.org/8-impulse-control-activities-for-kids/',audience:'both',preset:true},
-{title:'Impulse Control Activities for Kids',type:'link',url:'https://veryspecialtales.com/impulse-control-activities-kids/',audience:'both',preset:true},
-{title:'Turn Taking Activities for Kids',type:'link',url:'https://veryspecialtales.com/turn-taking-activities-for-kids/',audience:'both',preset:true},
-{title:'Problem Solving Activity',type:'link',url:'https://everydayspeech.com/blog-posts/general/free-preschool-problem-solving-activity/',audience:'teacher',preset:true},
+  {title:'PCMH (Parents & Caregivers for Mental Health)',type:'link',url:'https://www.family.cmho.org/',audience:'parent',preset:true}
 ];
 
-ffunction speak(elId){
+function speak(elId){
   const el=document.getElementById(elId);
   if(!el)return;
   const txt=el.textContent||el.innerText;
@@ -556,19 +555,16 @@ ffunction speak(elId){
   const langMap={en:'en',fr:'fr',es:'es',zh:'zh',ru:'ru'};
   const targetLang=langMap[currentLang]||'en';
   const voices=window.speechSynthesis.getVoices();
-  const preferred=voices.filter(v=>v.lang.startsWith(targetLang)&&(v.name.includes('Natural')||v.name.includes('Premium')||v.name.includes('Enhanced')||v.name.includes('Samantha')||v.name.includes('Google')));
-  const fallback=voices.filter(v=>v.lang.startsWith(targetLang));
+  const preferred=voices.filter(function(v){return v.lang.startsWith(targetLang)&&(v.name.includes('Natural')||v.name.includes('Premium')||v.name.includes('Enhanced')||v.name.includes('Samantha')||v.name.includes('Google'));});
+  const fallback=voices.filter(function(v){return v.lang.startsWith(targetLang);});
   const chosen=preferred[0]||fallback[0]||null;
   if(chosen)u.voice=chosen;
   u.lang=chosen?chosen.lang:targetLang;
-  u.rate=0.82;
-  u.pitch=1.1;
-  u.volume=1;
+  u.rate=0.82;u.pitch=1.1;u.volume=1;
   window.speechSynthesis.speak(u);
 }
+function autoSpeak(elId){setTimeout(function(){speak(elId);},400);}
 
-function autoSpeak(elId){setTimeout(()=>speak(elId),400);}
-  
 function setLang(lang,btn){
   currentLang=lang;
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
@@ -637,21 +633,19 @@ function openActivity(idx){
 }
 function toggleFeeling(f,btn){
   window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(f);
-  const langMap={en:'en',fr:'fr',es:'es',zh:'zh',ru:'ru'};
-  const targetLang=langMap[currentLang]||'en';
-  const voices=window.speechSynthesis.getVoices();
-  const preferred=voices.filter(v=>v.lang.startsWith(targetLang)&&(v.name.includes('Natural')||v.name.includes('Premium')||v.name.includes('Enhanced')||v.name.includes('Samantha')||v.name.includes('Google')));
-  const fallback=voices.filter(v=>v.lang.startsWith(targetLang));
-  const chosen=preferred[0]||fallback[0]||null;
+  var u=new SpeechSynthesisUtterance(f);
+  var langMap={en:'en',fr:'fr',es:'es',zh:'zh',ru:'ru'};
+  var targetLang=langMap[currentLang]||'en';
+  var voices=window.speechSynthesis.getVoices();
+  var preferred=voices.filter(function(v){return v.lang.startsWith(targetLang)&&(v.name.includes('Natural')||v.name.includes('Premium')||v.name.includes('Enhanced')||v.name.includes('Samantha')||v.name.includes('Google'));});
+  var fallback=voices.filter(function(v){return v.lang.startsWith(targetLang);});
+  var chosen=preferred[0]||fallback[0]||null;
   if(chosen)u.voice=chosen;
   u.lang=chosen?chosen.lang:targetLang;
-  u.rate=0.8;
-  u.pitch=1.2;
-  u.volume=1;
+  u.rate=0.8;u.pitch=1.2;u.volume=1;
   window.speechSynthesis.speak(u);
   if(selectedFeelings.includes(f)){
-    selectedFeelings=selectedFeelings.filter(x=>x!==f);
+    selectedFeelings=selectedFeelings.filter(function(x){return x!==f;});
     btn.style.background='#fff';btn.style.color='#333';btn.style.borderColor='#ddd';
   }else{
     selectedFeelings.push(f);
