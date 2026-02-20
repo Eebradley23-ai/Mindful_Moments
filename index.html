@@ -19,7 +19,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .speaker-btn{background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.5);border-radius:50%;width:48px;height:48px;font-size:1.4em;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .speaker-btn:hover{background:rgba(255,255,255,0.4);transform:scale(1.1)}
 .speaker-btn.dark{background:#ede9ff;border-color:#7C4DFF;color:#7C4DFF}
-/* LANDING */
 #landing{background:linear-gradient(145deg,#667eea,#764ba2,#f093fb);align-items:center;justify-content:flex-start}
 .landing-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:30px 20px;text-align:center}
 .landing-inner h1{font-size:3.5em;color:#fff;text-shadow:0 3px 15px rgba(0,0,0,0.2);margin-bottom:8px}
@@ -30,7 +29,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
 .btn-white{background:#fff;color:#764ba2}
 .btn-outline{background:rgba(255,255,255,0.2);color:#fff;border:2px solid rgba(255,255,255,0.6)}
-/* FEELING Q */
 #feeling-q{background:linear-gradient(145deg,#a18cd1,#fbc2eb);align-items:center;justify-content:flex-start}
 .fq-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:20px;text-align:center;width:100%}
 .fq-inner h2{font-size:2em;color:#fff;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,0.15)}
@@ -44,7 +42,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .emotion-btn.green-z{border-left:6px solid var(--green)}
 .emotion-btn.yellow-z{border-left:6px solid var(--yellow)}
 .emotion-btn.red-z{border-left:6px solid var(--red)}
-/* ZONE PAGE */
 #zone-page{min-height:100vh;flex-direction:column}
 .zone-header{padding:24px 20px 20px;display:flex;flex-direction:column;gap:12px}
 .zone-header-top{display:flex;align-items:center;justify-content:space-between}
@@ -76,7 +73,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .breath-count{font-size:3em;font-weight:800;color:#764ba2}
 .breath-start-btn{padding:14px 40px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:50px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:10px}
 .back-btn-white{background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.6);color:#fff;padding:10px 20px;border-radius:50px;cursor:pointer;font-weight:600;font-size:.9em}
-/* STARS */
 #stars-screen{background:linear-gradient(135deg,#f093fb,#f5576c);align-items:center;justify-content:flex-start;text-align:center}
 .stars-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px}
 .stars-inner h2{color:#fff;font-size:2em;margin-bottom:8px}
@@ -89,13 +85,11 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .ms-item p{color:#fff;font-size:.92em;text-align:left}
 .ms-item.earned p{font-weight:700}
 .ms-item .ms-check{margin-left:auto;font-size:1.2em}
-/* CELEBRATION */
 #celebration{background:linear-gradient(135deg,#FFD700,#FF6B35);align-items:center;justify-content:center;text-align:center;padding:40px 20px}
 .confetti-row{font-size:3.5em;margin-bottom:20px;animation:bounce .7s infinite alternate}
 @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-18px)}}
 #celebration h2{color:#fff;font-size:2.5em;text-shadow:0 3px 10px rgba(0,0,0,0.2);margin-bottom:10px}
 #celebration p{color:rgba(255,255,255,0.92);font-size:1.15em;margin-bottom:30px}
-/* AUTH */
 #auth-screen{background:var(--bg);align-items:center;justify-content:center;padding:20px}
 .auth-card{background:#fff;border-radius:var(--radius);padding:36px;width:100%;max-width:380px;box-shadow:0 8px 30px rgba(0,0,0,0.1)}
 .auth-card h2{text-align:center;color:var(--purple);margin-bottom:6px;font-size:1.5em}
@@ -110,7 +104,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .auth-tab.active{background:var(--purple);color:#fff;border-color:var(--purple)}
 .err{color:var(--red);font-size:.85em;text-align:center;margin-top:8px}
 .back-link{display:block;text-align:center;margin-top:14px;color:var(--purple);cursor:pointer;font-size:.9em}
-/* TEACHER DASHBOARD */
 #teacher-dash{background:#f5f5f5;flex-direction:column}
 .dash-header{background:linear-gradient(135deg,#667eea,#764ba2);padding:22px 20px;color:#fff}
 .dash-header-row{display:flex;justify-content:space-between;align-items:center}
@@ -162,7 +155,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .add-resource-form h4{margin-bottom:12px;font-size:.95em;color:#555}
 .logout-btn{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);color:#fff;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:.85em}
 .section-label{font-weight:700;color:#444;margin:16px 0 8px;display:block}
-/* PARENT */
 #parent-dash{background:#f5f5f5;flex-direction:column}
 .parent-header{background:linear-gradient(135deg,#5CB85C,#1e7e34);padding:22px 20px;color:#fff}
 .parent-body{flex:1;padding:20px}
@@ -196,7 +188,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       <button class="btn btn-outline" onclick="showScreen('auth-screen');setAuthMode('parent')">
         <span id="btn-parent-label">👪 Parent / Guardian</span>
       </button>
-
     </div>
   </div>
 </div>
@@ -369,7 +360,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
     </div>
     <div id="auth-register-form" class="auth-card hide">
       <h2>Create Account</h2>
-      <p>For educators & school admins only</p>
+      <p>For educators &amp; school admins only</p>
       <div class="field"><label>Full Name</label><input type="text" id="reg-name" placeholder="Ms. Smith"/></div>
       <div class="field"><label>School Name</label><input type="text" id="reg-school" placeholder="Durham Elementary"/></div>
       <div class="field"><label>Email</label><input type="email" id="reg-email" placeholder="you@school.ca"/></div>
@@ -397,7 +388,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
     </div>
   </div>
   <div class="dash-body">
-    <!-- OVERVIEW -->
     <div id="dash-overview" class="dash-section active">
       <div class="stat-grid">
         <div class="stat-card"><div class="stat-num" id="d-checkins">—</div><div class="stat-label">Check-ins Today</div></div>
@@ -414,7 +404,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       </div>
       <div class="privacy-box">🔒 <strong>Privacy:</strong> Children's names are never collected unless added by educators. Check-ins use anonymous session IDs. Notes are visible only to educators. This app is free for all schools.</div>
     </div>
-    <!-- CLASSES -->
     <div id="dash-classes" class="dash-section">
       <div style="margin-bottom:16px">
         <span class="section-label">Create a New Class</span>
@@ -436,7 +425,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
         <div id="students-list"><div style="color:#aaa;font-size:.9em">No students yet.</div></div>
       </div>
     </div>
-    <!-- CHECK-INS -->
     <div id="dash-checkins" class="dash-section">
       <div class="toggle-row" style="margin-bottom:16px">
         <div class="toggle on" id="anon-toggle" onclick="toggleAnon()"></div>
@@ -447,7 +435,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
         <div style="color:#aaa;font-size:.9em;padding:20px 0;text-align:center">Loading...</div>
       </div>
     </div>
-    <!-- RESOURCES -->
     <div id="dash-resources" class="dash-section">
       <div class="add-resource-form">
         <h4>+ Add Your Own Resource</h4>
@@ -472,7 +459,6 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       </div>
       <div id="resources-list"></div>
     </div>
-    <!-- SETTINGS -->
     <div id="dash-settings" class="dash-section">
       <div class="class-card">
         <h4>🔒 Privacy Settings</h4>
@@ -516,7 +502,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 const SB_URL='https://uaktywmfpdppwyxnzukr.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVha3R5d21mcGRwcHd5eG56dWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MTcyNzYsImV4cCI6MjA4Njk5MzI3Nn0.HetxfNPaLFiiUncCA6kN2Xhu4cFJvMI2zPupEBX-Bhc';
 let H={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
-function getH(){return{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':authToken?`Bearer ${authToken}`:`Bearer ${SB_KEY}`};}
+function getH(){return{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':authToken?'Bearer '+authToken:'Bearer '+SB_KEY};}
 
 let currentLang='en',currentZone=null,selectedFeelings=[],breathTimer=null;
 let stars=parseInt(localStorage.getItem('z_stars')||'0');
@@ -525,7 +511,6 @@ localStorage.setItem('z_sid',sessionId);
 let anonView=true,currentUser=null,userRole=null,authToken=null,isDemoMode=false;
 let teacherClasses=[],teacherResources=[],selectedClassId=null,selectedClassName='';
 
-// ===== TRANSLATIONS =====
 const T={
   en:{landingTagline:'How are you feeling today?',btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabFeel:'💬 My Feelings',breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!'},
   fr:{landingTagline:'Comment tu te sens aujourd\'hui?',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabFeel:'💬 Mes Émotions',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
@@ -544,6 +529,7 @@ const ZONES={
 const PRESET_RESOURCES=[
   {title:'Zones of Regulation — Official Website',type:'link',url:'https://zonesofregulation.com',audience:'both',preset:true},
   {title:'How to Feel Feelings (Video)',type:'video',url:'https://www.youtube.com/watch?v=rjJdzhRZxGw',audience:'both',preset:true},
+  {title:'What Are the Zones of Regulation? — Official Video',type:'video',url:'https://www.youtube.com/watch?v=zZ9X-d3oZvQ',audience:'both',preset:true},
   {title:'Feelings Faces Poster — Free Printable',type:'pdf',url:'https://www.teacherspayteachers.com/Browse/Search:zones+of+regulation+free',audience:'both',preset:true},
   {title:'Zones of Regulation — Teacher Implementation Guide',type:'pdf',url:'https://zonesofregulation.com/learn-more-curriculum.html',audience:'teacher',preset:true},
   {title:'City Studio Durham — Program Overview',type:'link',url:'https://citystudiodurham.ca',audience:'teacher',preset:true},
@@ -551,14 +537,10 @@ const PRESET_RESOURCES=[
   {title:'UDL Guidelines for Inclusive Classrooms',type:'link',url:'https://udlguidelines.cast.org',audience:'teacher',preset:true},
   {title:'Breathing Exercises for Kids (Printable)',type:'pdf',url:'https://www.therapistaid.com/therapy-worksheet/deep-breathing',audience:'teacher',preset:true},
   {title:'Helping Your Child Manage Big Feelings — Parent Guide',type:'pdf',url:'https://www.cdc.gov/childrensmentalhealth/parenting.html',audience:'parent',preset:true},
-  {title:'Talking to Young Children About Emotions (Video)',type:'video',url:'https://www.youtube.com/watch?v=nBB-HTBPKRQ',audience:'parent',preset:true},
   {title:'Zones of Regulation — Parent Introduction',type:'link',url:'https://zonesofregulation.com/parents.html',audience:'parent',preset:true},
-  {title:'Supporting Children\'s Mental Health at Home',type:'link',url:'https://www.camh.ca/en/health-info/mental-health-and-covid-19/supporting-children',audience:'parent',preset:true},
-  {title:'What Are the Zones of Regulation? — Official Video',type:'video',url:'https://www.youtube.com/watch?v=zZ9X-d3oZvQ',audience:'both',preset:true},
+  {title:'Supporting Children\'s Mental Health at Home',type:'link',url:'https://www.camh.ca/en/health-info/mental-health-and-covid-19/supporting-children',audience:'parent',preset:true}
+];
 
-
-
-// ===== SPEECH =====
 function speak(elId){
   const el=document.getElementById(elId);
   if(!el)return;
@@ -571,20 +553,19 @@ function speak(elId){
   u.rate=0.85;u.pitch=1.1;
   window.speechSynthesis.speak(u);
 }
-function autoSpeak(elId){setTimeout(()=>speak(elId),400);}
+function autoSpeak(elId){setTimeout(function(){speak(elId);},400);}
 
-// ===== LANGUAGE =====
 function setLang(lang,btn){
   currentLang=lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b=>{if(b.textContent.includes(langFlag(lang)))b.classList.add('active');});
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.lang-btn').forEach(function(b){if(b.textContent.includes(langFlag(lang)))b.classList.add('active');});
   if(btn)btn.classList.add('active');
   applyTranslations();
 }
 function langFlag(l){return{en:'🇨🇦',fr:'🇫🇷',es:'🇪🇸',zh:'🇨🇳',ru:'🇷🇺'}[l]||'🇨🇦';}
 function applyTranslations(){
-  const t=T[currentLang]||T.en;
-  const set=(id,val)=>{const el=document.getElementById(id);if(el&&val!==undefined)el.textContent=val;};
+  var t=T[currentLang]||T.en;
+  function set(id,val){var el=document.getElementById(id);if(el&&val!==undefined)el.textContent=val;}
   set('landing-tagline',t.landingTagline);set('btn-child-label',t.btnChild);set('btn-teacher-label',t.btnTeacher);set('btn-parent-label',t.btnParent);
   set('fq-question',t.fqQuestion);set('fq-sub',t.fqSub);
   set('zone-blue-label',t.zoneBlueLabel);set('zone-blue-sub',t.zoneBlueSub);
@@ -601,60 +582,54 @@ function applyTranslations(){
   if(currentZone)updateZoneContent();
 }
 
-// ===== SCREENS =====
 function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById(id).classList.add('active');
   window.speechSynthesis.cancel();
 }
 
-// ===== ZONE =====
 function goToZone(zone){
   currentZone=zone;selectedFeelings=[];
   updateZoneContent();
   showScreen('zone-page');
   switchTab('activities-tab');
-  setTimeout(()=>speak('zone-desc-text'),500);
+  setTimeout(function(){speak('zone-desc-text');},500);
 }
 function updateZoneContent(){
   if(!currentZone)return;
-  const z=ZONES[currentZone];
+  var z=ZONES[currentZone];
   document.getElementById('zone-emoji').textContent=z.emoji;
   document.getElementById('zone-header-bg').style.background=z.bg;
   document.getElementById('zone-title-text').textContent=z.titles[currentLang]||z.titles.en;
   document.getElementById('zone-desc-text').textContent=z.descs[currentLang]||z.descs.en;
-  const acts=z.activities.en;
-  document.getElementById('act-list').innerHTML=acts.map((a,i)=>`
-    <div class="act-item" onclick="openActivity(${i})">
-      <span class="act-em">${a.em}</span>
-      <div class="act-info"><h4>${a.title}</h4><p>Tap to see how to do this</p></div>
-      <span>›</span>
-    </div>`).join('');
+  var acts=z.activities.en;
+  document.getElementById('act-list').innerHTML=acts.map(function(a,i){
+    return '<div class="act-item" onclick="openActivity('+i+'"><span class="act-em">'+a.em+'</span><div class="act-info"><h4>'+a.title+'</h4><p>Tap to see how to do this</p></div><span>›</span></div>';
+  }).join('');
   document.getElementById('act-detail').classList.remove('show');
-  const feelings=z.feelings[currentLang]||z.feelings.en;
-  document.getElementById('feelings-chips').innerHTML=feelings.map(f=>`
-    <button onclick="toggleFeeling('${f}',this)" style="padding:12px 20px;border-radius:50px;border:2px solid #ddd;background:#fff;cursor:pointer;font-size:1em;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px">
-      <span>🔊</span><span>${f}</span>
-    </button>`).join('');
+  var feelings=z.feelings[currentLang]||z.feelings.en;
+  document.getElementById('feelings-chips').innerHTML=feelings.map(function(f){
+    return '<button onclick="toggleFeeling(\''+f+'\',this)" style="padding:12px 20px;border-radius:50px;border:2px solid #ddd;background:#fff;cursor:pointer;font-size:1em;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px"><span>🔊</span><span>'+f+'</span></button>';
+  }).join('');
 }
 function openActivity(idx){
-  const a=ZONES[currentZone].activities.en[idx];
-  document.getElementById('act-detail-title').textContent=`${a.em} ${a.title}`;
+  var a=ZONES[currentZone].activities.en[idx];
+  document.getElementById('act-detail-title').textContent=a.em+' '+a.title;
   document.getElementById('act-detail-steps').textContent=a.desc;
-  const det=document.getElementById('act-detail');
+  var det=document.getElementById('act-detail');
   det.classList.add('show');
   det.scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>speak('act-detail-steps'),400);
+  setTimeout(function(){speak('act-detail-steps');},400);
 }
 function toggleFeeling(f,btn){
   window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(f);
-  const langMap={en:'en-CA',fr:'fr-FR',es:'es-ES',zh:'zh-CN',ru:'ru-RU'};
+  var u=new SpeechSynthesisUtterance(f);
+  var langMap={en:'en-CA',fr:'fr-FR',es:'es-ES',zh:'zh-CN',ru:'ru-RU'};
   u.lang=langMap[currentLang]||'en-CA';
   u.rate=0.8;u.pitch=1.2;
   window.speechSynthesis.speak(u);
   if(selectedFeelings.includes(f)){
-    selectedFeelings=selectedFeelings.filter(x=>x!==f);
+    selectedFeelings=selectedFeelings.filter(function(x){return x!==f;});
     btn.style.background='#fff';btn.style.color='#333';btn.style.borderColor='#ddd';
   }else{
     selectedFeelings.push(f);
@@ -662,14 +637,13 @@ function toggleFeeling(f,btn){
   }
 }
 function switchTab(tabId){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
   document.getElementById(tabId).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>{if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(tabId))b.classList.add('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(tabId))b.classList.add('active');});
 }
 
-// ===== BREATHING =====
-let breathCycle=0;
+var breathCycle=0;
 function startBreathing(){
   if(breathTimer){clearInterval(breathTimer);breathTimer=null;document.getElementById('breath-start-btn').textContent='▶ Start';document.getElementById('breath-circle').textContent='Ready';document.getElementById('breath-phase').textContent='Press Start!';document.getElementById('breath-count').textContent='';return;}
   breathCycle=0;
@@ -678,59 +652,57 @@ function startBreathing(){
 }
 function runBreathCycle(){
   if(breathCycle>=5){document.getElementById('breath-start-btn').textContent='▶ Start Again';document.getElementById('breath-phase').textContent='Great job! 🌟';document.getElementById('breath-circle').textContent='Done!';document.getElementById('breath-count').textContent='';return;}
-  const circle=document.getElementById('breath-circle');
-  const phase=document.getElementById('breath-phase');
-  const count=document.getElementById('breath-count');
+  var circle=document.getElementById('breath-circle');
+  var phase=document.getElementById('breath-phase');
+  var count=document.getElementById('breath-count');
   circle.className='breath-circle inhale';phase.textContent='Breathe IN 🌬️';
-  let n=4;count.textContent=n;circle.textContent='Breathe in...';
-  const inhaleTimer=setInterval(()=>{n--;count.textContent=n>0?n:'';if(n<=0){clearInterval(inhaleTimer);
-    circle.className='breath-circle';phase.textContent='Hold... ✋';let h=2;count.textContent=h;circle.textContent='Hold...';
-    const holdTimer=setInterval(()=>{h--;count.textContent=h>0?h:'';if(h<=0){clearInterval(holdTimer);
-      circle.className='breath-circle exhale';phase.textContent='Breathe OUT 💨';let e=4;count.textContent=e;circle.textContent='Breathe out...';
-      const exhaleTimer=setInterval(()=>{e--;count.textContent=e>0?e:'';if(e<=0){clearInterval(exhaleTimer);breathCycle++;setTimeout(runBreathCycle,500);}},1000);
+  var n=4;count.textContent=n;circle.textContent='Breathe in...';
+  var inhaleTimer=setInterval(function(){n--;count.textContent=n>0?n:'';if(n<=0){clearInterval(inhaleTimer);
+    circle.className='breath-circle';phase.textContent='Hold... ✋';var h=2;count.textContent=h;circle.textContent='Hold...';
+    var holdTimer=setInterval(function(){h--;count.textContent=h>0?h:'';if(h<=0){clearInterval(holdTimer);
+      circle.className='breath-circle exhale';phase.textContent='Breathe OUT 💨';var e=4;count.textContent=e;circle.textContent='Breathe out...';
+      var exhaleTimer=setInterval(function(){e--;count.textContent=e>0?e:'';if(e<=0){clearInterval(exhaleTimer);breathCycle++;setTimeout(runBreathCycle,500);}},1000);
     }},1000);
   }},1000);
 }
 
-// ===== CHECK-IN =====
 async function submitCheckin(){
-  const note=document.getElementById('feelings-note').value;
+  var note=document.getElementById('feelings-note').value;
   await sbInsert('check_ins',{zone_id:currentZone,zone_name:ZONES[currentZone].titles.en,feelings:selectedFeelings,note:note||null,session_id:sessionId,lang:currentLang,class_code:localStorage.getItem('z_parent_class')||null,classroom_id:localStorage.getItem('z_parent_class_id')||null,checked_in_at:new Date().toISOString()});
   stars++;localStorage.setItem('z_stars',stars);
-  const t=T[currentLang]||T.en;
+  var t=T[currentLang]||T.en;
   document.getElementById('celeb-title').textContent=t.celebTitle;
   document.getElementById('celeb-msg').textContent=t.celebMsg;
   showScreen('celebration');
-  setTimeout(()=>speak('celeb-title'),400);
+  setTimeout(function(){speak('celeb-title');},400);
 }
 async function completeActivity(){
   await sbInsert('activities_done',{session_id:sessionId,zone:currentZone,created_at:new Date().toISOString()});
   stars++;localStorage.setItem('z_stars',stars);
-  const t=T[currentLang]||T.en;
+  var t=T[currentLang]||T.en;
   document.getElementById('celeb-title').textContent=t.celebTitle;
   document.getElementById('celeb-msg').textContent=t.celebMsg;
   showScreen('celebration');
 }
 
-// ===== STARS =====
 function updateStarsUI(){
   document.getElementById('star-big-num').textContent=stars;
-  [['ms1',1],['ms2',5],['ms3',10]].forEach(([id,thresh])=>{
-    const el=document.getElementById(id);
-    const check=document.getElementById(id+'-check');
+  [['ms1',1],['ms2',5],['ms3',10]].forEach(function(item){
+    var id=item[0],thresh=item[1];
+    var el=document.getElementById(id);
+    var check=document.getElementById(id+'-check');
     if(stars>=thresh){el.classList.add('earned');if(check)check.textContent='✅';}
     else{el.classList.remove('earned');if(check)check.textContent='';}
   });
 }
 
-// ===== AUTH =====
-let authMode='teacher';
+var authMode='teacher';
 function setAuthMode(mode){
   authMode=mode;
-  const sub=document.getElementById('auth-sub-text');
+  var sub=document.getElementById('auth-sub-text');
   if(sub)sub.textContent=mode==='parent'?'Enter your class or family code to get started':'Sign in to your educator portal';
-  const codeField=document.getElementById('auth-code-field');
-  const roleField=document.getElementById('auth-role-field');
+  var codeField=document.getElementById('auth-code-field');
+  var roleField=document.getElementById('auth-role-field');
   if(mode==='parent'){codeField.classList.remove('hide');roleField.classList.add('hide');document.getElementById('auth-role').value='parent';}
   else{codeField.classList.add('hide');roleField.classList.remove('hide');}
 }
@@ -742,52 +714,54 @@ function switchAuthTab(tab){
 }
 
 async function doRegister(){
-  const name=document.getElementById('reg-name').value.trim();
-  const school=document.getElementById('reg-school').value.trim();
-  const email=document.getElementById('reg-email').value.trim();
-  const pw=document.getElementById('reg-pw').value;
-  const err=document.getElementById('reg-err');
+  var name=document.getElementById('reg-name').value.trim();
+  var school=document.getElementById('reg-school').value.trim();
+  var email=document.getElementById('reg-email').value.trim();
+  var pw=document.getElementById('reg-pw').value;
+  var err=document.getElementById('reg-err');
   err.textContent='';
   if(!name||!school||!email||!pw){err.textContent='Please fill in all fields.';return;}
   try{
-    const r=await fetch(`${SB_URL}/auth/v1/signup`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email,password:pw,data:{name,school,role:'teacher'}})});
-    const d=await r.json();
+    var r=await fetch(SB_URL+'/auth/v1/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email:email,password:pw,data:{name:name,school:school,role:'teacher'}})});
+    var d=await r.json();
     if(d.user||d.id){
-      await sbInsert('educator_profiles',{user_id:d.user?.id||d.id,name,school,role:'teacher',created_at:new Date().toISOString()});
+      await sbInsert('educator_profiles',{user_id:d.user?d.user.id:d.id,name:name,school:school,role:'teacher',created_at:new Date().toISOString()});
       err.style.color='green';err.textContent='Account created! Please sign in.';
-      setTimeout(()=>switchAuthTab('login'),1500);
+      setTimeout(function(){switchAuthTab('login');},1500);
     }else{err.textContent=d.error_description||d.msg||'Registration failed.';}
   }catch(e){err.textContent='Connection error. Please try again.';}
 }
 
 async function doLogin(){
-  const email=document.getElementById('auth-email').value.trim();
-  const pw=document.getElementById('auth-pw').value;
-  const role=document.getElementById('auth-role')?.value||authMode;
-  const classCode=document.getElementById('auth-class-code')?.value.trim().toUpperCase();
-  const err=document.getElementById('auth-err');
+  var email=document.getElementById('auth-email').value.trim();
+  var pw=document.getElementById('auth-pw').value;
+  var roleEl=document.getElementById('auth-role');
+  var role=roleEl?roleEl.value:authMode;
+  var codeEl=document.getElementById('auth-class-code');
+  var classCode=codeEl?codeEl.value.trim().toUpperCase():'';
+  var err=document.getElementById('auth-err');
   err.textContent='';
 
   if(role==='parent'){
     if(!classCode){err.textContent='Please enter your class or family code.';return;}
     err.textContent='Checking code...';
-    const classes=await sbSelect('classes',`code=eq.${classCode}`);
+    var classes=await sbSelect('classes','code=eq.'+classCode);
     if(classes&&classes.length>0){
       userRole='parent';
-      document.getElementById('parent-class-display').textContent=`Class: ${classes[0].name}`;
+      document.getElementById('parent-class-display').textContent='Class: '+classes[0].name;
       localStorage.setItem('z_parent_class',classCode);
       localStorage.setItem('z_parent_class_id',classes[0].id);
       showScreen('parent-dash');
       loadParentDash(classes[0].id,classCode,null);
       return;
     }
-    const children=await sbSelect('children',`family_code=eq.${classCode}`);
+    var children=await sbSelect('children','family_code=eq.'+classCode);
     if(children&&children.length>0){
       userRole='parent';
-      const child=children[0];
-      const cls=await sbSelect('classes',`id=eq.${child.classroom_id}`);
-      const clsName=cls&&cls[0]?cls[0].name:'Your child\'s class';
-      document.getElementById('parent-class-display').textContent=`${child.name} — ${clsName}`;
+      var child=children[0];
+      var cls=await sbSelect('classes','id=eq.'+child.classroom_id);
+      var clsName=cls&&cls[0]?cls[0].name:'Your child\'s class';
+      document.getElementById('parent-class-display').textContent=child.name+' — '+clsName;
       localStorage.setItem('z_family_code',classCode);
       localStorage.setItem('z_child_id',child.id);
       showScreen('parent-dash');
@@ -801,18 +775,18 @@ async function doLogin(){
   if(!email||!pw){err.textContent='Please fill in all fields.';return;}
   err.textContent='Signing in...';
   try{
-    const r=await fetch(`${SB_URL}/auth/v1/token?grant_type=password`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email,password:pw})});
-    const text=await r.text();
-    let d;
+    var r=await fetch(SB_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email:email,password:pw})});
+    var text=await r.text();
+    var d;
     try{d=JSON.parse(text);}catch(e){err.textContent='Invalid server response.';return;}
     if(d.access_token){
       authToken=d.access_token;currentUser=d.user;userRole=role;isDemoMode=false;
-      H['Authorization']=`Bearer ${authToken}`;
-      const profiles=await sbSelect('educator_profiles',`user_id=eq.${currentUser.id}`);
-      const profile=profiles&&profiles[0];
-      const displayName=profile?.name||currentUser?.user_metadata?.name||email;
-      const school=profile?.school||'';
-      document.getElementById('teacher-name-display').textContent=`Welcome, ${displayName}${school?' — '+school:''}`;
+      H['Authorization']='Bearer '+authToken;
+      var profiles=await sbSelect('educator_profiles','user_id=eq.'+currentUser.id);
+      var profile=profiles&&profiles[0];
+      var displayName=profile&&profile.name?profile.name:(currentUser.user_metadata&&currentUser.user_metadata.name?currentUser.user_metadata.name:email);
+      var school=profile&&profile.school?profile.school:'';
+      document.getElementById('teacher-name-display').textContent='Welcome, '+displayName+(school?' — '+school:'');
       showScreen('teacher-dash');
       loadTeacherDash();
     }else{err.textContent=d.error_description||d.msg||d.error||'Login failed. Please check your credentials.';}
@@ -821,12 +795,9 @@ async function doLogin(){
 
 function doLogout(){authToken=null;currentUser=null;userRole=null;showScreen('landing');}
 
-
-
-// ===== TEACHER DASHBOARD =====
 function showDashSection(id,btn){
-  document.querySelectorAll('.dash-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.dash-nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.dash-section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.dash-nav-btn').forEach(function(b){b.classList.remove('active');});
   document.getElementById('dash-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
   if(id==='checkins')loadCheckins();
@@ -834,97 +805,81 @@ function showDashSection(id,btn){
   if(id==='resources')renderResources();
 }
 async function loadTeacherDash(){
-  const today=new Date().toISOString().split('T')[0];
-  const checkins=await sbSelect('check_ins',`checked_in_at=gte.${today}T00:00:00&order=checked_in_at.desc`);
-  const acts=await sbSelect('activities_done',`created_at=gte.${today}T00:00:00`);
-  const total=checkins?checkins.length:0;
+  var today=new Date().toISOString().split('T')[0];
+  var checkins=await sbSelect('check_ins','checked_in_at=gte.'+today+'T00:00:00&order=checked_in_at.desc');
+  var acts=await sbSelect('activities_done','created_at=gte.'+today+'T00:00:00');
+  var total=checkins?checkins.length:0;
   document.getElementById('d-checkins').textContent=total;
   document.getElementById('d-stars').textContent=total+(acts?acts.length:0);
-  const counts={blue:0,green:0,yellow:0,red:0};
-  (checkins||[]).forEach(c=>{if(counts[c.zone_id]!==undefined)counts[c.zone_id]++;});
-  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
-  const ze={blue:'😢',green:'😄',yellow:'😰',red:'😡'};
+  var counts={blue:0,green:0,yellow:0,red:0};
+  (checkins||[]).forEach(function(c){if(counts[c.zone_id]!==undefined)counts[c.zone_id]++;});
+  var top=Object.entries(counts).sort(function(a,b){return b[1]-a[1];})[0];
+  var ze={blue:'😢',green:'😄',yellow:'😰',red:'😡'};
   document.getElementById('d-top-zone').textContent=top&&top[1]>0?ze[top[0]]:'—';
-  ['blue','green','yellow','red'].forEach(z=>{
-    const pct=total?Math.round(counts[z]/total*100):0;
-    document.getElementById(`pct-${z}`).textContent=pct+'%';
-    document.getElementById(`bar-${z}`).style.width=pct+'%';
+  ['blue','green','yellow','red'].forEach(function(z){
+    var pct=total?Math.round(counts[z]/total*100):0;
+    document.getElementById('pct-'+z).textContent=pct+'%';
+    document.getElementById('bar-'+z).style.width=pct+'%';
   });
-  teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+  teacherClasses=await sbSelect('classes','teacher_id=eq.'+currentUser.id+'&order=created_at.desc')||[];
   document.getElementById('d-classes').textContent=teacherClasses.length;
-  teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
+  teacherResources=await sbSelect('resources','order=created_at.desc')||[];
   renderResources();
 }
 async function loadCheckins(){
-  const today=new Date().toISOString().split('T')[0];
-  const checkins=await sbSelect('check_ins',`checked_in_at=gte.${today}T00:00:00&order=checked_in_at.desc&limit=30`);
-  const list=document.getElementById('checkins-list');
+  var today=new Date().toISOString().split('T')[0];
+  var checkins=await sbSelect('check_ins','checked_in_at=gte.'+today+'T00:00:00&order=checked_in_at.desc&limit=30');
+  var list=document.getElementById('checkins-list');
   if(!checkins||checkins.length===0){list.innerHTML='<div style="color:#aaa;text-align:center;padding:20px">No check-ins yet today.</div>';return;}
-  list.innerHTML=checkins.map(c=>{
-    const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_name||c.zone_id}};
-    const time=new Date(c.checked_in_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-    const feelings=(c.feelings||[]).map(f=>`<span class="tag">${f}</span>`).join('');
-    const nameHtml=!anonView&&c.child_name?`<strong>${c.child_name}</strong> · `:'';
-    const noteHtml=!anonView&&c.note?`<div style="font-size:.8em;color:#888;margin-top:3px;font-style:italic">"${c.note.slice(0,80)}"</div>`:'';
-    const sessionHtml=anonView?`Session ${(c.session_id||'').slice(0,4)}***`:(c.session_id||'Anonymous');
-    return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${nameHtml}${z.titles.en} ${feelings}</div><div class="ci-sub">${time} · ${sessionHtml}</div>${noteHtml}</div></div>`;
+  list.innerHTML=checkins.map(function(c){
+    var z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_name||c.zone_id}};
+    var time=new Date(c.checked_in_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    var feelings=(c.feelings||[]).map(function(f){return '<span class="tag">'+f+'</span>';}).join('');
+    var nameHtml=!anonView&&c.child_name?'<strong>'+c.child_name+'</strong> · ':'';
+    var noteHtml=!anonView&&c.note?'<div style="font-size:.8em;color:#888;margin-top:3px;font-style:italic">"'+c.note.slice(0,80)+'"</div>':'';
+    var sessionHtml=anonView?'Session '+(c.session_id||'').slice(0,4)+'***':(c.session_id||'Anonymous');
+    return '<div class="checkin-row"><div class="ci-emoji">'+z.emoji+'</div><div class="ci-info"><div class="ci-top">'+nameHtml+z.titles.en+' '+feelings+'</div><div class="ci-sub">'+time+' · '+sessionHtml+'</div>'+noteHtml+'</div></div>';
   }).join('');
 }
 function toggleAnon(){
   anonView=!anonView;
   document.getElementById('anon-toggle').classList.toggle('on',anonView);
   document.getElementById('anon-label').textContent=anonView?'Anonymous view (no identifying info)':'Showing session IDs and notes';
-  isDemoMode?loadDemoCheckins():loadCheckins();
+  loadCheckins();
 }
 
-// ===== CLASSES & STUDENTS =====
 async function createClass(){
-  const name=document.getElementById('new-class-name').value.trim();
+  var name=document.getElementById('new-class-name').value.trim();
   if(!name)return;
   if(!currentUser){alert('Please log in first.');return;}
-  const code=Math.random().toString(36).slice(2,8).toUpperCase();
-  const ok=await sbInsert('classes',{name,code,teacher_id:currentUser.id,created_at:new Date().toISOString()});
+  var code=Math.random().toString(36).slice(2,8).toUpperCase();
+  var ok=await sbInsert('classes',{name:name,code:code,teacher_id:currentUser.id,created_at:new Date().toISOString()});
   if(ok){
     document.getElementById('new-class-name').value='';
-    teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+    teacherClasses=await sbSelect('classes','teacher_id=eq.'+currentUser.id+'&order=created_at.desc')||[];
     document.getElementById('d-classes').textContent=teacherClasses.length;
     renderClasses();
   }
 }
 async function deleteClass(id,name){
-  if(!confirm(`Delete "${name}"? This will also remove all students in this class. Check-in history will be kept.`))return;
+  if(!confirm('Delete "'+name+'"? This will also remove all students in this class. Check-in history will be kept.'))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/children?classroom_id=eq.${id}`,{method:'DELETE',headers:getH()});
-    await fetch(`${SB_URL}/rest/v1/classes?id=eq.${id}`,{method:'DELETE',headers:getH()});
+    await fetch(SB_URL+'/rest/v1/children?classroom_id=eq.'+id,{method:'DELETE',headers:getH()});
+    await fetch(SB_URL+'/rest/v1/classes?id=eq.'+id,{method:'DELETE',headers:getH()});
     if(selectedClassId===id){document.getElementById('add-student-section').style.display='none';selectedClassId=null;}
-    teacherClasses=await sbSelect('classes',`teacher_id=eq.${currentUser.id}&order=created_at.desc`)||[];
+    teacherClasses=await sbSelect('classes','teacher_id=eq.'+currentUser.id+'&order=created_at.desc')||[];
     document.getElementById('d-classes').textContent=teacherClasses.length;
     renderClasses();
   }catch(e){console.error(e);alert('Something went wrong. Please try again.');}
 }
 function renderClasses(){
-  const el=document.getElementById('classes-list');
+  var el=document.getElementById('classes-list');
   if(!teacherClasses||teacherClasses.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No classes yet. Create one above!</div>';return;}
-  el.innerHTML=teacherClasses.map(c=>`
-    <div class="class-card">
-      <div class="class-card-row">
-        <div><h4>🏫 ${c.name}</h4><p>Created ${new Date(c.created_at).toLocaleDateString()}</p></div>
-        <span class="code-badge">${c.code}</span>
-      </div>
-      <p style="font-size:.82em;color:#888;margin-top:10px">📨 Share class code with parents: <strong>${c.code}</strong></p>
-      <div style="display:flex;gap:8px;margin-top:10px">
-        <button onclick="selectClass('${c.id}','${c.name.replace(/'/g,"\\'")}','${c.code}')"
-          style="flex:1;padding:10px;background:#ede9ff;color:#7C4DFF;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
-          👧 Manage Students
-        </button>
-        <button onclick="deleteClass('${c.id}','${c.name.replace(/'/g,"\\'")}' )"
-          style="padding:10px 16px;background:#fdecea;color:#E74C3C;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">
-          🗑️ Delete
-        </button>
-      </div>
-    </div>`).join('');
+  el.innerHTML=teacherClasses.map(function(c){
+    return '<div class="class-card"><div class="class-card-row"><div><h4>🏫 '+c.name+'</h4><p>Created '+new Date(c.created_at).toLocaleDateString()+'</p></div><span class="code-badge">'+c.code+'</span></div><p style="font-size:.82em;color:#888;margin-top:10px">📨 Share class code with parents: <strong>'+c.code+'</strong></p><div style="display:flex;gap:8px;margin-top:10px"><button onclick="selectClass(\''+c.id+'\',\''+c.name.replace(/'/g,"\\'")+'\')" style="flex:1;padding:10px;background:#ede9ff;color:#7C4DFF;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">👧 Manage Students</button><button onclick="deleteClass(\''+c.id+'\',\''+c.name.replace(/'/g,"\\'")+'\' )" style="padding:10px 16px;background:#fdecea;color:#E74C3C;border:none;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9em">🗑️ Delete</button></div></div>';
+  }).join('');
 }
-async function selectClass(id,name,code){
+async function selectClass(id,name){
   selectedClassId=id;selectedClassName=name;
   document.getElementById('selected-class-name').textContent=name;
   document.getElementById('add-student-section').style.display='block';
@@ -932,44 +887,32 @@ async function selectClass(id,name,code){
   await loadStudents(id);
 }
 async function loadStudents(classId){
-  const students=await sbSelect('children',`classroom_id=eq.${classId}&order=created_at.asc`)||[];
-  const el=document.getElementById('students-list');
+  var students=await sbSelect('children','classroom_id=eq.'+classId+'&order=created_at.asc')||[];
+  var el=document.getElementById('students-list');
   if(students.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No students yet. Add one above!</div>';return;}
-  el.innerHTML=students.map(s=>`
-    <div class="class-card" style="display:flex;align-items:center;gap:14px;padding:14px 18px">
-      <div style="font-size:2em">${s.avatar||'😊'}</div>
-      <div style="flex:1">
-        <div style="font-weight:700">${s.name}</div>
-        <div style="font-size:.8em;color:#888;margin-top:3px">
-          Family code: <strong style="color:#7C4DFF;letter-spacing:2px">${s.family_code}</strong>
-          · Stickers: ⭐ ${s.stickers||0}
-        </div>
-      </div>
-      <button onclick="removeStudent('${s.id}')"
-        style="background:#fdecea;color:#E74C3C;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.85em;font-weight:600">
-        Remove
-      </button>
-    </div>`).join('');
+  el.innerHTML=students.map(function(s){
+    return '<div class="class-card" style="display:flex;align-items:center;gap:14px;padding:14px 18px"><div style="font-size:2em">'+(s.avatar||'😊')+'</div><div style="flex:1"><div style="font-weight:700">'+s.name+'</div><div style="font-size:.8em;color:#888;margin-top:3px">Family code: <strong style="color:#7C4DFF;letter-spacing:2px">'+s.family_code+'</strong> · Stickers: ⭐ '+(s.stickers?s.stickers.length:0)+'</div></div><button onclick="removeStudent(\''+s.id+'\')" style="background:#fdecea;color:#E74C3C;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.85em;font-weight:600">Remove</button></div>';
+  }).join('');
 }
 async function addStudent(){
-  const nameEl=document.getElementById('new-student-name');
-  const name=nameEl.value.trim();
+  var nameEl=document.getElementById('new-student-name');
+  var name=nameEl.value.trim();
   if(!name){alert('Please enter a student name.');return;}
   if(!selectedClassId){alert('Please select a class first.');return;}
-  const familyCode=Math.random().toString(36).slice(2,8).toUpperCase();
-  const avatars=['😊','😄','🌟','🦋','🌈','🐶','🐱','🦊','🐸','🦄','🌸','⭐'];
-  const avatar=avatars[Math.floor(Math.random()*avatars.length)];
+  var familyCode=Math.random().toString(36).slice(2,8).toUpperCase();
+  var avatars=['😊','😄','🌟','🦋','🌈','🐶','🐱','🦊','🐸','🦄','🌸','⭐'];
+  var avatar=avatars[Math.floor(Math.random()*avatars.length)];
   try{
-    const r=await fetch(`${SB_URL}/rest/v1/children`,{
+    var r=await fetch(SB_URL+'/rest/v1/children',{
       method:'POST',
-      headers:{...getH(),'Prefer':'return=minimal'},
-      body:JSON.stringify({name,classroom_id:selectedClassId,family_code:familyCode,avatar,stickers:[],created_at:new Date().toISOString()})
+      headers:Object.assign({},getH(),{'Prefer':'return=minimal'}),
+      body:JSON.stringify({name:name,classroom_id:selectedClassId,family_code:familyCode,avatar:avatar,stickers:[],created_at:new Date().toISOString()})
     });
     if(r.ok){
       nameEl.value='';
       await loadStudents(selectedClassId);
-    } else {
-      const err=await r.json();
+    }else{
+      var err=await r.json();
       console.error('Add student error:',err);
       alert('Could not add student: '+(err.message||err.hint||JSON.stringify(err)));
     }
@@ -981,95 +924,82 @@ async function addStudent(){
 async function removeStudent(id){
   if(!confirm('Remove this student? Their check-in history will be kept.'))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/children?id=eq.${id}`,{method:'DELETE',headers:getH()});
+    await fetch(SB_URL+'/rest/v1/children?id=eq.'+id,{method:'DELETE',headers:getH()});
     await loadStudents(selectedClassId);
   }catch(e){console.error(e);}
 }
 
-// ===== RESOURCES =====
 async function addResource(){
-  const title=document.getElementById('res-title').value.trim();
-  const url=document.getElementById('res-url').value.trim();
-  const type=document.getElementById('res-type').value;
-  const audience=document.getElementById('res-audience').value;
+  var title=document.getElementById('res-title').value.trim();
+  var url=document.getElementById('res-url').value.trim();
+  var type=document.getElementById('res-type').value;
+  var audience=document.getElementById('res-audience').value;
   if(!title||!url)return;
-  const ok=await sbInsert('resources',{title,url,type,audience,teacher_id:currentUser?.id,created_at:new Date().toISOString()});
+  var ok=await sbInsert('resources',{title:title,url:url,type:type,audience:audience,teacher_id:currentUser?currentUser.id:null,created_at:new Date().toISOString()});
   if(ok){
     document.getElementById('res-title').value='';document.getElementById('res-url').value='';
-    teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
+    teacherResources=await sbSelect('resources','order=created_at.desc')||[];
     renderResources();
   }
 }
 async function deleteResource(id){
   if(!confirm('Remove this resource?'))return;
   try{
-    await fetch(`${SB_URL}/rest/v1/resources?id=eq.${id}`,{method:'DELETE',headers:getH()});
-    teacherResources=await sbSelect('resources',`order=created_at.desc`)||[];
+    await fetch(SB_URL+'/rest/v1/resources?id=eq.'+id,{method:'DELETE',headers:getH()});
+    teacherResources=await sbSelect('resources','order=created_at.desc')||[];
     renderResources();
   }catch(e){console.error(e);}
 }
 function renderResources(){
-  const el=document.getElementById('resources-list');
-  const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  const audienceLabel={both:'Teachers & Parents',teacher:'Teachers only',parent:'Parents only'};
-  const allResources=[...PRESET_RESOURCES,...(teacherResources||[]).filter(r=>!r.preset)];
+  var el=document.getElementById('resources-list');
+  var icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
+  var audienceLabel={both:'Teachers & Parents',teacher:'Teachers only',parent:'Parents only'};
+  var allResources=PRESET_RESOURCES.concat((teacherResources||[]).filter(function(r){return !r.preset;}));
   if(allResources.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No resources yet.</div>';return;}
-  const sections=[{label:'📚 For Everyone',filter:'both'},{label:'👩‍🏫 For Educators',filter:'teacher'},{label:'👪 For Parents',filter:'parent'}];
-  el.innerHTML=sections.map(s=>{
-    const items=allResources.filter(r=>r.audience===s.filter);
+  var sections=[{label:'📚 For Everyone',filter:'both'},{label:'👩‍🏫 For Educators',filter:'teacher'},{label:'👪 For Parents',filter:'parent'}];
+  el.innerHTML=sections.map(function(s){
+    var items=allResources.filter(function(r){return r.audience===s.filter;});
     if(items.length===0)return'';
-    return`<div style="font-weight:700;color:#555;margin:16px 0 8px">${s.label}</div>`+
-    items.map(r=>`
-      <div class="resource-card" style="${r.preset?'border-left:3px solid #7C4DFF':'border-left:3px solid #5CB85C'}">
-        <div class="rc-icon">${icons[r.type]||'🔗'}</div>
-        <div class="rc-info">
-          <h4>${r.title} <span style="font-size:.7em;background:${r.preset?'#ede9ff':'#edfbee'};color:${r.preset?'#7C4DFF':'#2d7a30'};padding:2px 8px;border-radius:20px;font-weight:600">${r.preset?'Built-in':'Custom'}</span></h4>
-          <p>${audienceLabel[r.audience]||r.audience}</p>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-          <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>
-          ${!r.preset?`<button onclick="deleteResource('${r.id}')" style="background:none;border:none;color:#E74C3C;cursor:pointer;font-size:.8em">🗑️ Remove</button>`:''}
-        </div>
-      </div>`).join('');
+    return'<div style="font-weight:700;color:#555;margin:16px 0 8px">'+s.label+'</div>'+
+    items.map(function(r){
+      return '<div class="resource-card" style="'+(r.preset?'border-left:3px solid #7C4DFF':'border-left:3px solid #5CB85C')+'"><div class="rc-icon">'+(icons[r.type]||'🔗')+'</div><div class="rc-info"><h4>'+r.title+' <span style="font-size:.7em;background:'+(r.preset?'#ede9ff':'#edfbee')+';color:'+(r.preset?'#7C4DFF':'#2d7a30')+';padding:2px 8px;border-radius:20px;font-weight:600">'+(r.preset?'Built-in':'Custom')+'</span></h4><p>'+(audienceLabel[r.audience]||r.audience)+'</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><a href="'+r.url+'" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>'+(r.preset?'':'<button onclick="deleteResource(\''+r.id+'\')" style="background:none;border:none;color:#E74C3C;cursor:pointer;font-size:.8em">🗑️ Remove</button>')+'</div></div>';
+    }).join('');
   }).join('');
 }
 
-// ===== PARENT DASHBOARD =====
 async function loadParentDash(classroomId,classCode,childId){
-  let params=`order=checked_in_at.desc&limit=10`;
-  if(childId)params+=`&child_id=eq.${childId}`;
-  else if(classroomId)params+=`&classroom_id=eq.${classroomId}`;
-  const checkins=await sbSelect('check_ins',params);
-  const el=document.getElementById('parent-checkins');
+  var params='order=checked_in_at.desc&limit=10';
+  if(childId)params+='&child_id=eq.'+childId;
+  else if(classroomId)params+='&classroom_id=eq.'+classroomId;
+  var checkins=await sbSelect('check_ins',params);
+  var el=document.getElementById('parent-checkins');
   if(!checkins||checkins.length===0){el.innerHTML='<div style="color:#aaa;text-align:center;padding:20px">No check-ins yet.</div>';}
   else{
-    el.innerHTML=checkins.map(c=>{
-      const z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_name||c.zone_id}};
-      const date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-      const feelings=(c.feelings||[]).map(f=>`<span class="tag">${f}</span>`).join('');
-      return`<div class="checkin-row"><div class="ci-emoji">${z.emoji}</div><div class="ci-info"><div class="ci-top">${z.titles.en} ${feelings}</div><div class="ci-sub">${date}</div></div></div>`;
+    el.innerHTML=checkins.map(function(c){
+      var z=ZONES[c.zone_id]||{emoji:'❓',titles:{en:c.zone_name||c.zone_id}};
+      var date=new Date(c.checked_in_at).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+      var feelings=(c.feelings||[]).map(function(f){return '<span class="tag">'+f+'</span>';}).join('');
+      return '<div class="checkin-row"><div class="ci-emoji">'+z.emoji+'</div><div class="ci-info"><div class="ci-top">'+z.titles.en+' '+feelings+'</div><div class="ci-sub">'+date+'</div></div></div>';
     }).join('');
   }
-  const resources=await sbSelect('resources',`audience=in.(both,parent)&order=created_at.desc`)||[];
-  const icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
-  const allParentResources=[...PRESET_RESOURCES.filter(r=>r.audience!=='teacher'),...resources.filter(r=>!r.preset)];
+  var resources=await sbSelect('resources','audience=in.(both,parent)&order=created_at.desc')||[];
+  var icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
+  var allParentResources=PRESET_RESOURCES.filter(function(r){return r.audience!=='teacher';}).concat(resources.filter(function(r){return !r.preset;}));
   document.getElementById('parent-resources').innerHTML=allParentResources.length===0
     ?'<div style="color:#aaa;font-size:.9em">No resources shared yet.</div>'
-    :allParentResources.map(r=>`
-      <div class="resource-card"><div class="rc-icon">${icons[r.type]||'🔗'}</div>
-      <div class="rc-info"><h4>${r.title}</h4></div>
-      <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a></div>`).join('');
+    :allParentResources.map(function(r){
+      return '<div class="resource-card"><div class="rc-icon">'+(icons[r.type]||'🔗')+'</div><div class="rc-info"><h4>'+r.title+'</h4></div><a href="'+r.url+'" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a></div>';
+    }).join('');
 }
 
-// ===== SUPABASE HELPERS =====
 async function sbInsert(table,data){
-  try{const r=await fetch(`${SB_URL}/rest/v1/${table}`,{method:'POST',headers:{...getH(),'Prefer':'return=minimal'},body:JSON.stringify(data)});return r.ok;}catch(e){return false;}
+  try{var r=await fetch(SB_URL+'/rest/v1/'+table,{method:'POST',headers:Object.assign({},getH(),{'Prefer':'return=minimal'}),body:JSON.stringify(data)});return r.ok;}catch(e){return false;}
 }
-async function sbSelect(table,params=''){
-  try{const r=await fetch(`${SB_URL}/rest/v1/${table}?${params}`,{headers:getH()});if(r.ok)return await r.json();}catch(e){}return[];
+async function sbSelect(table,params){
+  params=params||'';
+  try{var r=await fetch(SB_URL+'/rest/v1/'+table+'?'+params,{headers:getH()});if(r.ok)return await r.json();}catch(e){}return[];
 }
 
-// Init
 applyTranslations();
 updateStarsUI();
 </script>
