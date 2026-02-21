@@ -334,7 +334,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 <!-- AUTH -->
 <div id="auth-screen" class="screen">
   <div style="padding:20px;max-width:420px;width:100%;margin:auto">
-    <div class="auth-tabs">
+    <div class="auth-tabs" id="auth-tabs-row">
       <button class="auth-tab active" id="auth-tab-login" onclick="switchAuthTab('login')">Sign In</button>
       <button class="auth-tab" id="auth-tab-register" onclick="switchAuthTab('register')">Register</button>
     </div>
@@ -728,12 +728,34 @@ function updateStarsUI(){
 var authMode='teacher';
 function setAuthMode(mode){
   authMode=mode;
-  var sub=document.getElementById('auth-sub-text');
-  if(sub)sub.textContent=mode==='parent'?'Enter your class or family code to get started':'Sign in to your educator portal';
+  var tabsRow=document.getElementById('auth-tabs-row');
   var codeField=document.getElementById('auth-code-field');
   var roleField=document.getElementById('auth-role-field');
-  if(mode==='parent'){codeField.classList.remove('hide');roleField.classList.add('hide');document.getElementById('auth-role').value='parent';}
-  else{codeField.classList.add('hide');roleField.classList.remove('hide');}
+  var sub=document.getElementById('auth-sub-text');
+  var title=document.getElementById('auth-title-text');
+  if(mode==='parent'){
+    // Hide tabs and register form entirely for parents
+    if(tabsRow)tabsRow.classList.add('hide');
+    document.getElementById('auth-register-form').classList.add('hide');
+    document.getElementById('auth-login-form').classList.remove('hide');
+    // Hide email/password fields, show only code
+    document.getElementById('auth-email').closest('.field').classList.add('hide');
+    document.getElementById('auth-pw').closest('.field').classList.add('hide');
+    codeField.classList.remove('hide');
+    roleField.classList.add('hide');
+    document.getElementById('auth-role').value='parent';
+    if(title)title.textContent='👪 Parent Portal';
+    if(sub)sub.textContent='Enter your class or family code to get started';
+  }else{
+    // Show tabs for educators
+    if(tabsRow)tabsRow.classList.remove('hide');
+    document.getElementById('auth-email').closest('.field').classList.remove('hide');
+    document.getElementById('auth-pw').closest('.field').classList.remove('hide');
+    codeField.classList.add('hide');
+    roleField.classList.remove('hide');
+    if(title)title.textContent='Welcome Back';
+    if(sub)sub.textContent='Sign in to your educator portal';
+  }
 }
 function switchAuthTab(tab){
   document.getElementById('auth-tab-login').classList.toggle('active',tab==='login');
