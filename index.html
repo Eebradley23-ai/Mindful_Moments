@@ -397,10 +397,32 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       <span class="back-link" onclick="showScreen('landing')">← Back to Home</span>
     </div>
     <div id="auth-register-form" class="auth-card hide">
-      <h2>Create Account</h2>
-      <p>For educators &amp; school admins only</p>
-      <div class="field"><label>Full Name</label><input type="text" id="reg-name" placeholder="Ms. Smith"/></div>
-      <div class="field"><label>School Name</label><input type="text" id="reg-school" placeholder="Durham Elementary"/></div>
+      <h2>Create Educator Account</h2>
+      <p>For teachers &amp; school staff only</p>
+
+      <!-- School toggle -->
+      <div class="auth-tabs" style="margin-bottom:16px">
+        <button class="auth-tab active" id="reg-school-tab-new" onclick="switchSchoolTab('new')">🏫 New School</button>
+        <button class="auth-tab" id="reg-school-tab-join" onclick="switchSchoolTab('join')">🔗 Join School</button>
+      </div>
+
+      <!-- Create new school -->
+      <div id="reg-school-new">
+        <div class="field"><label>School Name</label><input type="text" id="reg-school-name" placeholder="Durham Elementary"/></div>
+        <div class="field"><label>City</label><input type="text" id="reg-school-city" placeholder="Oshawa"/></div>
+      </div>
+
+      <!-- Join existing school -->
+      <div id="reg-school-join" style="display:none">
+        <div class="field">
+          <label>School Join Code</label>
+          <input type="text" id="reg-school-join-code" placeholder="e.g. SCH-ABC123" style="text-transform:uppercase;letter-spacing:2px"/>
+          <small style="color:#888;font-size:.8em">Get this code from a colleague already registered at your school</small>
+        </div>
+        <div id="reg-school-found" style="display:none;background:#ede9ff;border-radius:10px;padding:10px;margin-top:6px;font-size:.85em;color:#7C4DFF;font-weight:600"></div>
+      </div>
+
+      <div class="field" style="margin-top:8px"><label>Your Full Name</label><input type="text" id="reg-name" placeholder="Ms. Smith"/></div>
       <div class="field"><label>Email</label><input type="email" id="reg-email" placeholder="you@school.ca"/></div>
       <div class="field"><label>Password</label><input type="password" id="reg-pw" placeholder="Min 6 characters"/></div>
       <button class="btn btn-purple" onclick="doRegister()">Create Free Account</button>
@@ -417,6 +439,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       <div><h2>👩‍🏫 Educator Portal</h2><p id="teacher-name-display">Welcome!</p></div>
       <button class="logout-btn" onclick="doLogout()">Log out</button>
     </div>
+    <div id="school-join-code-display" style="display:none;background:rgba(255,255,255,0.2);border-radius:10px;padding:8px 14px;font-size:.85em;font-weight:600;margin-top:8px;letter-spacing:1px"></div>
     <div class="dash-nav">
       <button class="dash-nav-btn active" onclick="showDashSection('overview',this)">📊 Overview</button>
       <button class="dash-nav-btn" onclick="showDashSection('classes',this)">🏫 Classes</button>
@@ -847,21 +870,101 @@ function switchAuthTab(tab){
   document.getElementById('auth-register-form').classList.toggle('hide',tab!=='register');
 }
 
+var regSchoolMode='new';
+var foundSchoolId=null;
+
+function switchSchoolTab(mode){
+  regSchoolMode=mode;
+  foundSchoolId=null;
+  document.getElementById('reg-school-tab-new').classList.toggle('active',mode==='new');
+  document.getElementById('reg-school-tab-join').classList.toggle('active',mode==='join');
+  document.getElementById('reg-school-new').style.display=mode==='new'?'block':'none';
+  document.getElementById('reg-school-join').style.display=mode==='join'?'block':'none';
+  document.getElementById('reg-err').textContent='';
+}
+
+// Auto-lookup school join code as user types
+document.addEventListener('DOMContentLoaded',function(){
+  var joinInput=document.getElementById('reg-school-join-code');
+  if(joinInput){
+    joinInput.addEventListener('input',async function(){
+      var code=this.value.trim().toUpperCase();
+      var found=document.getElementById('reg-school-found');
+      if(code.length>=6){
+        var schools=await sbSelect('schools','join_code=eq.'+code);
+        if(schools&&schools.length>0){
+          foundSchoolId=schools[0].id;
+          found.textContent='✅ Found: '+schools[0].name+', '+schools[0].city;
+          found.style.display='block';
+        }else{
+          foundSchoolId=null;
+          found.textContent='❌ School not found. Check the code with your colleague.';
+          found.style.display='block';
+        }
+      }else{
+        found.style.display='none';
+        foundSchoolId=null;
+      }
+    });
+  }
+});
+
 async function doRegister(){
   var name=document.getElementById('reg-name').value.trim();
-  var school=document.getElementById('reg-school').value.trim();
   var email=document.getElementById('reg-email').value.trim();
   var pw=document.getElementById('reg-pw').value;
   var err=document.getElementById('reg-err');
-  err.textContent='';
-  if(!name||!school||!email||!pw){err.textContent='Please fill in all fields.';return;}
+  err.textContent='';err.style.color='';
+
+  // Validate fields
+  if(!name||!email||!pw){err.textContent='Please fill in all fields.';return;}
+
+  var schoolId=null;
+  var schoolName='';
+
+  if(regSchoolMode==='new'){
+    var sName=document.getElementById('reg-school-name').value.trim();
+    var sCity=document.getElementById('reg-school-city').value.trim();
+    if(!sName||!sCity){err.textContent='Please enter your school name and city.';return;}
+    schoolName=sName;
+    // Generate school join code
+    var joinCode='SCH-'+Math.random().toString(36).slice(2,8).toUpperCase();
+    err.textContent='Creating school...';
+    var schoolRes=await fetch(SB_URL+'/rest/v1/schools',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
+      body:JSON.stringify({name:sName,city:sCity,join_code:joinCode,created_at:new Date().toISOString()})
+    });
+    var schoolData=await schoolRes.json();
+    if(!schoolRes.ok){err.textContent='Could not create school: '+(schoolData.message||JSON.stringify(schoolData));return;}
+    schoolId=Array.isArray(schoolData)?schoolData[0].id:schoolData.id;
+    // Show join code to educator
+    err.style.color='#5CB85C';
+    err.textContent='🏫 School created! Your school join code is: '+joinCode+' — share this with colleagues at your school!';
+  } else {
+    if(!foundSchoolId){err.textContent='Please enter a valid school join code.';return;}
+    schoolId=foundSchoolId;
+  }
+
+  err.style.color='';err.textContent='Creating your account...';
+
   try{
-    var r=await fetch(SB_URL+'/auth/v1/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email:email,password:pw,data:{name:name,school:school,role:'teacher'}})});
+    var r=await fetch(SB_URL+'/auth/v1/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email:email,password:pw,data:{name:name,school:schoolName,role:'teacher'}})});
     var d=await r.json();
     if(d.user||d.id){
-      await sbInsert('educator_profiles',{user_id:d.user?d.user.id:d.id,name:name,school:school,role:'teacher',created_at:new Date().toISOString()});
-      err.style.color='green';err.textContent='Account created! Please sign in.';
-      setTimeout(function(){switchAuthTab('login');},1500);
+      var userId=d.user?d.user.id:d.id;
+      await sbInsert('educator_profiles',{user_id:userId,name:name,school:schoolName,school_id:schoolId,role:'teacher',created_at:new Date().toISOString()});
+      // Update school with creator if new school
+      if(regSchoolMode==='new'){
+        await fetch(SB_URL+'/rest/v1/schools?id=eq.'+schoolId,{method:'PATCH',headers:getH(),body:JSON.stringify({created_by:userId})});
+        err.style.color='#5CB85C';
+        var joinCodeDisplay=document.getElementById('reg-school-join-code')?document.getElementById('reg-school-name').value:'';
+        err.innerHTML='✅ Account created!<br><br>📋 <strong>Your school join code has been saved.</strong> Colleagues can find it in their educator dashboard when they register.<br><br>Please sign in.';
+      } else {
+        err.style.color='#5CB85C';
+        err.textContent='✅ Account created! Please sign in.';
+      }
+      setTimeout(function(){switchAuthTab('login');},3000);
     }else{err.textContent=d.error_description||d.msg||'Registration failed.';}
   }catch(e){err.textContent='Connection error. Please try again.';}
 }
@@ -920,7 +1023,23 @@ async function doLogin(){
       var profile=profiles&&profiles[0];
       var displayName=profile&&profile.name?profile.name:(currentUser.user_metadata&&currentUser.user_metadata.name?currentUser.user_metadata.name:email);
       var school=profile&&profile.school?profile.school:'';
+      // Load school info
+      if(profile&&profile.school_id){
+        currentUser.school_id=profile.school_id;
+        var schoolData=await sbSelect('schools','id=eq.'+profile.school_id);
+        if(schoolData&&schoolData[0]){
+          currentUser.school_name=schoolData[0].name;
+          currentUser.school_join_code=schoolData[0].join_code;
+          school=schoolData[0].name;
+        }
+      }
       document.getElementById('teacher-name-display').textContent='Welcome, '+displayName+(school?' — '+school:'');
+      // Show school join code in dashboard if available
+      var joinCodeEl=document.getElementById('school-join-code-display');
+      if(joinCodeEl&&currentUser.school_join_code){
+        joinCodeEl.textContent='🔗 School Join Code: '+currentUser.school_join_code;
+        joinCodeEl.style.display='block';
+      }
       showScreen('teacher-dash');
       loadTeacherDash();
     }else{err.textContent=d.error_description||d.msg||d.error||'Login failed. Please check your credentials.';}
@@ -987,7 +1106,9 @@ async function createClass(){
   if(!name)return;
   if(!currentUser){alert('Please log in first.');return;}
   var code=Math.random().toString(36).slice(2,8).toUpperCase();
-  var ok=await sbInsert('classes',{name:name,code:code,teacher_id:currentUser.id,created_at:new Date().toISOString()});
+  var classData={name:name,code:code,teacher_id:currentUser.id,created_at:new Date().toISOString()};
+  if(currentUser.school_id)classData.school_id=currentUser.school_id;
+  var ok=await sbInsert('classes',classData);
   if(ok){
     document.getElementById('new-class-name').value='';
     teacherClasses=await sbSelect('classes','teacher_id=eq.'+currentUser.id+'&order=created_at.desc')||[];
