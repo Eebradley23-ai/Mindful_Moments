@@ -1023,23 +1023,30 @@ async function doLogin(){
       var authHeader={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+d.access_token};
       var profRes=await fetch(SB_URL+'/rest/v1/educator_profiles?user_id=eq.'+currentUser.id,{headers:authHeader});
       var profiles=profRes.ok?await profRes.json():[];
+      console.log('Profile fetch status:',profRes.status,'profiles:',profiles);
       var profile=profiles&&profiles[0];
       var displayName=profile&&profile.name?profile.name:(currentUser.user_metadata&&currentUser.user_metadata.name?currentUser.user_metadata.name:email);
       var school=profile&&profile.school?profile.school:'';
       // Load school info
       if(profile&&profile.school_id){
         currentUser.school_id=profile.school_id;
+        console.log('school_id found:',profile.school_id);
         var schoolRes2=await fetch(SB_URL+'/rest/v1/schools?id=eq.'+profile.school_id,{headers:authHeader});
         var schoolData=schoolRes2.ok?await schoolRes2.json():[];
+        console.log('School fetch status:',schoolRes2.status,'schoolData:',schoolData);
         if(schoolData&&schoolData[0]){
           currentUser.school_name=schoolData[0].name;
           currentUser.school_join_code=schoolData[0].join_code;
           school=schoolData[0].name;
+          console.log('Join code found:',currentUser.school_join_code);
         }
+      } else {
+        console.log('No school_id in profile:',profile);
       }
       document.getElementById('teacher-name-display').textContent='Welcome, '+displayName+(school?' — '+school:'');
       // Show school join code in dashboard
       var joinCodeEl=document.getElementById('school-join-code-display');
+      console.log('joinCodeEl:',joinCodeEl,'join_code:',currentUser.school_join_code);
       if(joinCodeEl&&currentUser.school_join_code){
         joinCodeEl.textContent='🔗 School Join Code: '+currentUser.school_join_code;
         joinCodeEl.style.display='block';
