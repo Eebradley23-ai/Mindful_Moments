@@ -159,6 +159,10 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .parent-header{background:linear-gradient(135deg,#5CB85C,#1e7e34);padding:22px 20px;color:#fff}
 .parent-body{flex:1;padding:20px}
 .hide{display:none!important}
+.student-pick-btn{background:#fff;border:none;border-radius:20px;padding:20px 14px;cursor:pointer;transition:all .2s;box-shadow:0 4px 15px rgba(0,0,0,0.1);display:flex;flex-direction:column;align-items:center;gap:8px}
+.student-pick-btn:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,0.18)}
+.student-pick-btn .sp-avatar{font-size:3em}
+.student-pick-btn .sp-name{font-weight:700;font-size:.95em;color:#444}
 </style>
 </head>
 <body>
@@ -179,7 +183,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
       <button class="speaker-btn" onclick="speak('landing-tagline')">🔊</button>
     </div>
     <div class="landing-btns">
-      <button class="btn btn-white" onclick="showScreen('feeling-q');autoSpeak('fq-question')">
+      <button class="btn btn-white" onclick="showScreen('child-login');autoSpeak('child-login-title')">
         <span id="btn-child-label">👧 I'm a Child</span>
       </button>
       <button class="btn btn-outline" onclick="showScreen('auth-screen');setAuthMode('teacher')">
@@ -189,6 +193,41 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
         <span id="btn-parent-label">👪 Parent / Guardian</span>
       </button>
     </div>
+  </div>
+</div>
+
+<!-- CHILD LOGIN -->
+<div id="child-login" class="screen" style="background:linear-gradient(145deg,#a18cd1,#fbc2eb);align-items:center;justify-content:flex-start">
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
+    <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
+    <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
+    <button class="lang-btn" onclick="setLang('zh',this)">🇨🇳 中</button>
+    <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
+  </div>
+  <div class="fq-inner">
+    <div class="speak-row" style="margin-bottom:10px">
+      <h2 id="child-login-title" style="font-size:1.6em">Who are you? 👋</h2>
+      <button class="speaker-btn" onclick="speak('child-login-title')">🔊</button>
+    </div>
+
+    <!-- Step 1: code entry -->
+    <div id="child-code-step" style="width:100%;max-width:340px">
+      <p id="child-code-label" style="color:rgba(255,255,255,0.9);margin-bottom:14px">Enter your class code from your teacher:</p>
+      <input type="text" id="child-class-code-input" placeholder="e.g. GLCWW1"
+        style="width:100%;padding:16px;border-radius:16px;border:none;font-size:1.3em;text-align:center;text-transform:uppercase;letter-spacing:4px;outline:none;margin-bottom:12px"/>
+      <button class="btn btn-white" style="width:100%" onclick="loadStudentsForChild()">→ <span id="child-code-btn-label">Find My Class</span></button>
+      <div id="child-code-err" style="color:#fff;background:rgba(0,0,0,0.2);border-radius:10px;padding:8px;margin-top:10px;font-size:.9em;display:none"></div>
+    </div>
+
+    <!-- Step 2: student picker -->
+    <div id="child-picker-step" style="display:none;width:100%;max-width:400px">
+      <p id="child-pick-label" style="color:rgba(255,255,255,0.9);margin-bottom:16px">Tap your name! 👇</p>
+      <div id="child-student-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-bottom:16px"></div>
+      <button class="btn btn-outline" style="width:100%" onclick="showChildCodeStep()">← <span id="child-back-code-label">Back</span></button>
+    </div>
+
+    <button class="btn btn-outline" style="margin-top:16px;width:100%;max-width:340px" onclick="showScreen('landing')">← <span id="child-login-back-label">Back to Home</span></button>
   </div>
 </div>
 
@@ -507,15 +546,16 @@ let currentLang='en',currentZone=null,selectedFeelings=[],breathTimer=null;
 let stars=parseInt(localStorage.getItem('z_stars')||'0');
 let sessionId=localStorage.getItem('z_sid')||('s'+Math.random().toString(36).slice(2,10));
 localStorage.setItem('z_sid',sessionId);
+let currentChildId=null,currentChildName='';
 let anonView=true,currentUser=null,userRole=null,authToken=null,isDemoMode=false;
 let teacherClasses=[],teacherResources=[],selectedClassId=null,selectedClassName='';
 
 const T={
-  en:{landingTagline:'How are you feeling today?',tapToSee:'Tap to see how to do this',breathReady:'Ready',breathPressStart:'Press Start!',breathStart:'▶ Start',breathStop:'⏹ Stop',breathStartAgain:'▶ Start Again',breathIn:'Breathe IN 🌬️',breathHoldText:'Hold... ✋',breathHoldCircle:'Hold...',breathOut:'Breathe OUT 💨',breathInCircle:'Breathe in...',breathOutCircle:'Breathe out...',breathDone:'Done!',breathGreat:'Great job! 🌟',btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabFeel:'💬 My Feelings',breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!'},
-  fr:{landingTagline:'Comment tu te sens aujourd\'hui?',tapToSee:'Appuie pour voir comment faire',breathReady:'Prêt',breathPressStart:'Appuie sur Démarrer!',breathStart:'▶ Démarrer',breathStop:'⏹ Arrêter',breathStartAgain:'▶ Recommencer',breathIn:'Inspire 🌬️',breathHoldText:'Retiens... ✋',breathHoldCircle:'Retiens...',breathOut:'Expire 💨',breathInCircle:'Inspire...',breathOutCircle:'Expire...',breathDone:'Terminé!',breathGreat:'Bravo! 🌟',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabFeel:'💬 Mes Émotions',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
-  es:{landingTagline:'¿Cómo te sientes hoy?',tapToSee:'Toca para ver cómo hacerlo',breathReady:'Listo',breathPressStart:'¡Presiona Iniciar!',breathStart:'▶ Iniciar',breathStop:'⏹ Parar',breathStartAgain:'▶ Iniciar de nuevo',breathIn:'Inhala 🌬️',breathHoldText:'Aguanta... ✋',breathHoldCircle:'Aguanta...',breathOut:'Exhala 💨',breathInCircle:'Inhala...',breathOutCircle:'Exhala...',breathDone:'¡Listo!',breathGreat:'¡Muy bien! 🌟',btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabFeel:'💬 Mis Emociones',breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!'},
-  zh:{landingTagline:'你今天感觉怎么样？',tapToSee:'点击查看如何做',breathReady:'准备好了',breathPressStart:'按开始！',breathStart:'▶ 开始',breathStop:'⏹ 停止',breathStartAgain:'▶ 再来一次',breathIn:'吸气 🌬️',breathHoldText:'屏住... ✋',breathHoldCircle:'屏住...',breathOut:'呼气 💨',breathInCircle:'吸气...',breathOutCircle:'呼气...',breathDone:'完成！',breathGreat:'做得很好！🌟',btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabFeel:'💬 我的感受',breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！'},
-  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',tapToSee:'Нажми, чтобы узнать как это делать',breathReady:'Готово',breathPressStart:'Нажми Старт!',breathStart:'▶ Старт',breathStop:'⏹ Стоп',breathStartAgain:'▶ Начать снова',breathIn:'Вдох 🌬️',breathHoldText:'Задержи... ✋',breathHoldCircle:'Задержи...',breathOut:'Выдох 💨',breathInCircle:'Вдыхай...',breathOutCircle:'Выдыхай...',breathDone:'Готово!',breathGreat:'Молодец! 🌟',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabFeel:'💬 Мои чувства',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'}
+  en:{landingTagline:'How are you feeling today?',tapToSee:'Tap to see how to do this',childLoginTitle:'Who are you? 👋',childCodeLabel:'Enter your class code from your teacher:',childCodeBtn:'Find My Class',childPickLabel:'Tap your name! 👇',childBackCode:'Back',childLoginBack:'Back to Home',breathReady:'Ready',breathPressStart:'Press Start!',breathStart:'▶ Start',breathStop:'⏹ Stop',breathStartAgain:'▶ Start Again',breathIn:'Breathe IN 🌬️',breathHoldText:'Hold... ✋',breathHoldCircle:'Hold...',breathOut:'Breathe OUT 💨',breathInCircle:'Breathe in...',breathOutCircle:'Breathe out...',breathDone:'Done!',breathGreat:'Great job! 🌟',btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabFeel:'💬 My Feelings',breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!'},
+  fr:{landingTagline:'Comment tu te sens aujourd\'hui?',tapToSee:'Appuie pour voir comment faire',childLoginTitle:'C\'est qui toi? 👋',childCodeLabel:'Entre le code de ta classe donné par ton enseignant:',childCodeBtn:'Trouver ma classe',childPickLabel:'Appuie sur ton prénom! 👇',childBackCode:'Retour',childLoginBack:'Retour à l\'accueil',breathReady:'Prêt',breathPressStart:'Appuie sur Démarrer!',breathStart:'▶ Démarrer',breathStop:'⏹ Arrêter',breathStartAgain:'▶ Recommencer',breathIn:'Inspire 🌬️',breathHoldText:'Retiens... ✋',breathHoldCircle:'Retiens...',breathOut:'Expire 💨',breathInCircle:'Inspire...',breathOutCircle:'Expire...',breathDone:'Terminé!',breathGreat:'Bravo! 🌟',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabFeel:'💬 Mes Émotions',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
+  es:{landingTagline:'¿Cómo te sientes hoy?',tapToSee:'Toca para ver cómo hacerlo',childLoginTitle:'¿Quién eres tú? 👋',childCodeLabel:'Ingresa el código de tu clase dado por tu maestro:',childCodeBtn:'Encontrar mi clase',childPickLabel:'¡Toca tu nombre! 👇',childBackCode:'Atrás',childLoginBack:'Volver al inicio',breathReady:'Listo',breathPressStart:'¡Presiona Iniciar!',breathStart:'▶ Iniciar',breathStop:'⏹ Parar',breathStartAgain:'▶ Iniciar de nuevo',breathIn:'Inhala 🌬️',breathHoldText:'Aguanta... ✋',breathHoldCircle:'Aguanta...',breathOut:'Exhala 💨',breathInCircle:'Inhala...',breathOutCircle:'Exhala...',breathDone:'¡Listo!',breathGreat:'¡Muy bien! 🌟',btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabFeel:'💬 Mis Emociones',breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!'},
+  zh:{landingTagline:'你今天感觉怎么样？',tapToSee:'点击查看如何做',childLoginTitle:'你是谁？👋',childCodeLabel:'输入老师给你的班级代码：',childCodeBtn:'找到我的班级',childPickLabel:'点击你的名字！👇',childBackCode:'返回',childLoginBack:'返回主页',breathReady:'准备好了',breathPressStart:'按开始！',breathStart:'▶ 开始',breathStop:'⏹ 停止',breathStartAgain:'▶ 再来一次',breathIn:'吸气 🌬️',breathHoldText:'屏住... ✋',breathHoldCircle:'屏住...',breathOut:'呼气 💨',breathInCircle:'吸气...',breathOutCircle:'呼气...',breathDone:'完成！',breathGreat:'做得很好！🌟',btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabFeel:'💬 我的感受',breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！'},
+  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',tapToSee:'Нажми, чтобы узнать как это делать',childLoginTitle:'Кто ты? 👋',childCodeLabel:'Введи код класса от твоего учителя:',childCodeBtn:'Найти мой класс',childPickLabel:'Нажми на своё имя! 👇',childBackCode:'Назад',childLoginBack:'На главную',breathReady:'Готово',breathPressStart:'Нажми Старт!',breathStart:'▶ Старт',breathStop:'⏹ Стоп',breathStartAgain:'▶ Начать снова',breathIn:'Вдох 🌬️',breathHoldText:'Задержи... ✋',breathHoldCircle:'Задержи...',breathOut:'Выдох 💨',breathInCircle:'Вдыхай...',breathOutCircle:'Выдыхай...',breathDone:'Готово!',breathGreat:'Молодец! 🌟',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabFeel:'💬 Мои чувства',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'}
 };
 
 const ZONES={
@@ -543,6 +583,40 @@ const PRESET_RESOURCES=[
   {title:'Zoning In For Home',type:'link',url:'https://zonesofregulation.com/blog/category/for-home/',audience:'parent',preset:true},
   {title:'PCMH (Parents & Caregivers for Mental Health)',type:'link',url:'https://www.family.cmho.org/',audience:'parent',preset:true}
 ];
+
+async function loadStudentsForChild(){
+  var code=document.getElementById('child-class-code-input').value.trim().toUpperCase();
+  var errEl=document.getElementById('child-code-err');
+  errEl.style.display='none';
+  if(!code){errEl.textContent='Please enter your class code!';errEl.style.display='block';return;}
+  errEl.textContent='Loading...';errEl.style.display='block';
+  var classes=await sbSelect('classes','code=eq.'+code);
+  if(!classes||classes.length===0){errEl.textContent='Code not found. Please check with your teacher!';return;}
+  var cls=classes[0];
+  var students=await sbSelect('children','classroom_id=eq.'+cls.id+'&order=name.asc');
+  if(!students||students.length===0){errEl.textContent='No students found yet. Ask your teacher to add you!';return;}
+  errEl.style.display='none';
+  localStorage.setItem('z_child_class_id',cls.id);
+  localStorage.setItem('z_child_class_code',code);
+  var grid=document.getElementById('child-student-grid');
+  grid.innerHTML=students.map(function(s){
+    return '<button class="student-pick-btn" onclick="selectStudent(\''+s.id+'\',\''+s.name.replace(/'/g,"\\'")+'\')"><span class="sp-avatar">'+(s.avatar||'😊')+'</span><span class="sp-name">'+s.name+'</span></button>';
+  }).join('');
+  document.getElementById('child-code-step').style.display='none';
+  document.getElementById('child-picker-step').style.display='block';
+}
+function showChildCodeStep(){
+  document.getElementById('child-code-step').style.display='block';
+  document.getElementById('child-picker-step').style.display='none';
+  document.getElementById('child-code-err').style.display='none';
+}
+function selectStudent(id,name){
+  currentChildId=id;currentChildName=name;
+  localStorage.setItem('z_child_id',id);
+  localStorage.setItem('z_child_name',name);
+  showScreen('feeling-q');
+  autoSpeak('fq-question');
+}
 
 function speak(elId){
   const el=document.getElementById(elId);
@@ -585,6 +659,12 @@ function applyTranslations(){
   set('tab-act-label',t.tabAct);set('tab-breath-label',t.tabBreath);set('tab-feel-label',t.tabFeel);
   set('breath-intro',t.breathIntro);set('feelings-prompt',t.feelingsPrompt);
   set('breath-circle',t.breathReady);set('breath-phase',t.breathPressStart);set('breath-start-btn',t.breathStart);
+  if(t.childLoginTitle)set('child-login-title',t.childLoginTitle);
+  if(t.childCodeLabel)set('child-code-label',t.childCodeLabel);
+  if(t.childCodeBtn)set('child-code-btn-label',t.childCodeBtn);
+  if(t.childPickLabel)set('child-pick-label',t.childPickLabel);
+  if(t.childBackCode)set('child-back-code-label',t.childBackCode);
+  if(t.childLoginBack)set('child-login-back-label',t.childLoginBack);
   set('note-prompt',t.notePrompt);set('save-label',t.saveLabel);set('done-label',t.doneLabel);
   set('celeb-title',t.celebTitle);set('celeb-msg',t.celebMsg);set('celeb-home',t.celebHome);set('celeb-stars',t.celebStars);
   set('stars-title',t.starsTitle);set('stars-sub',t.starsSub);set('stars-earned-label',t.starsEarned);set('stars-back-label',t.starsBack);
@@ -696,7 +776,11 @@ function runBreathCycle(){
 
 async function submitCheckin(){
   var note=document.getElementById('feelings-note').value;
-  await sbInsert('check_ins',{zone_id:currentZone,zone_name:ZONES[currentZone].titles.en,feelings:selectedFeelings,note:note||null,session_id:sessionId,lang:currentLang,class_code:localStorage.getItem('z_parent_class')||null,classroom_id:localStorage.getItem('z_parent_class_id')||null,checked_in_at:new Date().toISOString()});
+  var childId=currentChildId||localStorage.getItem('z_child_id')||null;
+  var childName=currentChildName||localStorage.getItem('z_child_name')||null;
+  var classroomId=localStorage.getItem('z_child_class_id')||localStorage.getItem('z_parent_class_id')||null;
+  var classCode=localStorage.getItem('z_child_class_code')||localStorage.getItem('z_parent_class')||null;
+  await sbInsert('check_ins',{zone_id:currentZone,zone_name:ZONES[currentZone].titles.en,feelings:selectedFeelings,note:note||null,session_id:sessionId,lang:currentLang,class_code:classCode,classroom_id:classroomId,child_id:childId,child_name:childName,checked_in_at:new Date().toISOString()});
   stars++;localStorage.setItem('z_stars',stars);
   var t=T[currentLang]||T.en;
   document.getElementById('celeb-title').textContent=t.celebTitle;
