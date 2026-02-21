@@ -752,7 +752,7 @@ async function doLogin(){
   var email=document.getElementById('auth-email').value.trim();
   var pw=document.getElementById('auth-pw').value;
   var roleEl=document.getElementById('auth-role');
-  var role=roleEl?roleEl.value:authMode;
+  var role=authMode==='parent'?'parent':(roleEl?roleEl.value:authMode);
   var codeEl=document.getElementById('auth-class-code');
   var classCode=codeEl?codeEl.value.trim().toUpperCase():'';
   var err=document.getElementById('auth-err');
