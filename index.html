@@ -601,9 +601,10 @@ function showScreen(id){
 
 function goToZone(zone){
   currentZone=zone;selectedFeelings=[];
-  updateZoneContent();
+  applyTranslations();
   showScreen('zone-page');
   switchTab('activities-tab');
+  document.getElementById('act-detail').classList.remove('show');
   setTimeout(function(){speak('zone-desc-text');},500);
 }
 function updateZoneContent(){
@@ -659,6 +660,14 @@ function switchTab(tabId){
   document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
   document.getElementById(tabId).classList.add('active');
   document.querySelectorAll('.tab-btn').forEach(function(b){if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(tabId))b.classList.add('active');});
+  if(tabId==='breathing-tab'&&!breathTimer){
+    var t=T[currentLang]||T.en;
+    document.getElementById('breath-circle').textContent=t.breathReady;
+    document.getElementById('breath-phase').textContent=t.breathPressStart;
+    document.getElementById('breath-start-btn').textContent=t.breathStart;
+    document.getElementById('breath-count').textContent='';
+    document.getElementById('breath-circle').className='breath-circle';
+  }
 }
 
 var breathCycle=0;
