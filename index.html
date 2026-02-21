@@ -612,7 +612,7 @@ function updateZoneContent(){
   document.getElementById('zone-header-bg').style.background=z.bg;
   document.getElementById('zone-title-text').textContent=z.titles[currentLang]||z.titles.en;
   document.getElementById('zone-desc-text').textContent=z.descs[currentLang]||z.descs.en;
-  var acts=z.activities.en;
+  var acts=z.activities[currentLang]||z.activities.en;
   document.getElementById('act-list').innerHTML=acts.map(function(a,i){
     return '<div class="act-item" onclick="openActivity('+i+'"><span class="act-em">'+a.em+'</span><div class="act-info"><h4>'+a.title+'</h4><p>Tap to see how to do this</p></div><span>›</span></div>';
   }).join('');
