@@ -1019,14 +1019,18 @@ async function doLogin(){
     if(d.access_token){
       authToken=d.access_token;currentUser=d.user;userRole=role;isDemoMode=false;
       H['Authorization']='Bearer '+authToken;
-      var profiles=await sbSelect('educator_profiles','user_id=eq.'+currentUser.id);
+      // Use explicit auth header to avoid any timing issues
+      var authHeader={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+d.access_token};
+      var profRes=await fetch(SB_URL+'/rest/v1/educator_profiles?user_id=eq.'+currentUser.id,{headers:authHeader});
+      var profiles=profRes.ok?await profRes.json():[];
       var profile=profiles&&profiles[0];
       var displayName=profile&&profile.name?profile.name:(currentUser.user_metadata&&currentUser.user_metadata.name?currentUser.user_metadata.name:email);
       var school=profile&&profile.school?profile.school:'';
       // Load school info
       if(profile&&profile.school_id){
         currentUser.school_id=profile.school_id;
-        var schoolData=await sbSelect('schools','id=eq.'+profile.school_id);
+        var schoolRes2=await fetch(SB_URL+'/rest/v1/schools?id=eq.'+profile.school_id,{headers:authHeader});
+        var schoolData=schoolRes2.ok?await schoolRes2.json():[];
         if(schoolData&&schoolData[0]){
           currentUser.school_name=schoolData[0].name;
           currentUser.school_join_code=schoolData[0].join_code;
@@ -1034,7 +1038,7 @@ async function doLogin(){
         }
       }
       document.getElementById('teacher-name-display').textContent='Welcome, '+displayName+(school?' — '+school:'');
-      // Show school join code in dashboard if available
+      // Show school join code in dashboard
       var joinCodeEl=document.getElementById('school-join-code-display');
       if(joinCodeEl&&currentUser.school_join_code){
         joinCodeEl.textContent='🔗 School Join Code: '+currentUser.school_join_code;
