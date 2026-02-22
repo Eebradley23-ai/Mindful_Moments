@@ -982,7 +982,9 @@ async function doLogin(){
   if(role==='parent'){
     if(!classCode){err.textContent='Please enter your class or family code.';return;}
     err.textContent='Checking code...';
+    console.log('Trying class code:',classCode);
     var classes=await sbSelect('classes','code=eq.'+classCode);
+    console.log('Classes result:',classes);
     if(classes&&classes.length>0){
       userRole='parent';
       document.getElementById('parent-class-display').textContent='Class: '+classes[0].name;
@@ -992,7 +994,9 @@ async function doLogin(){
       loadParentDash(classes[0].id,classCode,null);
       return;
     }
+    console.log('Trying family code:',classCode);
     var children=await sbSelect('children','family_code=eq.'+classCode);
+    console.log('Children result:',children);
     if(children&&children.length>0){
       userRole='parent';
       var child=children[0];
