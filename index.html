@@ -215,8 +215,9 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
     <div id="child-code-step" style="width:100%;max-width:340px">
       <p id="child-code-label" style="color:rgba(255,255,255,0.9);margin-bottom:14px">Enter your class code from your teacher:</p>
       <input type="text" id="child-class-code-input" placeholder="e.g. GLCWW1"
-        style="width:100%;padding:16px;border-radius:16px;border:none;font-size:1.3em;text-align:center;text-transform:uppercase;letter-spacing:4px;outline:none;margin-bottom:12px"/>
-      <button class="btn btn-white" style="width:100%" onclick="loadStudentsForChild()">→ <span id="child-code-btn-label">Find My Class</span></button>
+        style="width:100%;padding:16px;border-radius:16px;border:none;font-size:1.3em;text-align:center;text-transform:uppercase;letter-spacing:4px;outline:none;margin-bottom:12px"
+        onkeydown="if(event.key==='Enter'){event.preventDefault();loadStudentsForChild();}"/>
+      <button type="button" class="btn btn-white" style="width:100%" onclick="loadStudentsForChild()">→ <span id="child-code-btn-label">Find My Class</span></button>
       <div id="child-code-err" style="color:#fff;background:rgba(0,0,0,0.2);border-radius:10px;padding:8px;margin-top:10px;font-size:.9em;display:none"></div>
     </div>
 
