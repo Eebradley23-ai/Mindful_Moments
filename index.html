@@ -613,7 +613,9 @@ async function loadStudentsForChild(){
   errEl.style.display='none';
   if(!code){errEl.textContent='Please enter your class code!';errEl.style.display='block';return;}
   errEl.textContent='Loading...';errEl.style.display='block';
+  console.log('Child looking up class code:',code);
   var classes=await sbSelect('classes','code=eq.'+code);
+  console.log('Classes found:',classes);
   if(!classes||classes.length===0){errEl.textContent='Code not found. Please check with your teacher!';return;}
   var cls=classes[0];
   var students=await sbSelect('children','classroom_id=eq.'+cls.id+'&order=name.asc');
