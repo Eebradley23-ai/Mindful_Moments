@@ -49,8 +49,8 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .zone-title{font-size:2em;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.2)}
 .zone-desc{color:rgba(255,255,255,0.92);font-size:1.05em;line-height:1.6;background:rgba(255,255,255,0.15);border-radius:14px;padding:14px}
 .zone-body{flex:1;padding:20px;background:var(--bg)}
-.tab-row{display:flex;gap:8px;margin-bottom:18px}
-.tab-btn{flex:1;padding:11px;border:2px solid #ddd;background:#fff;border-radius:12px;font-weight:600;cursor:pointer;font-size:.9em;transition:all .2s}
+.tab-row{display:flex;gap:6px;margin-bottom:18px}
+.tab-btn{flex:1;padding:10px 4px;border:2px solid #ddd;background:#fff;border-radius:12px;font-weight:600;cursor:pointer;font-size:.78em;transition:all .2s;text-align:center}
 .tab-btn.active{background:var(--purple);color:#fff;border-color:var(--purple)}
 .tab-content{display:none}
 .tab-content.active{display:block}
@@ -295,6 +295,7 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
     <div class="tab-row">
       <button class="tab-btn active" onclick="switchTab('activities-tab',this)" id="tab-act-label">🎯 Activities</button>
       <button class="tab-btn" onclick="switchTab('breathing-tab',this)" id="tab-breath-label">🌬️ Breathing</button>
+      <button class="tab-btn" onclick="switchTab('videos-tab',this)" id="tab-videos-label">🎬 Videos</button>
       <button class="tab-btn" onclick="switchTab('feelings-tab',this)" id="tab-feel-label">💬 My Feelings</button>
     </div>
     <div id="activities-tab" class="tab-content active">
@@ -319,6 +320,10 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
         <div class="breath-count" id="breath-count"></div>
         <button class="breath-start-btn" onclick="startBreathing()" id="breath-start-btn">▶ Start</button>
       </div>
+    </div>
+    <div id="videos-tab" class="tab-content">
+      <p id="videos-intro" style="color:#555;font-size:.95em;margin-bottom:16px;text-align:center">🎬 Fun videos to help you move, breathe and feel better!</p>
+      <div id="video-list" style="display:flex;flex-direction:column;gap:16px"></div>
     </div>
     <div id="feelings-tab" class="tab-content">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
@@ -575,11 +580,11 @@ let anonView=true,currentUser=null,userRole=null,authToken=null,isDemoMode=false
 let teacherClasses=[],teacherResources=[],selectedClassId=null,selectedClassName='';
 
 const T={
-  en:{landingTagline:'How are you feeling today?',tapToSee:'Tap to see how to do this',childLoginTitle:'Who are you? 👋',childCodeLabel:'Enter your class code from your teacher:',childCodeBtn:'Find My Class',childPickLabel:'Tap your name! 👇',childBackCode:'Back',childLoginBack:'Back to Home',breathReady:'Ready',breathPressStart:'Press Start!',breathStart:'▶ Start',breathStop:'⏹ Stop',breathStartAgain:'▶ Start Again',breathIn:'Breathe IN 🌬️',breathHoldText:'Hold... ✋',breathHoldCircle:'Hold...',breathOut:'Breathe OUT 💨',breathInCircle:'Breathe in...',breathOutCircle:'Breathe out...',breathDone:'Done!',breathGreat:'Great job! 🌟',btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabFeel:'💬 My Feelings',breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!'},
-  fr:{landingTagline:'Comment tu te sens aujourd\'hui?',tapToSee:'Appuie pour voir comment faire',childLoginTitle:'C\'est qui toi? 👋',childCodeLabel:'Entre le code de ta classe donné par ton enseignant:',childCodeBtn:'Trouver ma classe',childPickLabel:'Appuie sur ton prénom! 👇',childBackCode:'Retour',childLoginBack:'Retour à l\'accueil',breathReady:'Prêt',breathPressStart:'Appuie sur Démarrer!',breathStart:'▶ Démarrer',breathStop:'⏹ Arrêter',breathStartAgain:'▶ Recommencer',breathIn:'Inspire 🌬️',breathHoldText:'Retiens... ✋',breathHoldCircle:'Retiens...',breathOut:'Expire 💨',breathInCircle:'Inspire...',breathOutCircle:'Expire...',breathDone:'Terminé!',breathGreat:'Bravo! 🌟',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabFeel:'💬 Mes Émotions',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
-  es:{landingTagline:'¿Cómo te sientes hoy?',tapToSee:'Toca para ver cómo hacerlo',childLoginTitle:'¿Quién eres tú? 👋',childCodeLabel:'Ingresa el código de tu clase dado por tu maestro:',childCodeBtn:'Encontrar mi clase',childPickLabel:'¡Toca tu nombre! 👇',childBackCode:'Atrás',childLoginBack:'Volver al inicio',breathReady:'Listo',breathPressStart:'¡Presiona Iniciar!',breathStart:'▶ Iniciar',breathStop:'⏹ Parar',breathStartAgain:'▶ Iniciar de nuevo',breathIn:'Inhala 🌬️',breathHoldText:'Aguanta... ✋',breathHoldCircle:'Aguanta...',breathOut:'Exhala 💨',breathInCircle:'Inhala...',breathOutCircle:'Exhala...',breathDone:'¡Listo!',breathGreat:'¡Muy bien! 🌟',btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabFeel:'💬 Mis Emociones',breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!'},
-  zh:{landingTagline:'你今天感觉怎么样？',tapToSee:'点击查看如何做',childLoginTitle:'你是谁？👋',childCodeLabel:'输入老师给你的班级代码：',childCodeBtn:'找到我的班级',childPickLabel:'点击你的名字！👇',childBackCode:'返回',childLoginBack:'返回主页',breathReady:'准备好了',breathPressStart:'按开始！',breathStart:'▶ 开始',breathStop:'⏹ 停止',breathStartAgain:'▶ 再来一次',breathIn:'吸气 🌬️',breathHoldText:'屏住... ✋',breathHoldCircle:'屏住...',breathOut:'呼气 💨',breathInCircle:'吸气...',breathOutCircle:'呼气...',breathDone:'完成！',breathGreat:'做得很好！🌟',btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabFeel:'💬 我的感受',breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！'},
-  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',tapToSee:'Нажми, чтобы узнать как это делать',childLoginTitle:'Кто ты? 👋',childCodeLabel:'Введи код класса от твоего учителя:',childCodeBtn:'Найти мой класс',childPickLabel:'Нажми на своё имя! 👇',childBackCode:'Назад',childLoginBack:'На главную',breathReady:'Готово',breathPressStart:'Нажми Старт!',breathStart:'▶ Старт',breathStop:'⏹ Стоп',breathStartAgain:'▶ Начать снова',breathIn:'Вдох 🌬️',breathHoldText:'Задержи... ✋',breathHoldCircle:'Задержи...',breathOut:'Выдох 💨',breathInCircle:'Вдыхай...',breathOutCircle:'Выдыхай...',breathDone:'Готово!',breathGreat:'Молодец! 🌟',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabFeel:'💬 Мои чувства',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'}
+  en:{landingTagline:'How are you feeling today?',tapToSee:'Tap to see how to do this',childLoginTitle:'Who are you? 👋',childCodeLabel:'Enter your class code from your teacher:',childCodeBtn:'Find My Class',childPickLabel:'Tap your name! 👇',childBackCode:'Back',childLoginBack:'Back to Home',breathReady:'Ready',breathPressStart:'Press Start!',breathStart:'▶ Start',breathStop:'⏹ Stop',breathStartAgain:'▶ Start Again',breathIn:'Breathe IN 🌬️',breathHoldText:'Hold... ✋',breathHoldCircle:'Hold...',breathOut:'Breathe OUT 💨',breathInCircle:'Breathe in...',breathOutCircle:'Breathe out...',breathDone:'Done!',breathGreat:'Great job! 🌟',btnChild:'👧 I\'m a Child',btnTeacher:'👩‍🏫 Educator / Teacher',btnParent:'👪 Parent / Guardian',fqQuestion:'How are you feeling right now?',fqSub:'Tap the face that matches how you feel!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Sad · Tired · Sick',zoneGreenLabel:'Green Zone',zoneGreenSub:'Happy · Calm · Ready',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Worried · Excited · Silly',zoneRedLabel:'Red Zone',zoneRedSub:'Mad · Scared · Out of control',back:'Back',tabAct:'🎯 Activities',tabBreath:'🌬️ Breathing',tabVideos:'🎬 Videos',tabFeel:'💬 My Feelings',videosIntro:'🎬 Fun videos to help you move, breathe and feel better!',breathIntro:'Let\'s do some breathing together!',feelingsPrompt:'Tap the feelings you have right now:',notePrompt:'Want to tell us anything else?',saveLabel:'Save My Feelings',doneLabel:'I Did It!',celebTitle:'Amazing!',celebMsg:'You shared your feelings and earned a star!',celebHome:'Home',celebStars:'My Stars',starsTitle:'⭐ My Stars',starsSub:'You\'re doing amazing!',starsEarned:'Stars earned',starsBack:'Back to Check-in',ms1:'First Check-in — Feelings Explorer!',ms2:'5 Stars — Feelings Superstar!',ms3:'10 Stars — Zones Champion!'},
+  fr:{landingTagline:'Comment tu te sens aujourd\'hui?',tapToSee:'Appuie pour voir comment faire',childLoginTitle:'C\'est qui toi? 👋',childCodeLabel:'Entre le code de ta classe donné par ton enseignant:',childCodeBtn:'Trouver ma classe',childPickLabel:'Appuie sur ton prénom! 👇',childBackCode:'Retour',childLoginBack:'Retour à l\'accueil',breathReady:'Prêt',breathPressStart:'Appuie sur Démarrer!',breathStart:'▶ Démarrer',breathStop:'⏹ Arrêter',breathStartAgain:'▶ Recommencer',breathIn:'Inspire 🌬️',breathHoldText:'Retiens... ✋',breathHoldCircle:'Retiens...',breathOut:'Expire 💨',breathInCircle:'Inspire...',breathOutCircle:'Expire...',breathDone:'Terminé!',breathGreat:'Bravo! 🌟',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabVideos:'🎬 Vidéos',tabFeel:'💬 Mes Émotions',videosIntro:'🎬 Des vidéos amusantes pour bouger, respirer et se sentir mieux!',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
+  es:{landingTagline:'¿Cómo te sientes hoy?',tapToSee:'Toca para ver cómo hacerlo',childLoginTitle:'¿Quién eres tú? 👋',childCodeLabel:'Ingresa el código de tu clase dado por tu maestro:',childCodeBtn:'Encontrar mi clase',childPickLabel:'¡Toca tu nombre! 👇',childBackCode:'Atrás',childLoginBack:'Volver al inicio',breathReady:'Listo',breathPressStart:'¡Presiona Iniciar!',breathStart:'▶ Iniciar',breathStop:'⏹ Parar',breathStartAgain:'▶ Iniciar de nuevo',breathIn:'Inhala 🌬️',breathHoldText:'Aguanta... ✋',breathHoldCircle:'Aguanta...',breathOut:'Exhala 💨',breathInCircle:'Inhala...',breathOutCircle:'Exhala...',breathDone:'¡Listo!',breathGreat:'¡Muy bien! 🌟',btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabVideos:'🎬 Videos',tabFeel:'💬 Mis Emociones',videosIntro:'🎬 ¡Videos divertidos para moverte, respirar y sentirte mejor!',breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!'},
+  zh:{landingTagline:'你今天感觉怎么样？',tapToSee:'点击查看如何做',childLoginTitle:'你是谁？👋',childCodeLabel:'输入老师给你的班级代码：',childCodeBtn:'找到我的班级',childPickLabel:'点击你的名字！👇',childBackCode:'返回',childLoginBack:'返回主页',breathReady:'准备好了',breathPressStart:'按开始！',breathStart:'▶ 开始',breathStop:'⏹ 停止',breathStartAgain:'▶ 再来一次',breathIn:'吸气 🌬️',breathHoldText:'屏住... ✋',breathHoldCircle:'屏住...',breathOut:'呼气 💨',breathInCircle:'吸气...',breathOutCircle:'呼气...',breathDone:'完成！',breathGreat:'做得很好！🌟',btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabVideos:'🎬 视频',tabFeel:'💬 我的感受',videosIntro:'🎬 有趣的视频帮助你运动、呼吸和感觉更好！',breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！'},
+  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',tapToSee:'Нажми, чтобы узнать как это делать',childLoginTitle:'Кто ты? 👋',childCodeLabel:'Введи код класса от твоего учителя:',childCodeBtn:'Найти мой класс',childPickLabel:'Нажми на своё имя! 👇',childBackCode:'Назад',childLoginBack:'На главную',breathReady:'Готово',breathPressStart:'Нажми Старт!',breathStart:'▶ Старт',breathStop:'⏹ Стоп',breathStartAgain:'▶ Начать снова',breathIn:'Вдох 🌬️',breathHoldText:'Задержи... ✋',breathHoldCircle:'Задержи...',breathOut:'Выдох 💨',breathInCircle:'Вдыхай...',breathOutCircle:'Выдыхай...',breathDone:'Готово!',breathGreat:'Молодец! 🌟',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabVideos:'🎬 Видео',tabFeel:'💬 Мои чувства',videosIntro:'🎬 Весёлые видео, чтобы двигаться, дышать и чувствовать себя лучше!',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'}
 };
 
 const ZONES={
@@ -644,6 +649,76 @@ function selectStudent(id,name){
   autoSpeak('fq-question');
 }
 
+// Videos for child zone page
+const CHILD_VIDEOS = [
+  { id:'yarxCrHWyXQ', title:{en:'Sit, Breathe & Stretch 1',fr:'Assis, Respire & Étire 1',es:'Siéntate, Respira & Estírate 1',zh:'坐下、呼吸与伸展 1',ru:'Сиди, Дыши и Потянись 1'}, emoji:'🧘', tag:{en:'Breathing',fr:'Respiration',es:'Respiración',zh:'呼吸',ru:'Дыхание'} },
+  { id:'-S8gQh3jAd4', title:{en:'Sit, Breathe & Stretch 2',fr:'Assis, Respire & Étire 2',es:'Siéntate, Respira & Estírate 2',zh:'坐下、呼吸与伸展 2',ru:'Сиди, Дыши и Потянись 2'}, emoji:'🧘', tag:{en:'Breathing',fr:'Respiration',es:'Respiración',zh:'呼吸',ru:'Дыхание'} },
+  { id:'FM2yJ9tPjhA', title:{en:'Deep Breathing Brain Break',fr:'Pause Cerveau — Respiration',es:'Pausa Cerebral de Respiración',zh:'深呼吸大脑休息',ru:'Дыхательная пауза для мозга'}, emoji:'🧠', tag:{en:'Breathing',fr:'Respiration',es:'Respiración',zh:'呼吸',ru:'Дыхание'} },
+  { id:'DsUPVERZFlI', title:{en:'Wiggle Dance',fr:'Danse Gigotage',es:'Baile Meneíto',zh:'扭动舞蹈',ru:'Танец-встряска'}, emoji:'💃', tag:{en:'Movement',fr:'Mouvement',es:'Movimiento',zh:'运动',ru:'Движение'} },
+  { id:'2UcZWXvgMZE', title:{en:'Freeze Dance',fr:'Danse Statue',es:'Baile Congelado',zh:'定格舞蹈',ru:'Танец-заморозка'}, emoji:'🕺', tag:{en:'Movement',fr:'Mouvement',es:'Movimiento',zh:'运动',ru:'Движение'} },
+  { id:'fGG88PxtOqY', title:{en:'Simon Says Song',fr:'Jacques a Dit',es:'Simón Dice',zh:'西蒙说',ru:'Саймон говорит'}, emoji:'🎵', tag:{en:'Movement',fr:'Mouvement',es:'Movimiento',zh:'运动',ru:'Движение'} },
+  { id:'UEuFi9PxKuo', title:{en:'Mindful Bubble Bounce',fr:'Bulles de Pleine Conscience',es:'Burbujas de Atención Plena',zh:'正念泡泡弹跳',ru:'Осознанные пузыри'}, emoji:'🫧', tag:{en:'Mindfulness',fr:'Pleine conscience',es:'Atención plena',zh:'正念',ru:'Осознанность'} },
+  { id:'tJs6DeKxX5g', title:{en:'Self Control Song',fr:'Chanson de Maîtrise de Soi',es:'Canción del Autocontrol',zh:'自控之歌',ru:'Песня самоконтроля'}, emoji:'🎶', tag:{en:'Feelings',fr:'Émotions',es:'Emociones',zh:'情绪',ru:'Эмоции'} },
+  { id:'64vNirtN1Cc', title:{en:'Emotion Identification Story',fr:'Histoire des Émotions',es:'Historia de Identificación de Emociones',zh:'情绪识别故事',ru:'История об эмоциях'}, emoji:'📖', tag:{en:'Feelings',fr:'Émotions',es:'Emociones',zh:'情绪',ru:'Эмоции'} },
+  { id:null, url:'https://kidshelpphone.ca/get-info/breathing-balloon', title:{en:'Breathing Balloon 🎈',fr:'Ballon de Respiration 🎈',es:'Globo de Respiración 🎈',zh:'呼吸气球 🎈',ru:'Дыхательный шарик 🎈'}, emoji:'🎈', tag:{en:'Breathing',fr:'Respiration',es:'Respiración',zh:'呼吸',ru:'Дыхание'}, isLink:true },
+];
+const TAG_COLORS = {Breathing:'4A90D9',Movement:'5CB85C',Mindfulness:'7C4DFF',Feelings:'F5A623',Respiration:'4A90D9',Mouvement:'5CB85C','Pleine conscience':'7C4DFF','Émotions':'F5A623','Respiración':'4A90D9','Movimiento':'5CB85C','Atención plena':'7C4DFF','Emociones':'F5A623','呼吸':'4A90D9','运动':'5CB85C','正念':'7C4DFF','情绪':'F5A623','Дыхание':'4A90D9','Движение':'5CB85C','Осознанность':'7C4DFF','Эмоции':'F5A623'};
+
+function renderVideos(){
+  var t=T[currentLang]||T.en;
+  var container=document.getElementById('video-list');
+  if(!container)return;
+  var intro=document.getElementById('videos-intro');
+  if(intro)intro.textContent=t.videosIntro||'🎬 Fun videos to help you move, breathe and feel better!';
+  container.innerHTML=CHILD_VIDEOS.map(function(v){
+    var titleText=v.title[currentLang]||v.title.en;
+    var tagText=v.tag[currentLang]||v.tag.en;
+    var tagColor=TAG_COLORS[tagText]||'7C4DFF';
+    if(v.isLink){
+      return '<div style="background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden">'
+        +'<div style="background:linear-gradient(135deg,#667eea,#764ba2);padding:20px;display:flex;align-items:center;justify-content:space-between">'
+        +'<div style="display:flex;align-items:center;gap:12px"><span style="font-size:2.5em">'+v.emoji+'</span>'
+        +'<div><div style="color:#fff;font-weight:700;font-size:1em">'+titleText+'</div>'
+        +'<span style="background:rgba(255,255,255,0.25);color:#fff;padding:3px 10px;border-radius:20px;font-size:.75em;font-weight:600">'+tagText+'</span></div></div>'
+        +'<a href="'+v.url+'" target="_blank" style="background:#fff;color:#7C4DFF;border:none;border-radius:12px;padding:10px 18px;font-weight:700;font-size:.9em;cursor:pointer;text-decoration:none">▶ Open</a>'
+        +'</div></div>';
+    }
+    return '<div style="background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden">'
+      +'<div style="background:#f5f5f5;padding:12px 16px;display:flex;align-items:center;gap:10px">'
+      +'<span style="font-size:1.8em">'+v.emoji+'</span>'
+      +'<div><div style="font-weight:700;font-size:.95em;color:#333">'+titleText+'</div>'
+      +'<span style="background:#'+tagColor+';color:#fff;padding:2px 10px;border-radius:20px;font-size:.72em;font-weight:600">'+tagText+'</span></div></div>'
+      +'<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden">'
+      +'<iframe src="https://www.youtube.com/embed/'+v.id+'?rel=0&modestbranding=1" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" allowfullscreen loading="lazy"></iframe>'
+      +'</div></div>';
+  }).join('');
+}
+
+const EDUCATOR_RESOURCES=[
+  {emoji:'📄',title:'Kindergarten Program — Self-Regulation & Well-being',url:'https://www.ontario.ca/document/kindergarten-program-2016/self-regulation-and-well-being',type:'Ontario Curriculum'},
+  {emoji:'📗',title:'How Does Learning Happen?',url:'https://files.ontario.ca/edu-how-does-learning-happen-en-2021-03-23.pdf',type:'Ontario Guide'},
+  {emoji:'🏫',title:'A Calm Classroom — Creating Safe Spaces',url:'https://smho-smso.ca/fw/stress-management-and-coping/calm-classroom/',type:'SMHO'},
+  {emoji:'🫧',title:'Mindful Bubble Bounce',url:'https://www.youtube.com/watch?v=UEuFi9PxKuo',type:'Video'},
+  {emoji:'🎶',title:'Self Control Song',url:'https://www.youtube.com/watch?v=tJs6DeKxX5g',type:'Video'},
+  {emoji:'📖',title:'Emotion Identification Story',url:'https://www.youtube.com/watch?v=64vNirtN1Cc',type:'Video'},
+];
+const PARENT_RESOURCES=[
+  {emoji:'🧰',title:'Self-Regulation Toolkit',url:'https://aidecanada.ca/resources/learn/mental-health/self-regulation-toolkit',type:'AIDE Canada'},
+  {emoji:'📚',title:'Understanding Self-Regulation in Young Children',url:'https://connectability.ca/2021/01/05/understanding-self-regulation-in-young-children/',type:'ConnectAbility'},
+  {emoji:'🎶',title:'Self Control Song',url:'https://www.youtube.com/watch?v=tJs6DeKxX5g',type:'Video'},
+  {emoji:'📖',title:'Emotion Identification Story',url:'https://www.youtube.com/watch?v=64vNirtN1Cc',type:'Video'},
+];
+function renderCuratedResources(containerId,resources){
+  var el=document.getElementById(containerId);
+  if(!el)return;
+  el.innerHTML='<div>'+resources.map(function(r){
+    return '<a href="'+r.url+'" target="_blank" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.07);text-decoration:none;color:inherit">'
+      +'<span style="font-size:2em">'+r.emoji+'</span>'
+      +'<div style="flex:1"><div style="font-weight:700;font-size:.95em;color:#333">'+r.title+'</div>'
+      +'<div style="font-size:.78em;color:#7C4DFF;font-weight:600;margin-top:2px">'+r.type+' ↗</div></div></a>';
+  }).join('')+'</div>';
+}
+
 function speak(elId){
   const el=document.getElementById(elId);
   if(!el)return;
@@ -683,6 +758,7 @@ function applyTranslations(){
   set('zone-red-label',t.zoneRedLabel);set('zone-red-sub',t.zoneRedSub);
   set('back-label',t.back);set('zone-back-label',t.back);
   set('tab-act-label',t.tabAct);set('tab-breath-label',t.tabBreath);set('tab-feel-label',t.tabFeel);
+  if(t.tabVideos)set('tab-videos-label',t.tabVideos);
   set('breath-intro',t.breathIntro);set('feelings-prompt',t.feelingsPrompt);
   set('breath-circle',t.breathReady);set('breath-phase',t.breathPressStart);set('breath-start-btn',t.breathStart);
   if(t.childLoginTitle)set('child-login-title',t.childLoginTitle);
@@ -773,6 +849,7 @@ function switchTab(tabId){
     document.getElementById('breath-count').textContent='';
     document.getElementById('breath-circle').className='breath-circle';
   }
+  if(tabId==='videos-tab'){renderVideos();}
 }
 
 var breathCycle=0;
@@ -1218,16 +1295,27 @@ function renderResources(){
   var icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
   var audienceLabel={both:'Teachers & Parents',teacher:'Teachers only',parent:'Parents only'};
   var allResources=PRESET_RESOURCES.concat((teacherResources||[]).filter(function(r){return !r.preset;}));
-  if(allResources.length===0){el.innerHTML='<div style="color:#aaa;font-size:.9em">No resources yet.</div>';return;}
-  var sections=[{label:'📚 For Everyone',filter:'both'},{label:'👩‍🏫 For Educators',filter:'teacher'},{label:'👪 For Parents',filter:'parent'}];
-  el.innerHTML=sections.map(function(s){
-    var items=allResources.filter(function(r){return r.audience===s.filter;});
-    if(items.length===0)return'';
-    return'<div style="font-weight:700;color:#555;margin:16px 0 8px">'+s.label+'</div>'+
-    items.map(function(r){
-      return '<div class="resource-card" style="'+(r.preset?'border-left:3px solid #7C4DFF':'border-left:3px solid #5CB85C')+'"><div class="rc-icon">'+(icons[r.type]||'🔗')+'</div><div class="rc-info"><h4>'+r.title+' <span style="font-size:.7em;background:'+(r.preset?'#ede9ff':'#edfbee')+';color:'+(r.preset?'#7C4DFF':'#2d7a30')+';padding:2px 8px;border-radius:20px;font-weight:600">'+(r.preset?'Built-in':'Custom')+'</span></h4><p>'+(audienceLabel[r.audience]||r.audience)+'</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><a href="'+r.url+'" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>'+(r.preset?'':'<button onclick="deleteResource(\''+r.id+'\')" style="background:none;border:none;color:#E74C3C;cursor:pointer;font-size:.8em">🗑️ Remove</button>')+'</div></div>';
-    }).join('');
+  // Curated resources header
+  var curatedHtml='<div style="font-weight:700;color:#7C4DFF;margin:0 0 10px;font-size:1em">📚 Curated Resources</div>';
+  curatedHtml+=EDUCATOR_RESOURCES.map(function(r){
+    return '<a href="'+r.url+'" target="_blank" style="display:flex;align-items:center;gap:12px;background:#f9f7ff;border-radius:12px;padding:12px 14px;margin-bottom:8px;text-decoration:none;color:inherit;border-left:3px solid #7C4DFF">'
+      +'<span style="font-size:1.6em">'+r.emoji+'</span>'
+      +'<div style="flex:1"><div style="font-weight:700;font-size:.9em;color:#333">'+r.title+'</div>'
+      +'<div style="font-size:.75em;color:#7C4DFF;font-weight:600;margin-top:2px">'+r.type+' ↗</div></div></a>';
   }).join('');
+  if(allResources.length>0){
+    curatedHtml+='<div style="font-weight:700;color:#555;margin:16px 0 8px">➕ Added Resources</div>';
+    var sections=[{label:'📚 For Everyone',filter:'both'},{label:'👩‍🏫 For Educators',filter:'teacher'},{label:'👪 For Parents',filter:'parent'}];
+    curatedHtml+=sections.map(function(s){
+      var items=allResources.filter(function(r){return r.audience===s.filter;});
+      if(items.length===0)return'';
+      return'<div style="font-weight:600;color:#777;margin:12px 0 6px;font-size:.85em">'+s.label+'</div>'+
+      items.map(function(r){
+        return '<div class="resource-card" style="'+(r.preset?'border-left:3px solid #7C4DFF':'border-left:3px solid #5CB85C')+'"><div class="rc-icon">'+(icons[r.type]||'🔗')+'</div><div class="rc-info"><h4>'+r.title+' <span style="font-size:.7em;background:'+(r.preset?'#ede9ff':'#edfbee')+';color:'+(r.preset?'#7C4DFF':'#2d7a30')+';padding:2px 8px;border-radius:20px;font-weight:600">'+(r.preset?'Built-in':'Custom')+'</span></h4><p>'+(audienceLabel[r.audience]||r.audience)+'</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><a href="'+r.url+'" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a>'+(r.preset?'':'<button onclick="deleteResource(\''+r.id+'\')" style="background:none;border:none;color:#E74C3C;cursor:pointer;font-size:.8em">🗑️ Remove</button>')+'</div></div>';
+      }).join('');
+    }).join('');
+  }
+  el.innerHTML=curatedHtml;
 }
 
 async function loadParentDash(classroomId,classCode,childId){
@@ -1248,11 +1336,18 @@ async function loadParentDash(classroomId,classCode,childId){
   var resources=await sbSelect('resources','audience=in.(both,parent)&order=created_at.desc')||[];
   var icons={pdf:'📄',video:'🎬',image:'🖼️',link:'🔗'};
   var allParentResources=PRESET_RESOURCES.filter(function(r){return r.audience!=='teacher';}).concat(resources.filter(function(r){return !r.preset;}));
-  document.getElementById('parent-resources').innerHTML=allParentResources.length===0
-    ?'<div style="color:#aaa;font-size:.9em">No resources shared yet.</div>'
-    :allParentResources.map(function(r){
+  var parentHtml=PARENT_RESOURCES.map(function(r){
+    return '<a href="'+r.url+'" target="_blank" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.07);text-decoration:none;color:inherit">'
+      +'<span style="font-size:2em">'+r.emoji+'</span>'
+      +'<div style="flex:1"><div style="font-weight:700;font-size:.95em;color:#333">'+r.title+'</div>'
+      +'<div style="font-size:.78em;color:#7C4DFF;font-weight:600;margin-top:2px">'+r.type+' ↗</div></div></a>';
+  }).join('');
+  if(allParentResources.length>0){
+    parentHtml+=allParentResources.map(function(r){
       return '<div class="resource-card"><div class="rc-icon">'+(icons[r.type]||'🔗')+'</div><div class="rc-info"><h4>'+r.title+'</h4></div><a href="'+r.url+'" target="_blank" rel="noopener" style="color:var(--purple);font-size:.85em;font-weight:600;text-decoration:none">Open ↗</a></div>';
     }).join('');
+  }
+  document.getElementById('parent-resources').innerHTML=parentHtml||'<div style="color:#aaa;font-size:.9em">No resources yet.</div>';
 }
 
 async function sbInsert(table,data){
