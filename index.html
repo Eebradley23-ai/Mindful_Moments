@@ -11,11 +11,10 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 .screen{display:none;min-height:100vh;flex-direction:column;animation:fadeIn .3s ease}
 .screen.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.lang-bar{display:flex;justify-content:center;gap:6px;padding:10px;background:rgba(255,255,255,0.15);flex-wrap:wrap}
-.lang-btn{padding:6px 12px;border:2px solid rgba(255,255,255,0.5);background:transparent;border-radius:20px;color:#fff;font-size:.8em;cursor:pointer;font-weight:600;transition:all .2s}
-.lang-btn.active,.lang-btn:hover{background:#fff;color:#7C4DFF}
-.lang-bar-dark .lang-btn{border-color:#ccc;color:#555}
-.lang-bar-dark .lang-btn.active,.lang-bar-dark .lang-btn:hover{background:#7C4DFF;color:#fff;border-color:#7C4DFF}
+.lang-dropdown-wrap{display:flex;justify-content:center;padding:10px;background:rgba(255,255,255,0.15)}
+.lang-select{padding:10px 16px;border:2px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.95);border-radius:24px;color:#7C4DFF;font-size:1em;font-weight:700;cursor:pointer;outline:none;width:90%;max-width:320px;text-align:center}
+.lang-select:focus{border-color:#7C4DFF}
+.lang-bar-dark .lang-select{border-color:#ccc;color:#555}
 .speaker-btn{background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.5);border-radius:50%;width:48px;height:48px;font-size:1.4em;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .speaker-btn:hover{background:rgba(255,255,255,0.4);transform:scale(1.1)}
 .speaker-btn.dark{background:#ede9ff;border-color:#7C4DFF;color:#7C4DFF}
@@ -169,13 +168,27 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 
 <!-- LANDING -->
 <div id="landing" class="screen active">
-  <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 English</button>
-    <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 Français</button>
-    <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 Español</button>
-    <button class="lang-btn" onclick="setLang('zh',this)">🇨🇳 中文</button>
-    <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 Русский</button>
-  </div>
+  <div class="lang-dropdown-wrap">
+  <select class="lang-select" onchange="setLang(this.value)">
+    <option value="en">🇨🇦 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="zh">🇨🇳 普通话 (Mandarin)</option>
+    <option value="yue">🇭🇰 廣東話 (Cantonese)</option>
+    <option value="ru">🇷🇺 Русский</option>
+    <option value="pt">🇵🇹 Português</option>
+    <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+    <option value="ur">🇵🇰 اردو (Urdu)</option>
+    <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+    <option value="tl">🇵🇭 Tagalog</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="pl">🇵🇱 Polski</option>
+    <option value="ar">🇸🇦 العربية (Arabic)</option>
+    <option value="ta">🇱🇰 தமிழ் (Tamil)</option>
+    <option value="fa">🇦🇫 دری (Dari)</option>
+    <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+  </select>
+</div>
   <div class="landing-inner">
     <h1>🌸 Mindful Moments</h1>
     <div class="speak-row">
@@ -222,13 +235,27 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 
 <!-- CHILD LOGIN -->
 <div id="child-login" class="screen" style="background:linear-gradient(145deg,#a18cd1,#fbc2eb);align-items:center;justify-content:flex-start">
-  <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
-    <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
-    <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
-    <button class="lang-btn" onclick="setLang('zh',this)">🇨🇳 中</button>
-    <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
-  </div>
+  <div class="lang-dropdown-wrap">
+  <select class="lang-select" onchange="setLang(this.value)">
+    <option value="en">🇨🇦 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="zh">🇨🇳 普通话 (Mandarin)</option>
+    <option value="yue">🇭🇰 廣東話 (Cantonese)</option>
+    <option value="ru">🇷🇺 Русский</option>
+    <option value="pt">🇵🇹 Português</option>
+    <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+    <option value="ur">🇵🇰 اردو (Urdu)</option>
+    <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+    <option value="tl">🇵🇭 Tagalog</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="pl">🇵🇱 Polski</option>
+    <option value="ar">🇸🇦 العربية (Arabic)</option>
+    <option value="ta">🇱🇰 தமிழ் (Tamil)</option>
+    <option value="fa">🇦🇫 دری (Dari)</option>
+    <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+  </select>
+</div>
   <div class="fq-inner">
     <div class="speak-row" style="margin-bottom:10px">
       <h2 id="child-login-title" style="font-size:1.6em">Who are you? 👋</h2>
@@ -277,13 +304,27 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 
 <!-- FEELING QUESTION -->
 <div id="feeling-q" class="screen">
-  <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
-    <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
-    <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
-    <button class="lang-btn" onclick="setLang('zh',this)">🇨🇳 中</button>
-    <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
-  </div>
+  <div class="lang-dropdown-wrap">
+  <select class="lang-select" onchange="setLang(this.value)">
+    <option value="en">🇨🇦 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="zh">🇨🇳 普通话 (Mandarin)</option>
+    <option value="yue">🇭🇰 廣東話 (Cantonese)</option>
+    <option value="ru">🇷🇺 Русский</option>
+    <option value="pt">🇵🇹 Português</option>
+    <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+    <option value="ur">🇵🇰 اردو (Urdu)</option>
+    <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+    <option value="tl">🇵🇭 Tagalog</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="pl">🇵🇱 Polski</option>
+    <option value="ar">🇸🇦 العربية (Arabic)</option>
+    <option value="ta">🇱🇰 தமிழ் (Tamil)</option>
+    <option value="fa">🇦🇫 دری (Dari)</option>
+    <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+  </select>
+</div>
   <div class="fq-inner">
     <div class="speak-row" style="margin-bottom:6px">
       <h2 id="fq-question">How are you feeling right now?</h2>
@@ -319,13 +360,27 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 <!-- ZONE PAGE -->
 <div id="zone-page" class="screen">
   <div id="zone-header-bg" class="zone-header">
-    <div class="lang-bar" style="padding:0 0 10px">
-      <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
-      <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
-      <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
-      <button class="lang-btn" onclick="setLang('zh',this)">🇨🇳 中</button>
-      <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
-    </div>
+    <div class="lang-dropdown-wrap">
+  <select class="lang-select" onchange="setLang(this.value)">
+    <option value="en">🇨🇦 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="zh">🇨🇳 普通话 (Mandarin)</option>
+    <option value="yue">🇭🇰 廣東話 (Cantonese)</option>
+    <option value="ru">🇷🇺 Русский</option>
+    <option value="pt">🇵🇹 Português</option>
+    <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+    <option value="ur">🇵🇰 اردو (Urdu)</option>
+    <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+    <option value="tl">🇵🇭 Tagalog</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="pl">🇵🇱 Polski</option>
+    <option value="ar">🇸🇦 العربية (Arabic)</option>
+    <option value="ta">🇱🇰 தமிழ் (Tamil)</option>
+    <option value="fa">🇦🇫 دری (Dari)</option>
+    <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+  </select>
+</div>
     <div class="zone-header-top">
       <button class="back-btn-white" onclick="showScreen('feeling-q')">← <span id="zone-back-label">Back</span></button>
       <button class="speaker-btn" onclick="speak('zone-desc-text')">🔊</button>
@@ -387,13 +442,27 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;ove
 
 <!-- STARS -->
 <div id="stars-screen" class="screen">
-  <div class="lang-bar" style="background:rgba(0,0,0,0.1)">
-    <button class="lang-btn active" onclick="setLang('en',this)">🇨🇦 EN</button>
-    <button class="lang-btn" onclick="setLang('fr',this)">🇫🇷 FR</button>
-    <button class="lang-btn" onclick="setLang('es',this)">🇪🇸 ES</button>
-    <button class="lang-btn" onclick="setLang('zh',this)">🇨🇳 中</button>
-    <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
-  </div>
+  <div class="lang-dropdown-wrap">
+  <select class="lang-select" onchange="setLang(this.value)">
+    <option value="en">🇨🇦 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="zh">🇨🇳 普通话 (Mandarin)</option>
+    <option value="yue">🇭🇰 廣東話 (Cantonese)</option>
+    <option value="ru">🇷🇺 Русский</option>
+    <option value="pt">🇵🇹 Português</option>
+    <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+    <option value="ur">🇵🇰 اردو (Urdu)</option>
+    <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+    <option value="tl">🇵🇭 Tagalog</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="pl">🇵🇱 Polski</option>
+    <option value="ar">🇸🇦 العربية (Arabic)</option>
+    <option value="ta">🇱🇰 தமிழ் (Tamil)</option>
+    <option value="fa">🇦🇫 دری (Dari)</option>
+    <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+  </select>
+</div>
   <div class="stars-inner">
     <h2 id="stars-title">⭐ My Stars</h2>
     <p id="stars-sub">You're doing amazing!</p>
@@ -628,7 +697,19 @@ const T={
   fr:{landingTagline:'Comment tu te sens aujourd\'hui?',tapToSee:'Appuie pour voir comment faire',childLoginTitle:'C\'est qui toi? 👋',childCodeLabel:'Entre le code de ta classe donné par ton enseignant:',childCodeBtn:'Trouver ma classe',childPickLabel:'Appuie sur ton prénom! 👇',childBackCode:'Retour',childLoginBack:'Retour à l\'accueil',breathReady:'Prêt',breathPressStart:'Appuie sur Démarrer!',breathStart:'▶ Démarrer',breathStop:'⏹ Arrêter',breathStartAgain:'▶ Recommencer',breathIn:'Inspire 🌬️',breathHoldText:'Retiens... ✋',breathHoldCircle:'Retiens...',breathOut:'Expire 💨',breathInCircle:'Inspire...',breathOutCircle:'Expire...',breathDone:'Terminé!',breathGreat:'Bravo! 🌟',btnChild:'👧 Je suis un enfant',btnTeacher:'👩‍🏫 Éducateur / Enseignant',btnParent:'👪 Parent / Tuteur',fqQuestion:'Comment tu te sens maintenant?',fqSub:'Touche le visage qui correspond!',zoneBlueLabel:'Zone Bleue',zoneBlueSub:'Triste · Fatigué · Malade',zoneGreenLabel:'Zone Verte',zoneGreenSub:'Heureux · Calme · Prêt',zoneYellowLabel:'Zone Jaune',zoneYellowSub:'Inquiet · Excité · Rigolo',zoneRedLabel:'Zone Rouge',zoneRedSub:'En colère · Effrayé · Débordé',back:'Retour',tabAct:'🎯 Activités',tabBreath:'🌬️ Respiration',tabVideos:'🎬 Vidéos',tabFeel:'💬 Mes Émotions',videosIntro:'🎬 Des vidéos amusantes pour bouger, respirer et se sentir mieux!',childPinLabel:'Entre ton code à 2 chiffres 🔢',childPinGo:'C\'est parti!',childPinBack:'Retour',childPinErr:'Ce n\'est pas le bon code. Réessaie! 🙈',btnResources:'📚 Ressources',breathIntro:'Respirons ensemble!',feelingsPrompt:'Touche les émotions que tu ressens:',notePrompt:'Tu veux nous dire autre chose?',saveLabel:'Sauvegarder',doneLabel:'Je l\'ai fait!',celebTitle:'Bravo!',celebMsg:'Tu as partagé tes émotions et gagné une étoile!',celebHome:'Accueil',celebStars:'Mes étoiles',starsTitle:'⭐ Mes Étoiles',starsSub:'Tu es formidable!',starsEarned:'Étoiles gagnées',starsBack:'Retour',ms1:'Premier check-in — Explorateur!',ms2:'5 Étoiles — Superstar!',ms3:'10 Étoiles — Champion!'},
   es:{landingTagline:'¿Cómo te sientes hoy?',tapToSee:'Toca para ver cómo hacerlo',childLoginTitle:'¿Quién eres tú? 👋',childCodeLabel:'Ingresa el código de tu clase dado por tu maestro:',childCodeBtn:'Encontrar mi clase',childPickLabel:'¡Toca tu nombre! 👇',childBackCode:'Atrás',childLoginBack:'Volver al inicio',breathReady:'Listo',breathPressStart:'¡Presiona Iniciar!',breathStart:'▶ Iniciar',breathStop:'⏹ Parar',breathStartAgain:'▶ Iniciar de nuevo',breathIn:'Inhala 🌬️',breathHoldText:'Aguanta... ✋',breathHoldCircle:'Aguanta...',breathOut:'Exhala 💨',breathInCircle:'Inhala...',breathOutCircle:'Exhala...',breathDone:'¡Listo!',breathGreat:'¡Muy bien! 🌟',btnChild:'👧 Soy un niño',btnTeacher:'👩‍🏫 Educador / Maestro',btnParent:'👪 Padre / Tutor',fqQuestion:'¿Cómo te sientes ahora mismo?',fqSub:'¡Toca la cara que muestra cómo te sientes!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Enfermo',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Tranquilo · Listo',zoneYellowLabel:'Zona Amarilla',zoneYellowSub:'Preocupado · Emocionado · Tonto',zoneRedLabel:'Zona Roja',zoneRedSub:'Enojado · Asustado · Fuera de control',back:'Atrás',tabAct:'🎯 Actividades',tabBreath:'🌬️ Respiración',tabVideos:'🎬 Videos',tabFeel:'💬 Mis Emociones',videosIntro:'🎬 ¡Videos divertidos para moverte, respirar y sentirte mejor!',childPinLabel:'Ingresa tu código de 2 dígitos 🔢',childPinGo:'¡Vamos!',childPinBack:'Atrás',childPinErr:'Ese no es el código correcto. ¡Inténtalo de nuevo! 🙈',btnResources:'📚 Recursos',breathIntro:'¡Respiremos juntos!',feelingsPrompt:'Toca las emociones que tienes ahora:',notePrompt:'¿Quieres decirnos algo más?',saveLabel:'Guardar',doneLabel:'¡Lo hice!',celebTitle:'¡Increíble!',celebMsg:'¡Compartiste tus emociones y ganaste una estrella!',celebHome:'Inicio',celebStars:'Mis estrellas',starsTitle:'⭐ Mis Estrellas',starsSub:'¡Eres increíble!',starsEarned:'Estrellas ganadas',starsBack:'Volver',ms1:'Primer check-in — ¡Explorador!',ms2:'5 Estrellas — ¡Superestrella!',ms3:'10 Estrellas — ¡Campeón!'},
   zh:{landingTagline:'你今天感觉怎么样？',tapToSee:'点击查看如何做',childLoginTitle:'你是谁？👋',childCodeLabel:'输入老师给你的班级代码：',childCodeBtn:'找到我的班级',childPickLabel:'点击你的名字！👇',childBackCode:'返回',childLoginBack:'返回主页',breathReady:'准备好了',breathPressStart:'按开始！',breathStart:'▶ 开始',breathStop:'⏹ 停止',breathStartAgain:'▶ 再来一次',breathIn:'吸气 🌬️',breathHoldText:'屏住... ✋',breathHoldCircle:'屏住...',breathOut:'呼气 💨',breathInCircle:'吸气...',breathOutCircle:'呼气...',breathDone:'完成！',breathGreat:'做得很好！🌟',btnChild:'👧 我是小朋友',btnTeacher:'👩‍🏫 教师 / 教育者',btnParent:'👪 家长 / 监护人',fqQuestion:'你现在感觉怎么样？',fqSub:'点击与你感受相符的表情！',zoneBlueLabel:'蓝色区域',zoneBlueSub:'悲伤 · 疲惫 · 生病',zoneGreenLabel:'绿色区域',zoneGreenSub:'开心 · 平静 · 准备好了',zoneYellowLabel:'黄色区域',zoneYellowSub:'担心 · 兴奋 · 傻乎乎',zoneRedLabel:'红色区域',zoneRedSub:'生气 · 害怕 · 失控',back:'返回',tabAct:'🎯 活动',tabBreath:'🌬️ 呼吸',tabVideos:'🎬 视频',tabFeel:'💬 我的感受',videosIntro:'🎬 有趣的视频帮助你运动、呼吸和感觉更好！',childPinLabel:'输入你的2位密码 🔢',childPinGo:'出发！',childPinBack:'返回',childPinErr:'密码不对，再试一次！🙈',btnResources:'📚 资源',breathIntro:'让我们一起做呼吸练习！',feelingsPrompt:'点击你现在有的感受：',notePrompt:'还想告诉我们什么吗？',saveLabel:'保存我的感受',doneLabel:'我做到了！',celebTitle:'太棒了！',celebMsg:'你分享了感受，获得了一颗星！',celebHome:'主页',celebStars:'我的星星',starsTitle:'⭐ 我的星星',starsSub:'你太棒了！',starsEarned:'已获得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5颗星 — 情感超级明星！',ms3:'10颗星 — 区域冠军！'},
-  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',tapToSee:'Нажми, чтобы узнать как это делать',childLoginTitle:'Кто ты? 👋',childCodeLabel:'Введи код класса от твоего учителя:',childCodeBtn:'Найти мой класс',childPickLabel:'Нажми на своё имя! 👇',childBackCode:'Назад',childLoginBack:'На главную',breathReady:'Готово',breathPressStart:'Нажми Старт!',breathStart:'▶ Старт',breathStop:'⏹ Стоп',breathStartAgain:'▶ Начать снова',breathIn:'Вдох 🌬️',breathHoldText:'Задержи... ✋',breathHoldCircle:'Задержи...',breathOut:'Выдох 💨',breathInCircle:'Вдыхай...',breathOutCircle:'Выдыхай...',breathDone:'Готово!',breathGreat:'Молодец! 🌟',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabVideos:'🎬 Видео',tabFeel:'💬 Мои чувства',videosIntro:'🎬 Весёлые видео, чтобы двигаться, дышать и чувствовать себя лучше!',childPinLabel:'Введи свой 2-значный код 🔢',childPinGo:'Поехали!',childPinBack:'Назад',childPinErr:'Неверный код. Попробуй ещё раз! 🙈',btnResources:'📚 Ресурсы',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'}
+  ru:{landingTagline:'Как ты себя чувствуешь сегодня?',tapToSee:'Нажми, чтобы узнать как это делать',childLoginTitle:'Кто ты? 👋',childCodeLabel:'Введи код класса от твоего учителя:',childCodeBtn:'Найти мой класс',childPickLabel:'Нажми на своё имя! 👇',childBackCode:'Назад',childLoginBack:'На главную',breathReady:'Готово',breathPressStart:'Нажми Старт!',breathStart:'▶ Старт',breathStop:'⏹ Стоп',breathStartAgain:'▶ Начать снова',breathIn:'Вдох 🌬️',breathHoldText:'Задержи... ✋',breathHoldCircle:'Задержи...',breathOut:'Выдох 💨',breathInCircle:'Вдыхай...',breathOutCircle:'Выдыхай...',breathDone:'Готово!',breathGreat:'Молодец! 🌟',btnChild:'👧 Я ребёнок',btnTeacher:'👩‍🏫 Педагог / Учитель',btnParent:'👪 Родитель / Опекун',fqQuestion:'Как ты себя чувствуешь сейчас?',fqSub:'Нажми на лицо, которое подходит тебе!',zoneBlueLabel:'Синяя зона',zoneBlueSub:'Грустный · Уставший · Больной',zoneGreenLabel:'Зелёная зона',zoneGreenSub:'Счастливый · Спокойный · Готовый',zoneYellowLabel:'Жёлтая зона',zoneYellowSub:'Волнующийся · Взволнованный · Глупый',zoneRedLabel:'Красная зона',zoneRedSub:'Злой · Испуганный · Вне контроля',back:'Назад',tabAct:'🎯 Упражнения',tabBreath:'🌬️ Дыхание',tabVideos:'🎬 Видео',tabFeel:'💬 Мои чувства',videosIntro:'🎬 Весёлые видео, чтобы двигаться, дышать и чувствовать себя лучше!',childPinLabel:'Введи свой 2-значный код 🔢',childPinGo:'Поехали!',childPinBack:'Назад',childPinErr:'Неверный код. Попробуй ещё раз! 🙈',btnResources:'📚 Ресурсы',breathIntro:'Давай подышим вместе!',feelingsPrompt:'Нажми на чувства, которые ты испытываешь:',notePrompt:'Хочешь рассказать нам что-то ещё?',saveLabel:'Сохранить',doneLabel:'Я сделал это!',celebTitle:'Молодец!',celebMsg:'Ты поделился чувствами и заработал звезду!',celebHome:'Главная',celebStars:'Мои звёзды',starsTitle:'⭐ Мои Звёзды',starsSub:'Ты справляешься отлично!',starsEarned:'Заработанные звёзды',starsBack:'Назад',ms1:'Первый чек-ин — Исследователь!',ms2:'5 звёзд — Суперзвезда!',ms3:'10 звёзд — Чемпион!'},
+  yue:{landingTagline:'你今日感覺點呀？',tapToSee:'點擊睇點做',childLoginTitle:'你係邊個？👋',childCodeLabel:'輸入老師畀你嘅班級代碼：',childCodeBtn:'搵我嘅班級',childPickLabel:'點擊你嘅名字！👇',childBackCode:'返回',childLoginBack:'返回主頁',breathReady:'準備好',breathPressStart:'按開始！',breathStart:'▶ 開始',breathStop:'⏹ 停止',breathStartAgain:'▶ 再嚟一次',breathIn:'吸氣 🌬️',breathHoldText:'憋住... ✋',breathHoldCircle:'憋住...',breathOut:'呼氣 💨',breathInCircle:'吸氣...',breathOutCircle:'呼氣...',breathDone:'完成！',breathGreat:'做得好！🌟',btnChild:'👧 我係小朋友',btnTeacher:'👩‍🏫 教師 / 教育者',btnParent:'👪 家長 / 監護人',fqQuestion:'你而家感覺點？',fqSub:'點擊符合你感受嘅表情！',zoneBlueLabel:'藍色區域',zoneBlueSub:'傷心 · 疲憊 · 生病',zoneGreenLabel:'綠色區域',zoneGreenSub:'開心 · 平靜 · 準備好',zoneYellowLabel:'黃色區域',zoneYellowSub:'擔心 · 興奮 · 傻乎乎',zoneRedLabel:'紅色區域',zoneRedSub:'嬲 · 驚 · 失控',back:'返回',tabAct:'🎯 活動',tabBreath:'🌬️ 呼吸',tabVideos:'🎬 視頻',tabFeel:'💬 我嘅感受',videosIntro:'🎬 有趣嘅視頻幫你郁動、呼吸同感覺好啲！',childPinLabel:'輸入你嘅2位密碼 🔢',childPinGo:'出發！',childPinBack:'返回',childPinErr:'密碼唔啱，再試一次！🙈',btnResources:'📚 資源',breathIntro:'一齊做呼吸練習！',feelingsPrompt:'點擊你而家有嘅感受：',notePrompt:'仲想話畀我哋知咩？',saveLabel:'儲存我嘅感受',doneLabel:'我做到喇！',celebTitle:'好叻呀！',celebMsg:'你分享咗感受，攞到一粒星！',celebHome:'主頁',celebStars:'我嘅星星',starsTitle:'⭐ 我嘅星星',starsSub:'你好叻呀！',starsEarned:'已獲得星星',starsBack:'返回',ms1:'首次打卡 — 情感探索者！',ms2:'5粒星 — 情感超級明星！',ms3:'10粒星 — 明日時刻冠軍！'},
+  pt:{landingTagline:'Como você está se sentindo hoje?',tapToSee:'Toque para ver como fazer',childLoginTitle:'Quem é você? 👋',childCodeLabel:'Digite o código da sua turma do professor:',childCodeBtn:'Encontrar minha turma',childPickLabel:'Toque no seu nome! 👇',childBackCode:'Voltar',childLoginBack:'Voltar ao início',breathReady:'Pronto',breathPressStart:'Pressione Iniciar!',breathStart:'▶ Iniciar',breathStop:'⏹ Parar',breathStartAgain:'▶ Começar de novo',breathIn:'Inspire 🌬️',breathHoldText:'Segure... ✋',breathHoldCircle:'Segure...',breathOut:'Expire 💨',breathInCircle:'Inspire...',breathOutCircle:'Expire...',breathDone:'Pronto!',breathGreat:'Muito bem! 🌟',btnChild:'👧 Sou uma criança',btnTeacher:'👩‍🏫 Educador / Professor',btnParent:'👪 Pai / Responsável',fqQuestion:'Como você está se sentindo agora?',fqSub:'Toque no rosto que mostra como você se sente!',zoneBlueLabel:'Zona Azul',zoneBlueSub:'Triste · Cansado · Doente',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Feliz · Calmo · Pronto',zoneYellowLabel:'Zona Amarela',zoneYellowSub:'Preocupado · Animado · Bobo',zoneRedLabel:'Zona Vermelha',zoneRedSub:'Bravo · Assustado · Fora de controle',back:'Voltar',tabAct:'🎯 Atividades',tabBreath:'🌬️ Respiração',tabVideos:'🎬 Vídeos',tabFeel:'💬 Meus Sentimentos',videosIntro:'🎬 Vídeos divertidos para se mover, respirar e se sentir melhor!',childPinLabel:'Digite seu código de 2 dígitos 🔢',childPinGo:'Vamos lá!',childPinBack:'Voltar',childPinErr:'Esse não é o código certo. Tente de novo! 🙈',btnResources:'📚 Recursos',breathIntro:'Vamos respirar juntos!',feelingsPrompt:'Toque nos sentimentos que você tem agora:',notePrompt:'Quer nos contar mais alguma coisa?',saveLabel:'Salvar',doneLabel:'Eu consegui!',celebTitle:'Incrível!',celebMsg:'Você compartilhou seus sentimentos e ganhou uma estrela!',celebHome:'Início',celebStars:'Minhas estrelas',starsTitle:'⭐ Minhas Estrelas',starsSub:'Você é incrível!',starsEarned:'Estrelas ganhas',starsBack:'Voltar',ms1:'Primeiro check-in — Explorador!',ms2:'5 Estrelas — Superestrela!',ms3:'10 Estrelas — Campeão Mindful Moments!'},
+  pa:{landingTagline:'ਤੁਸੀਂ ਅੱਜ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰ ਰਹੇ ਹੋ?',tapToSee:'ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ',childLoginTitle:'ਤੁਸੀਂ ਕੌਣ ਹੋ? 👋',childCodeLabel:'ਆਪਣੇ ਅਧਿਆਪਕ ਦਾ ਕਲਾਸ ਕੋਡ ਦਾਖਲ ਕਰੋ:',childCodeBtn:'ਮੇਰੀ ਕਲਾਸ ਲੱਭੋ',childPickLabel:'ਆਪਣਾ ਨਾਮ ਟੈਪ ਕਰੋ! 👇',childBackCode:'ਵਾਪਸ',childLoginBack:'ਘਰ ਵਾਪਸ',breathReady:'ਤਿਆਰ',breathPressStart:'ਸ਼ੁਰੂ ਦਬਾਓ!',breathStart:'▶ ਸ਼ੁਰੂ',breathStop:'⏹ ਰੋਕੋ',breathStartAgain:'▶ ਦੁਬਾਰਾ ਸ਼ੁਰੂ',breathIn:'ਸਾਹ ਲਓ 🌬️',breathHoldText:'ਰੋਕੋ... ✋',breathHoldCircle:'ਰੋਕੋ...',breathOut:'ਸਾਹ ਛੱਡੋ 💨',breathInCircle:'ਸਾਹ ਲਓ...',breathOutCircle:'ਸਾਹ ਛੱਡੋ...',breathDone:'ਹੋ ਗਿਆ!',breathGreat:'ਸ਼ਾਬਾਸ਼! 🌟',btnChild:'👧 ਮੈਂ ਬੱਚਾ ਹਾਂ',btnTeacher:'👩‍🏫 ਅਧਿਆਪਕ / ਸਿੱਖਿਅਕ',btnParent:'👪 ਮਾਤਾ-ਪਿਤਾ / ਸਰਪ੍ਰਸਤ',fqQuestion:'ਤੁਸੀਂ ਹੁਣ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰ ਰਹੇ ਹੋ?',fqSub:'ਉਹ ਚਿਹਰਾ ਟੈਪ ਕਰੋ ਜੋ ਤੁਹਾਡੀ ਭਾਵਨਾ ਦੱਸਦਾ ਹੈ!',zoneBlueLabel:'ਨੀਲਾ ਜ਼ੋਨ',zoneBlueSub:'ਉਦਾਸ · ਥੱਕਿਆ · ਬਿਮਾਰ',zoneGreenLabel:'ਹਰਾ ਜ਼ੋਨ',zoneGreenSub:'ਖੁਸ਼ · ਸ਼ਾਂਤ · ਤਿਆਰ',zoneYellowLabel:'ਪੀਲਾ ਜ਼ੋਨ',zoneYellowSub:'ਚਿੰਤਤ · ਉਤਸਾਹਿਤ · ਮੂਰਖ',zoneRedLabel:'ਲਾਲ ਜ਼ੋਨ',zoneRedSub:'ਗੁੱਸੇ · ਡਰਿਆ · ਬੇਕਾਬੂ',back:'ਵਾਪਸ',tabAct:'🎯 ਗਤੀਵਿਧੀਆਂ',tabBreath:'🌬️ ਸਾਹ',tabVideos:'🎬 ਵੀਡੀਓ',tabFeel:'💬 ਮੇਰੀਆਂ ਭਾਵਨਾਵਾਂ',videosIntro:'🎬 ਮਜ਼ੇਦਾਰ ਵੀਡੀਓ ਜੋ ਤੁਹਾਨੂੰ ਬਿਹਤਰ ਮਹਿਸੂਸ ਕਰਾਉਣ!',childPinLabel:'ਆਪਣਾ 2-ਅੰਕ ਕੋਡ ਦਾਖਲ ਕਰੋ 🔢',childPinGo:'ਚੱਲੋ!',childPinBack:'ਵਾਪਸ',childPinErr:'ਇਹ ਸਹੀ ਕੋਡ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ! 🙈',btnResources:'📚 ਸਰੋਤ',breathIntro:'ਆਓ ਮਿਲ ਕੇ ਸਾਹ ਲਈਏ!',feelingsPrompt:'ਉਹ ਭਾਵਨਾਵਾਂ ਟੈਪ ਕਰੋ ਜੋ ਤੁਸੀਂ ਹੁਣ ਮਹਿਸੂਸ ਕਰਦੇ ਹੋ:',notePrompt:'ਕੁਝ ਹੋਰ ਦੱਸਣਾ ਚਾਹੁੰਦੇ ਹੋ?',saveLabel:'ਸੁਰੱਖਿਅਤ ਕਰੋ',doneLabel:'ਮੈਂ ਕਰ ਲਿਆ!',celebTitle:'ਸ਼ਾਬਾਸ਼!',celebMsg:'ਤੁਸੀਂ ਆਪਣੀਆਂ ਭਾਵਨਾਵਾਂ ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਅਤੇ ਇੱਕ ਤਾਰਾ ਕਮਾਇਆ!',celebHome:'ਘਰ',celebStars:'ਮੇਰੇ ਤਾਰੇ',starsTitle:'⭐ ਮੇਰੇ ਤਾਰੇ',starsSub:'ਤੁਸੀਂ ਸ਼ਾਨਦਾਰ ਹੋ!',starsEarned:'ਕਮਾਏ ਤਾਰੇ',starsBack:'ਵਾਪਸ',ms1:'ਪਹਿਲਾ ਚੈੱਕ-ਇਨ — ਖੋਜੀ!',ms2:'5 ਤਾਰੇ — ਸੁਪਰਸਟਾਰ!',ms3:'10 ਤਾਰੇ — ਚੈਂਪੀਅਨ!'},
+  ur:{landingTagline:'آج آپ کیسا محسوس کر رہے ہیں؟',tapToSee:'دیکھنے کے لیے ٹیپ کریں',childLoginTitle:'آپ کون ہیں؟ 👋',childCodeLabel:'اپنے استاد کا کلاس کوڈ درج کریں:',childCodeBtn:'میری کلاس تلاش کریں',childPickLabel:'اپنا نام ٹیپ کریں! 👇',childBackCode:'واپس',childLoginBack:'گھر واپس',breathReady:'تیار',breathPressStart:'شروع دبائیں!',breathStart:'▶ شروع',breathStop:'⏹ رکیں',breathStartAgain:'▶ دوبارہ شروع',breathIn:'سانس لیں 🌬️',breathHoldText:'روکیں... ✋',breathHoldCircle:'روکیں...',breathOut:'سانس چھوڑیں 💨',breathInCircle:'سانس لیں...',breathOutCircle:'سانس چھوڑیں...',breathDone:'ہو گیا!',breathGreat:'شاباش! 🌟',btnChild:'👧 میں بچہ ہوں',btnTeacher:'👩‍🏫 استاد / معلم',btnParent:'👪 والدین / سرپرست',fqQuestion:'آپ ابھی کیسا محسوس کر رہے ہیں؟',fqSub:'وہ چہرہ ٹیپ کریں جو آپ کے احساس کو ظاہر کرتا ہے!',zoneBlueLabel:'نیلا زون',zoneBlueSub:'اداس · تھکا · بیمار',zoneGreenLabel:'سبز زون',zoneGreenSub:'خوش · پرسکون · تیار',zoneYellowLabel:'پیلا زون',zoneYellowSub:'فکرمند · پرجوش · بیوقوف',zoneRedLabel:'سرخ زون',zoneRedSub:'غصہ · ڈرا · بے قابو',back:'واپس',tabAct:'🎯 سرگرمیاں',tabBreath:'🌬️ سانس',tabVideos:'🎬 ویڈیوز',tabFeel:'💬 میرے احساسات',videosIntro:'🎬 مزیدار ویڈیوز جو آپ کو بہتر محسوس کرائیں!',childPinLabel:'اپنا 2 ہندسہ کوڈ درج کریں 🔢',childPinGo:'چلیں!',childPinBack:'واپس',childPinErr:'یہ صحیح کوڈ نہیں۔ دوبارہ کوشش کریں! 🙈',btnResources:'📚 وسائل',breathIntro:'آئیں مل کر سانس لیں!',feelingsPrompt:'وہ احساسات ٹیپ کریں جو آپ ابھی محسوس کر رہے ہیں:',notePrompt:'کچھ اور بتانا چاہتے ہیں؟',saveLabel:'محفوظ کریں',doneLabel:'میں نے کر لیا!',celebTitle:'شاباش!',celebMsg:'آپ نے اپنے احساسات شیئر کیے اور ایک ستارہ کمایا!',celebHome:'گھر',celebStars:'میرے ستارے',starsTitle:'⭐ میرے ستارے',starsSub:'آپ شاندار ہیں!',starsEarned:'کمائے ستارے',starsBack:'واپس',ms1:'پہلا چیک ان — ایکسپلورر!',ms2:'5 ستارے — سپرسٹار!',ms3:'10 ستارے — چیمپئن!'},
+  hi:{landingTagline:'आज आप कैसा महसूस कर रहे हैं?',tapToSee:'देखने के लिए टैप करें',childLoginTitle:'आप कौन हैं? 👋',childCodeLabel:'अपने शिक्षक का क्लास कोड दर्ज करें:',childCodeBtn:'मेरी क्लास खोजें',childPickLabel:'अपना नाम टैप करें! 👇',childBackCode:'वापस',childLoginBack:'घर वापस',breathReady:'तैयार',breathPressStart:'शुरू दबाएं!',breathStart:'▶ शुरू',breathStop:'⏹ रोकें',breathStartAgain:'▶ दोबारा शुरू',breathIn:'सांस लें 🌬️',breathHoldText:'रोकें... ✋',breathHoldCircle:'रोकें...',breathOut:'सांस छोड़ें 💨',breathInCircle:'सांस लें...',breathOutCircle:'सांस छोड़ें...',breathDone:'हो गया!',breathGreat:'शाबाश! 🌟',btnChild:'👧 मैं बच्चा हूं',btnTeacher:'👩‍🏫 शिक्षक / शिक्षाकर्मी',btnParent:'👪 माता-पिता / अभिभावक',fqQuestion:'आप अभी कैसा महसूस कर रहे हैं?',fqSub:'वह चेहरा टैप करें जो आपकी भावना दिखाता है!',zoneBlueLabel:'नीला क्षेत्र',zoneBlueSub:'उदास · थका · बीमार',zoneGreenLabel:'हरा क्षेत्र',zoneGreenSub:'खुश · शांत · तैयार',zoneYellowLabel:'पीला क्षेत्र',zoneYellowSub:'चिंतित · उत्साहित · मूर्ख',zoneRedLabel:'लाल क्षेत्र',zoneRedSub:'गुस्सा · डरा · बेकाबू',back:'वापस',tabAct:'🎯 गतिविधियां',tabBreath:'🌬️ सांस',tabVideos:'🎬 वीडियो',tabFeel:'💬 मेरी भावनाएं',videosIntro:'🎬 मजेदार वीडियो जो आपको बेहतर महसूस कराएं!',childPinLabel:'अपना 2 अंक कोड दर्ज करें 🔢',childPinGo:'चलो!',childPinBack:'वापस',childPinErr:'यह सही कोड नहीं है। फिर कोशिश करें! 🙈',btnResources:'📚 संसाधन',breathIntro:'आओ मिलकर सांस लें!',feelingsPrompt:'वह भावनाएं टैप करें जो आप अभी महसूस कर रहे हैं:',notePrompt:'कुछ और बताना चाहते हैं?',saveLabel:'सहेजें',doneLabel:'मैंने कर लिया!',celebTitle:'शाबाश!',celebMsg:'आपने अपनी भावनाएं साझा कीं और एक सितारा कमाया!',celebHome:'घर',celebStars:'मेरे सितारे',starsTitle:'⭐ मेरे सितारे',starsSub:'आप शानदार हैं!',starsEarned:'कमाए सितारे',starsBack:'वापस',ms1:'पहला चेक-इन — एक्सप्लोरर!',ms2:'5 सितारे — सुपरस्टार!',ms3:'10 सितारे — चैंपियन!'},
+  tl:{landingTagline:'Paano ka nagdaramdam ngayon?',tapToSee:'I-tap para makita kung paano',childLoginTitle:'Sino ka? 👋',childCodeLabel:'Ilagay ang class code ng iyong guro:',childCodeBtn:'Hanapin ang aking klase',childPickLabel:'I-tap ang iyong pangalan! 👇',childBackCode:'Bumalik',childLoginBack:'Bumalik sa Home',breathReady:'Handa',breathPressStart:'Pindutin ang Simula!',breathStart:'▶ Simula',breathStop:'⏹ Tigil',breathStartAgain:'▶ Magsimula ulit',breathIn:'Huminga 🌬️',breathHoldText:'Pigilan... ✋',breathHoldCircle:'Pigilan...',breathOut:'Huminga palabas 💨',breathInCircle:'Huminga...',breathOutCircle:'Huminga palabas...',breathDone:'Tapos na!',breathGreat:'Magaling! 🌟',btnChild:'👧 Ako ay bata',btnTeacher:'👩‍🏫 Guro / Tagapagturo',btnParent:'👪 Magulang / Tagapag-alaga',fqQuestion:'Paano ka nagdaramdam ngayon?',fqSub:'I-tap ang mukha na nagpapakita ng iyong nararamdaman!',zoneBlueLabel:'Blue Zone',zoneBlueSub:'Malungkot · Pagod · May sakit',zoneGreenLabel:'Green Zone',zoneGreenSub:'Masaya · Panatag · Handa',zoneYellowLabel:'Yellow Zone',zoneYellowSub:'Nag-aalala · Nasasabik · Nakakatawa',zoneRedLabel:'Red Zone',zoneRedSub:'Galit · Takot · Wala sa kontrol',back:'Bumalik',tabAct:'🎯 Mga Aktibidad',tabBreath:'🌬️ Paghinga',tabVideos:'🎬 Mga Video',tabFeel:'💬 Aking Nararamdaman',videosIntro:'🎬 Mga masayang video para makatulong sa iyo!',childPinLabel:'Ilagay ang iyong 2-digit code 🔢',childPinGo:'Tara na!',childPinBack:'Bumalik',childPinErr:'Mali ang code. Subukan ulit! 🙈',btnResources:'📚 Mga Mapagkukunan',breathIntro:'Huminga tayo nang magkasama!',feelingsPrompt:'I-tap ang mga nararamdaman mo ngayon:',notePrompt:'May gusto ka bang sabihin?',saveLabel:'I-save',doneLabel:'Nagawa ko na!',celebTitle:'Napakagaling!',celebMsg:'Ibinahagi mo ang iyong nararamdaman at nakakuha ng bituin!',celebHome:'Home',celebStars:'Aking mga Bituin',starsTitle:'⭐ Aking mga Bituin',starsSub:'Kahanga-hanga ka!',starsEarned:'Mga bituin na nakuha',starsBack:'Bumalik',ms1:'Unang Check-in — Explorer!',ms2:'5 Bituin — Superstar!',ms3:'10 Bituin — Kampeon!'},
+  it:{landingTagline:'Come ti senti oggi?',tapToSee:'Tocca per vedere come si fa',childLoginTitle:'Chi sei? 👋',childCodeLabel:'Inserisci il codice della tua classe:',childCodeBtn:'Trova la mia classe',childPickLabel:'Tocca il tuo nome! 👇',childBackCode:'Indietro',childLoginBack:'Torna alla home',breathReady:'Pronto',breathPressStart:'Premi Inizia!',breathStart:'▶ Inizia',breathStop:'⏹ Stop',breathStartAgain:'▶ Ricomincia',breathIn:'Inspira 🌬️',breathHoldText:'Tieni... ✋',breathHoldCircle:'Tieni...',breathOut:'Espira 💨',breathInCircle:'Inspira...',breathOutCircle:'Espira...',breathDone:'Fatto!',breathGreat:'Bravo! 🌟',btnChild:'👧 Sono un bambino',btnTeacher:'👩‍🏫 Educatore / Insegnante',btnParent:'👪 Genitore / Tutore',fqQuestion:'Come ti senti adesso?',fqSub:'Tocca la faccia che mostra come ti senti!',zoneBlueLabel:'Zona Blu',zoneBlueSub:'Triste · Stanco · Malato',zoneGreenLabel:'Zona Verde',zoneGreenSub:'Felice · Calmo · Pronto',zoneYellowLabel:'Zona Gialla',zoneYellowSub:'Preoccupato · Eccitato · Sciocco',zoneRedLabel:'Zona Rossa',zoneRedSub:'Arrabbiato · Spaventato · Fuori controllo',back:'Indietro',tabAct:'🎯 Attività',tabBreath:'🌬️ Respirazione',tabVideos:'🎬 Video',tabFeel:'💬 I Miei Sentimenti',videosIntro:'🎬 Video divertenti per muoverti, respirare e stare meglio!',childPinLabel:'Inserisci il tuo codice a 2 cifre 🔢',childPinGo:'Andiamo!',childPinBack:'Indietro',childPinErr:'Codice sbagliato. Riprova! 🙈',btnResources:'📚 Risorse',breathIntro:'Respiriamo insieme!',feelingsPrompt:'Tocca i sentimenti che hai adesso:',notePrompt:'Vuoi dirci qualcos\'altro?',saveLabel:'Salva',doneLabel:'Ce l\'ho fatta!',celebTitle:'Fantastico!',celebMsg:'Hai condiviso i tuoi sentimenti e guadagnato una stella!',celebHome:'Home',celebStars:'Le mie stelle',starsTitle:'⭐ Le mie Stelle',starsSub:'Sei fantastico!',starsEarned:'Stelle guadagnate',starsBack:'Indietro',ms1:'Primo check-in — Esploratore!',ms2:'5 Stelle — Superstar!',ms3:'10 Stelle — Campione!'},
+  pl:{landingTagline:'Jak się dziś czujesz?',tapToSee:'Dotknij, aby zobaczyć jak to zrobić',childLoginTitle:'Kim jesteś? 👋',childCodeLabel:'Wpisz kod klasy od nauczyciela:',childCodeBtn:'Znajdź moją klasę',childPickLabel:'Dotknij swoje imię! 👇',childBackCode:'Wróć',childLoginBack:'Wróć do domu',breathReady:'Gotowy',breathPressStart:'Naciśnij Start!',breathStart:'▶ Start',breathStop:'⏹ Stop',breathStartAgain:'▶ Zacznij od nowa',breathIn:'Wdech 🌬️',breathHoldText:'Zatrzymaj... ✋',breathHoldCircle:'Zatrzymaj...',breathOut:'Wydech 💨',breathInCircle:'Wdech...',breathOutCircle:'Wydech...',breathDone:'Gotowe!',breathGreat:'Świetnie! 🌟',btnChild:'👧 Jestem dzieckiem',btnTeacher:'👩‍🏫 Nauczyciel / Wychowawca',btnParent:'👪 Rodzic / Opiekun',fqQuestion:'Jak się teraz czujesz?',fqSub:'Dotknij twarzy, która pokazuje jak się czujesz!',zoneBlueLabel:'Niebieska Strefa',zoneBlueSub:'Smutny · Zmęczony · Chory',zoneGreenLabel:'Zielona Strefa',zoneGreenSub:'Szczęśliwy · Spokojny · Gotowy',zoneYellowLabel:'Żółta Strefa',zoneYellowSub:'Zmartwiony · Podekscytowany · Głupi',zoneRedLabel:'Czerwona Strefa',zoneRedSub:'Zły · Przestraszony · Bez kontroli',back:'Wróć',tabAct:'🎯 Aktywności',tabBreath:'🌬️ Oddychanie',tabVideos:'🎬 Filmy',tabFeel:'💬 Moje Uczucia',videosIntro:'🎬 Fajne filmy, które pomogą ci się lepiej poczuć!',childPinLabel:'Wpisz swój 2-cyfrowy kod 🔢',childPinGo:'Chodźmy!',childPinBack:'Wróć',childPinErr:'To nie jest właściwy kod. Spróbuj ponownie! 🙈',btnResources:'📚 Zasoby',breathIntro:'Oddychajmy razem!',feelingsPrompt:'Dotknij uczuć, które teraz masz:',notePrompt:'Chcesz nam coś jeszcze powiedzieć?',saveLabel:'Zapisz',doneLabel:'Zrobiłem to!',celebTitle:'Super!',celebMsg:'Podzieliłeś się swoimi uczuciami i zarobiłeś gwiazdkę!',celebHome:'Dom',celebStars:'Moje gwiazdki',starsTitle:'⭐ Moje Gwiazdki',starsSub:'Jesteś wspaniały!',starsEarned:'Zdobyte gwiazdki',starsBack:'Wróć',ms1:'Pierwszy check-in — Odkrywca!',ms2:'5 Gwiazdek — Supergwiazda!',ms3:'10 Gwiazdek — Mistrz!'},
+  ar:{landingTagline:'كيف تشعر اليوم؟',tapToSee:'اضغط لترى كيف تفعل ذلك',childLoginTitle:'من أنت؟ 👋',childCodeLabel:'أدخل رمز فصلك من معلمك:',childCodeBtn:'ابحث عن فصلي',childPickLabel:'اضغط على اسمك! 👇',childBackCode:'رجوع',childLoginBack:'العودة للرئيسية',breathReady:'جاهز',breathPressStart:'اضغط ابدأ!',breathStart:'▶ ابدأ',breathStop:'⏹ توقف',breathStartAgain:'▶ ابدأ من جديد',breathIn:'تنفس للداخل 🌬️',breathHoldText:'أمسك... ✋',breathHoldCircle:'أمسك...',breathOut:'تنفس للخارج 💨',breathInCircle:'تنفس...',breathOutCircle:'أخرج النفس...',breathDone:'تم!',breathGreat:'أحسنت! 🌟',btnChild:'👧 أنا طفل',btnTeacher:'👩‍🏫 معلم / مربي',btnParent:'👪 ولي الأمر',fqQuestion:'كيف تشعر الآن؟',fqSub:'اضغط على الوجه الذي يعبر عن شعورك!',zoneBlueLabel:'المنطقة الزرقاء',zoneBlueSub:'حزين · متعب · مريض',zoneGreenLabel:'المنطقة الخضراء',zoneGreenSub:'سعيد · هادئ · جاهز',zoneYellowLabel:'المنطقة الصفراء',zoneYellowSub:'قلق · متحمس · مضحك',zoneRedLabel:'المنطقة الحمراء',zoneRedSub:'غاضب · خائف · خارج عن السيطرة',back:'رجوع',tabAct:'🎯 أنشطة',tabBreath:'🌬️ تنفس',tabVideos:'🎬 فيديوهات',tabFeel:'💬 مشاعري',videosIntro:'🎬 مقاطع ممتعة تساعدك على التحرك والتنفس والشعور بشكل أفضل!',childPinLabel:'أدخل رمزك المكون من رقمين 🔢',childPinGo:'هيا!',childPinBack:'رجوع',childPinErr:'هذا ليس الرمز الصحيح. حاول مرة أخرى! 🙈',btnResources:'📚 موارد',breathIntro:'لنتنفس معاً!',feelingsPrompt:'اضغط على المشاعر التي تشعر بها الآن:',notePrompt:'هل تريد أن تخبرنا بشيء آخر؟',saveLabel:'حفظ',doneLabel:'لقد فعلتها!',celebTitle:'رائع!',celebMsg:'شاركت مشاعرك وكسبت نجمة!',celebHome:'الرئيسية',celebStars:'نجومي',starsTitle:'⭐ نجومي',starsSub:'أنت رائع!',starsEarned:'النجوم المكتسبة',starsBack:'رجوع',ms1:'أول تسجيل دخول — مستكشف!',ms2:'5 نجوم — نجم!',ms3:'10 نجوم — بطل!'},
+  ta:{landingTagline:'இன்று நீங்கள் எப்படி உணர்கிறீர்கள்?',tapToSee:'எப்படி செய்வது என்று பார்க்க தட்டவும்',childLoginTitle:'நீங்கள் யார்? 👋',childCodeLabel:'உங்கள் ஆசிரியரின் வகுப்பு குறியீட்டை உள்ளிடவும்:',childCodeBtn:'என் வகுப்பை கண்டுபிடி',childPickLabel:'உங்கள் பெயரை தட்டவும்! 👇',childBackCode:'திரும்பு',childLoginBack:'முகப்புக்கு திரும்பு',breathReady:'தயார்',breathPressStart:'தொடங்கு அழுத்தவும்!',breathStart:'▶ தொடங்கு',breathStop:'⏹ நிறுத்து',breathStartAgain:'▶ மீண்டும் தொடங்கு',breathIn:'மூச்சை உள்ளிழு 🌬️',breathHoldText:'பிடி... ✋',breathHoldCircle:'பிடி...',breathOut:'மூச்சை வெளியிடு 💨',breathInCircle:'உள்ளிழு...',breathOutCircle:'வெளியிடு...',breathDone:'முடிந்தது!',breathGreat:'மிகவும் நன்று! 🌟',btnChild:'👧 நான் ஒரு குழந்தை',btnTeacher:'👩‍🏫 ஆசிரியர் / கல்வியாளர்',btnParent:'👪 பெற்றோர் / பாதுகாவலர்',fqQuestion:'நீங்கள் இப்போது எப்படி உணர்கிறீர்கள்?',fqSub:'உங்கள் உணர்வை காட்டும் முகத்தை தட்டவும்!',zoneBlueLabel:'நீல மண்டலம்',zoneBlueSub:'சோகம் · சோர்வு · நோய்வாய்ப்பட்டவர்',zoneGreenLabel:'பச்சை மண்டலம்',zoneGreenSub:'மகிழ்ச்சி · அமைதி · தயார்',zoneYellowLabel:'மஞ்சள் மண்டலம்',zoneYellowSub:'கவலை · உற்சாகம் · முட்டாள்',zoneRedLabel:'சிவப்பு மண்டலம்',zoneRedSub:'கோபம் · பயம் · கட்டுப்பாட்டை இழந்தது',back:'திரும்பு',tabAct:'🎯 செயல்பாடுகள்',tabBreath:'🌬️ சுவாசம்',tabVideos:'🎬 வீடியோக்கள்',tabFeel:'💬 என் உணர்வுகள்',videosIntro:'🎬 உங்களுக்கு நன்றாக உணர உதவும் வேடிக்கையான வீடியோக்கள்!',childPinLabel:'உங்கள் 2 இலக்க குறியீட்டை உள்ளிடவும் 🔢',childPinGo:'போகலாம்!',childPinBack:'திரும்பு',childPinErr:'தவறான குறியீடு. மீண்டும் முயற்சிக்கவும்! 🙈',btnResources:'📚 வளங்கள்',breathIntro:'ஒன்றாக சுவாசிப்போம்!',feelingsPrompt:'நீங்கள் இப்போது உணரும் உணர்வுகளை தட்டவும்:',notePrompt:'வேறு ஏதாவது சொல்ல விரும்புகிறீர்களா?',saveLabel:'சேமி',doneLabel:'நான் செய்தேன்!',celebTitle:'அருமை!',celebMsg:'உங்கள் உணர்வுகளை பகிர்ந்து ஒரு நட்சத்திரம் பெற்றீர்கள்!',celebHome:'முகப்பு',celebStars:'என் நட்சத்திரங்கள்',starsTitle:'⭐ என் நட்சத்திரங்கள்',starsSub:'நீங்கள் அருமையானவர்!',starsEarned:'பெற்ற நட்சத்திரங்கள்',starsBack:'திரும்பு',ms1:'முதல் செக்-இன் — ஆராய்ச்சியாளர்!',ms2:'5 நட்சத்திரங்கள் — சூப்பர்ஸ்டார்!',ms3:'10 நட்சத்திரங்கள் — சாம்பியன்!'},
+  fa:{landingTagline:'امروز چه احساسی داری؟',tapToSee:'برای دیدن نحوه انجام ضربه بزنید',childLoginTitle:'تو کی هستی؟ 👋',childCodeLabel:'کد کلاس معلم خود را وارد کن:',childCodeBtn:'کلاسم را پیدا کن',childPickLabel:'روی اسمت ضربه بزن! 👇',childBackCode:'برگشت',childLoginBack:'برگشت به خانه',breathReady:'آماده',breathPressStart:'شروع را فشار بده!',breathStart:'▶ شروع',breathStop:'⏹ توقف',breathStartAgain:'▶ دوباره شروع',breathIn:'نفس بکش 🌬️',breathHoldText:'نگه دار... ✋',breathHoldCircle:'نگه دار...',breathOut:'نفس بده 💨',breathInCircle:'نفس بکش...',breathOutCircle:'نفس بده...',breathDone:'تمام!',breathGreat:'آفرین! 🌟',btnChild:'👧 من کودک هستم',btnTeacher:'👩‍🏫 معلم / مربی',btnParent:'👪 والدین / سرپرست',fqQuestion:'الان چه احساسی داری؟',fqSub:'روی چهره‌ای که احساست را نشان می‌دهد ضربه بزن!',zoneBlueLabel:'منطقه آبی',zoneBlueSub:'غمگین · خسته · بیمار',zoneGreenLabel:'منطقه سبز',zoneGreenSub:'شاد · آرام · آماده',zoneYellowLabel:'منطقه زرد',zoneYellowSub:'نگران · هیجان‌زده · احمقانه',zoneRedLabel:'منطقه قرمز',zoneRedSub:'عصبانی · ترسیده · خارج از کنترل',back:'برگشت',tabAct:'🎯 فعالیت‌ها',tabBreath:'🌬️ تنفس',tabVideos:'🎬 ویدیوها',tabFeel:'💬 احساسات من',videosIntro:'🎬 ویدیوهای سرگرم‌کننده برای کمک به احساس بهتر!',childPinLabel:'کد ۲ رقمی‌ات را وارد کن 🔢',childPinGo:'بزن بریم!',childPinBack:'برگشت',childPinErr:'کد اشتباه است. دوباره امتحان کن! 🙈',btnResources:'📚 منابع',breathIntro:'بیا با هم نفس بکشیم!',feelingsPrompt:'روی احساساتی که الان داری ضربه بزن:',notePrompt:'می‌خواهی چیز دیگری بگویی؟',saveLabel:'ذخیره',doneLabel:'انجام دادم!',celebTitle:'عالی!',celebMsg:'احساساتت را به اشتراک گذاشتی و یک ستاره کسب کردی!',celebHome:'خانه',celebStars:'ستاره‌هایم',starsTitle:'⭐ ستاره‌های من',starsSub:'تو فوق‌العاده هستی!',starsEarned:'ستاره‌های کسب‌شده',starsBack:'برگشت',ms1:'اولین چک‌این — کاوشگر!',ms2:'۵ ستاره — سوپراستار!',ms3:'۱۰ ستاره — قهرمان!'},
+  gu:{landingTagline:'આજે તમે કેવું અનુભવો છો?',tapToSee:'કેવી રીતે કરવું તે જોવા ટેપ કરો',childLoginTitle:'તમે કોણ છો? 👋',childCodeLabel:'તમારા શિક્ષકનો ક્લાસ કોડ દાખલ કરો:',childCodeBtn:'મારો ક્લાસ શોધો',childPickLabel:'તમારું નામ ટેપ કરો! 👇',childBackCode:'પાછા',childLoginBack:'ઘરે પાછા',breathReady:'તૈયાર',breathPressStart:'શરૂ દબાવો!',breathStart:'▶ શરૂ',breathStop:'⏹ બંધ',breathStartAgain:'▶ ફરી શરૂ',breathIn:'શ્વાસ લો 🌬️',breathHoldText:'રોકો... ✋',breathHoldCircle:'રોકો...',breathOut:'શ્વાસ છોડો 💨',breathInCircle:'શ્વાસ લો...',breathOutCircle:'શ્વાસ છોડો...',breathDone:'થઈ ગયું!',breathGreat:'શાબાશ! 🌟',btnChild:'👧 હું બાળક છું',btnTeacher:'👩‍🏫 શિક્ષક / શિક્ષણકર્મી',btnParent:'👪 માતાપિતા / વાલી',fqQuestion:'તમે હમણાં કેવું અનુભવો છો?',fqSub:'તમારી લાગણી દર્શાવતો ચહેરો ટેપ કરો!',zoneBlueLabel:'વાદળી ઝોન',zoneBlueSub:'દુઃખી · થાકેલ · બીમાર',zoneGreenLabel:'લીલો ઝોન',zoneGreenSub:'ખુશ · શાંત · તૈયાર',zoneYellowLabel:'પીળો ઝોન',zoneYellowSub:'ચિંતિત · ઉત્સાહિત · મૂર્ખ',zoneRedLabel:'લાલ ઝોન',zoneRedSub:'ગુસ્સો · ડરેલ · બેકાબૂ',back:'પાછા',tabAct:'🎯 પ્રવૃત્તિઓ',tabBreath:'🌬️ શ્વાસ',tabVideos:'🎬 વીડિયો',tabFeel:'💬 મારી લાગણીઓ',videosIntro:'🎬 મજેદાર વીડિયો જે તમને સારું અનુભવવામાં મદદ કરે!',childPinLabel:'તમારો 2 અંકનો કોડ દાખલ કરો 🔢',childPinGo:'ચાલો!',childPinBack:'પાછા',childPinErr:'ખોટો કોડ. ફરી પ્રયાસ કરો! 🙈',btnResources:'📚 સ્ત્રોતો',breathIntro:'ચાલો સાથે શ્વાસ લઈએ!',feelingsPrompt:'તમે હમણાં અનુભવો છો તે લાગણીઓ ટેપ કરો:',notePrompt:'બીજું કંઈ કહેવું છે?',saveLabel:'સાચવો',doneLabel:'મેં કર્યું!',celebTitle:'અફલાતૂન!',celebMsg:'તમે તમારી લાગણીઓ શેર કરી અને એક તારો મેળવ્યો!',celebHome:'ઘર',celebStars:'મારા તારા',starsTitle:'⭐ મારા તારા',starsSub:'તમે અદ્ભુત છો!',starsEarned:'મેળવેલ તારા',starsBack:'પાછા',ms1:'પ્રથમ ચેક-ઇન — સંશોધક!',ms2:'5 તારા — સુપરસ્ટાર!',ms3:'10 તારા — ચેમ્પિયન!'}
 };
 
 const ZONES={
@@ -862,14 +943,12 @@ function speak(elId){
 }
 function autoSpeak(elId){setTimeout(function(){speak(elId);},400);}
 
-function setLang(lang,btn){
+function setLang(lang){
   currentLang=lang;
-  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
-  document.querySelectorAll('.lang-btn').forEach(function(b){if(b.textContent.includes(langFlag(lang)))b.classList.add('active');});
-  if(btn)btn.classList.add('active');
+  document.querySelectorAll('.lang-select').forEach(function(s){s.value=lang;});
   applyTranslations();
 }
-function langFlag(l){return{en:'🇨🇦',fr:'🇫🇷',es:'🇪🇸',zh:'🇨🇳',ru:'🇷🇺'}[l]||'🇨🇦';}
+function langFlag(l){return{en:'🇨🇦',fr:'🇫🇷',es:'🇪🇸',zh:'🇨🇳',yue:'🇭🇰',ru:'🇷🇺',pt:'🇵🇹',pa:'🇮🇳',ur:'🇵🇰',hi:'🇮🇳',tl:'🇵🇭',it:'🇮🇹',pl:'🇵🇱',ar:'🇸🇦',ta:'🇱🇰',fa:'🇦🇫',gu:'🇮🇳'}[l]||'🇨🇦';}
 function applyTranslations(){
   var t=T[currentLang]||T.en;
   function set(id,val){var el=document.getElementById(id);if(el&&val!==undefined)el.textContent=val;}
